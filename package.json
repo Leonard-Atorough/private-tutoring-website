@@ -1,0 +1,25 @@
+{
+   "name": "private-tutoring-website",
+   "version": "1.0.0",
+   "main": "index.js",
+   "type": "module",
+   "scripts": {
+      "lint": "npx eslint src test",
+      "lint:fix": "npm run lint -- --fix",
+      "prettier": "npx prettier src test --check",
+      "prettier:fix": "npm run prettier -- --write",
+      "format": "npm run prettier:fix && npm run lint:fix",
+      "dev": "lite-server --baseDir=src --watch=src --watch=layout --watch=assets"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "description": "",
+   "devDependencies": {
+      "eslint": "^9.32.0",
+      "eslint-config-prettier": "^10.1.8",
+      "globals": "^16.3.0",
+      "lite-server": "^2.6.1",
+      "prettier": "^3.6.2"
+   }
+}

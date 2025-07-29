@@ -1,0 +1,4 @@
+{
+   "extends": ["eslint/reccomended", "prettier"],
+   "parserOptions": { "sourceType": "module" }
+}
