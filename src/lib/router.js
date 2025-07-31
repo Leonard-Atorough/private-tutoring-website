@@ -1,5 +1,6 @@
 import { loadHTML } from "./loader.js";
 import { pageConfig } from "../config/pageConfig.js";
+import { toggleNavMenu } from "../layout/header.js";
 
 async function loadMainLayout() {
    const layoutContainer = document.getElementById("content");
@@ -17,6 +18,11 @@ async function loadMainLayout() {
 
    layoutContainer.insertAdjacentElement("afterbegin", headerElement);
    layoutContainer.insertAdjacentElement("beforeend", footerElement);
+
+   const navToggle = document.querySelector("#menu-toggle");
+   if (navToggle) {
+      navToggle.addEventListener("click", toggleNavMenu);
+   }
 }
 
 async function handleRoute(path) {
@@ -34,9 +40,9 @@ async function handleRoute(path) {
       return;
    }
 
-   for (const componentUrl in config.components) {
+   for (const componentUrl of config.components) {
       const componentWrapper = await loadHTML(componentUrl);
-      const componentTemplate = componentWrapper.querySelector("div #template");
+      const componentTemplate = componentWrapper.querySelector("template");
       if (componentTemplate && page.querySelector(`[data-component="${componentTemplate.id}"]`)) {
          page
             .querySelector(`[data-component="${template.id}"]`)
@@ -50,7 +56,7 @@ async function handleRoute(path) {
 async function navigateTo(path) {
    console.log(path);
    history.pushState({}, "", path);
-   handleRoute(path);
+   await handleRoute(path);
 }
 
 export { loadMainLayout, handleRoute, navigateTo };
