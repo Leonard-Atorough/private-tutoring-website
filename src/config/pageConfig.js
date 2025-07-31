@@ -18,5 +18,9 @@ export const pageConfig = {
    "/contact": {
       page: "pages/contact.html",
       components: []
+   },
+   "/calendar": {
+      page: "pages/calendar.html",
+      components: []
    }
 };
