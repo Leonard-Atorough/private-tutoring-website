@@ -1,0 +1,27 @@
+@import url(../palettes/colors.css);
+
+.btn {
+   font-size: 18px;
+   all: unset;
+   height: 40px;
+   min-width: 69px;
+   padding: 2px 20px;
+   border: 2px var(--color-green-1) solid;
+   border-radius: 10px;
+   color: var(--color-black);
+   font-weight: 600;
+   opacity: 1;
+   transition: opacity 250ms;
+   cursor: pointer;
+
+   &:hover,
+   &:focus {
+      opacity: 0.8;
+      transition: opacity 250ms;
+   }
+}
+
+.btn-attention {
+   background: var(--color-green-1);
+   color: var(--color-white);
+}

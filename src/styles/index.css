@@ -1,0 +1,163 @@
+@import url(./helpers/palettes/colors.css);
+@import url(./layout/header.css);
+@import url(./layout/footer.css);
+@import url(./helpers/buttons/buttons.css);
+@import url(./helpers/fonts/typography.css);
+
+/* Reset and Global Styles */
+* {
+   box-sizing: border-box;
+   font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+   font-weight: 300;
+   letter-spacing: 0.5px;
+   margin: 0;
+}
+
+html {
+   scroll-behavior: smooth;
+}
+
+body {
+   line-height: 1.5;
+   -webkit-font-smoothing: antialiased;
+   background: var(--color-grey-3);
+
+   height: 100%;
+}
+
+a,
+a:visited {
+   text-decoration: none;
+   color: inherit;
+}
+
+li {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+/* Typography Styles */
+h1,
+h2,
+h3 {
+   font-weight: 600;
+   margin: 0;
+}
+
+h1 {
+   font-size: var(--font-size-6);
+}
+
+h2 {
+   font-size: var(--font-size-5);
+}
+
+h3 {
+   font-size: var(--font-size-4);
+}
+
+h4 {
+   font-size: var(--font-size-3);
+}
+
+h5,
+p,
+li,
+a {
+   font-size: var(--font-size-1);
+}
+
+/* Layout Styles */
+#content {
+   display: block;
+   margin: 0 auto;
+   height: 100%;
+}
+
+.main-content {
+   display: block;
+   margin: 0 auto;
+   min-height: 100vh;
+}
+
+.column {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+   padding: 0 20px;
+}
+
+.img-responsive {
+   width: 100%;
+   height: auto;
+}
+
+.banner {
+   display: block;
+   border-radius: 20px;
+   margin-bottom: 10px;
+   position: relative;
+   width: 100%;
+   max-height: 800px;
+   margin-bottom: 40px;
+
+   .banner-img {
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      box-sizing: border-box;
+      border-radius: 20px;
+      width: 100%;
+      max-height: 800px;
+   }
+
+   .banner-text {
+      color: var(--color-white);
+      background: rgba(from var(--color-grey-1) r g b/0.33);
+      padding: 20px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+   }
+   .btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* this is oddly necessary because otherwise, .btn color setting overrides .btn attention. weird */
+      color: var(--color-white);
+   }
+}
+
+.card {
+   min-height: 300px;
+   /* border: 1px red solid; */
+   border-radius: 20px;
+   padding: 10px 20px;
+   width: 100%;
+   height: 100%;
+   max-width: 960px;
+   margin-bottom: 40px;
+}
+
+.card-normal {
+   background: var(--color-white);
+}
+
+@media (max-width: 830px) {
+   .banner {
+      min-height: 600px;
+
+      .banner-img {
+         min-height: 600px;
+      }
+   }
+}
