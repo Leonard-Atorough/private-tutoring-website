@@ -1,7 +1,8 @@
 @import url(../palettes/colors.css);
+@import url(../fonts/typography.css);
 
 .btn {
-   font-size: 18px;
+   font-size: var(--font-size-2);
    all: unset;
    height: 40px;
    min-width: 69px;
