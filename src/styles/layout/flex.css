@@ -1,0 +1,12 @@
+@import url(../helpers/palettes/colors.css);
+
+.flex-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
