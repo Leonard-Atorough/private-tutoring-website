@@ -17,10 +17,10 @@ export const pageConfig = {
    },
    "/contact": {
       page: "pages/contact.html",
-      components: []
+      components: ["components/contact-form.html"]
    },
    "/calendar": {
       page: "pages/calendar.html",
-      components: []
+      components: ["components/booking-form.html"]
    }
 };

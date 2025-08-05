@@ -1,0 +1,23 @@
+<template id="contact-template">
+    <section class="flex-row">
+        <div class="form-title">
+            <h1>GET IN TOUCH</h1>
+            <a href="mailto:leotorough@gmail.com" title="Email Kaili Stacey">
+                <span>📧</span> kailistacey@gmail.com
+            </a>
+        </div>
+        <div class="flex-row">
+            <form class="flex-col" id="contact-form" method="post" action="#">
+                <input type="text" id="name" name="name" placeholder="Name" required />
+                <div class="flex-row">
+                    <input type="email" id="email" name="email" placeholder="Email" required />
+                    <input type="phone" id="phone" name="phone" placeholder="Phone" required />
+                </div>
+                <input type="text" id="subject" name="subject" placeholder="Subject" maxlength="50" required />
+                <textarea id="message" name="message" rows="10" placeholder="Enter your inquiry here..."
+                    required></textarea>
+                <button type="submit" class="btn btn-attention">Send Enquiry</button>
+            </form>
+        </div> 
+    </section>
+</template>
