@@ -45,8 +45,8 @@ async function handleRoute(path) {
       const componentTemplate = componentWrapper.querySelector("template");
       if (componentTemplate && page.querySelector(`[data-component="${componentTemplate.id}"]`)) {
          page
-            .querySelector(`[data-component="${template.id}"]`)
-            .appendChild(template.content.cloneNode(true));
+            .querySelector(`[data-component="${componentTemplate.id}"]`)
+            .appendChild(componentTemplate.content.cloneNode(true));
       }
    }
 
