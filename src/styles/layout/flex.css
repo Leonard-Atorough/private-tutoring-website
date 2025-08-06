@@ -1,12 +1,14 @@
 @import url(../helpers/palettes/colors.css);
 
 .flex-row {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .flex-col {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }

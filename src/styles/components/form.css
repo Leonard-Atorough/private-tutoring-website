@@ -1,0 +1,35 @@
+@import url(../helpers/palettes/colors.css);
+@import url(../helpers/buttons/buttons.css);
+
+form,
+input,
+textarea,
+button {
+   margin: 0;
+   padding: 0;
+}
+
+.form-title,
+.form-content,
+#contact-form {
+   width: 100%;
+}
+
+input,
+textarea {
+   border: 1px solid var(--color-dark);
+   background: transparent;
+   color: var(--color-dark);
+   border-bottom: 1px black solid;
+}
+
+input {
+   height: 50px;
+   width: 100%;
+   padding: 0 10px;
+}
+
+textarea {
+   padding: 5px 10px;
+   width: 100%;
+}
