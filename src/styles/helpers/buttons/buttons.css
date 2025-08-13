@@ -1,19 +1,26 @@
 @import url(../palettes/colors.css);
 @import url(../fonts/typography.css);
 
-.btn {
-   font-size: var(--font-size-2);
+button {
    all: unset;
-   height: 40px;
-   min-width: 69px;
-   padding: 2px 20px;
-   border: 2px var(--color-green-1) solid;
-   border-radius: 10px;
-   color: var(--color-black);
+}
+
+/* basic button. Deals with commons (size, click area, cursor interaction etc) 
+has no styling */
+
+.btn {
+   background-color: transparent;
+   border: none;
+   display: inline-block;
+   cursor: pointer;
+   text-align: center;
+   padding: 1.5rem 2rem;
+   border-radius: 1rem;
    font-weight: 600;
+   font-size: var(--font-size-1);
+   min-width: 6rem;
    opacity: 1;
    transition: opacity 250ms;
-   cursor: pointer;
 
    &:hover,
    &:focus {
@@ -22,7 +29,7 @@
    }
 }
 
-.btn-attention {
+.btn-primary {
    background: var(--color-green-1);
    color: var(--color-white);
 }

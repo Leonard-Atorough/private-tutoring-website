@@ -1,22 +1,22 @@
 <template id="contact-template">
-    <section class="flex-col m-1 gap-8 form-body">
+    <section class="flex-col m-1 gap-6 form-body">
         <div class="flex-col form-title">
             <h1>GET IN TOUCH</h1>
             <a href="mailto:leotorough@gmail.com" title="Email Kaili Stacey">
                 <span>📧</span> kailistacey@gmail.com
             </a>
         </div>
-        <div class="flex-row form-content">
-            <form class="flex-col gap-6" id="contact-form" method="post" action="#">
+        <div class="card card-primary flex-row form-content">
+            <form class="flex-col m-2 gap-6" id="contact-form" method="post" action="#">
                 <input type="text" id="name" name="name" placeholder="Name" required />
-                <div class="flex-row gap-6" style="width: 100%;">
+                <div class="flex-row flex-col-sm gap-6" style="width: 100%;">
                     <input type="email" id="email" name="email" placeholder="Email" required />
                     <input type="phone" id="phone" name="phone" placeholder="Phone" required />
                 </div>
                 <input type="text" id="subject" name="subject" placeholder="Subject" maxlength="50" required />
                 <textarea id="message" name="message" rows="10" placeholder="Enter your inquiry here..."
                     required></textarea>
-                <button type="submit" class="btn btn-attention">Send Enquiry</button>
+                <button type="submit" class="btn btn-primary">Send</button>
             </form>
         </div>
     </section>

@@ -12,3 +12,9 @@
    justify-content: center;
    align-items: center;
 }
+
+@media (max-width: 480px) {
+   .flex-col-sm {
+      flex-direction: column;
+   }
+}

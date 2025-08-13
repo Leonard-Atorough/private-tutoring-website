@@ -1,0 +1,23 @@
+@import url(../helpers/palettes/colors.css);
+
+.card {
+   border-radius: 2rem;
+   padding: 2rem;
+      background: transparent;
+   color: var(--color-green-1);
+}
+
+.card-primary {
+   background: var(--color-white);
+   color: var(--color-green-1);
+}
+
+.card-secondary {
+   background: var(--color-green-1);
+   color: var(--color-white);
+}
+
+.card-tertiary {
+   background: var(--color-green-3);
+   color: var(--color-green-1);
+}
