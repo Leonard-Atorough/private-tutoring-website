@@ -1,7 +1,7 @@
 export const pageConfig = {
    "/home": {
       page: "pages/home.html",
-      components: ["components/contact-form.html"]
+      components: ["components/contact-form.html", "components/testimonials.html"]
    },
    "/about": {
       page: "pages/about.html",

@@ -25,7 +25,7 @@ html {
 }
 
 body {
-   line-height: 1.5;
+   line-height: 2;
    -webkit-font-smoothing: antialiased;
    background: var(--color-grey-3);
    height: 100%;
@@ -153,9 +153,13 @@ button {
    min-width: 360px;
 }
 
-@media (max-width: 830px) {
+.testimonial {
+   flex: 1 1 0;
+   min-height: 30rem;
+}
 
-   h1{
+@media (max-width: 830px) {
+   h1 {
       font-size: var(--font-size-5);
    }
 

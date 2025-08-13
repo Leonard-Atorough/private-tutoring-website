@@ -3,7 +3,7 @@
 .card {
    border-radius: 2rem;
    padding: 2rem;
-      background: transparent;
+   background: transparent;
    color: var(--color-green-1);
 }
 

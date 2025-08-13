@@ -1,5 +1,6 @@
 @import url(../helpers/palettes/colors.css);
 @import url(../helpers/buttons/buttons.css);
+@import url(../helpers/fonts/typography.css);
 
 form,
 input,
@@ -9,10 +10,9 @@ button {
    padding: 0;
 }
 
-/* input,
+input,
 textarea {
-   all: unset;
-} */
+}
 
 .form-body {
    max-width: 1200px;
@@ -25,9 +25,10 @@ textarea {
 
 input,
 textarea {
-   border: none;
+   all: unset;
+   font-size: var(--font-size-1);
+   box-sizing: border-box;
    background: transparent;
-   color: var(--color-dark);
    border-bottom: 1px black solid;
 }
 
