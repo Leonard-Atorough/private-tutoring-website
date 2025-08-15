@@ -24,8 +24,9 @@ vi.mock("./loader.js", () => ({
         </template>
       `;
          return Promise.resolve(compWrapper);
+      } else {
+        throw new Error(`Failed to load HTML from ${url}: Not found`);
       }
-      return Promise.resolve(document.createElement("div"));
    })
 }));
 
@@ -37,6 +38,10 @@ beforeEach(() => {
       page: "test-page.html",
       components: ["test-component.html"]
    };
+
+   pageConfig["/not-found"] = {
+    page: "not-found.html"
+   }
 });
 
 describe("handleRoute", () => {
@@ -54,12 +59,14 @@ describe("handleRoute", () => {
    });
 });
 
-// describe("handleRoute", () => {
-//    it("loads the error page when a non-existent page is routed to", async () => {
-//       await handleRoute("/not-exist");
+describe("handleRoute", () => {
+   it("loads the error page when a non-existent page is routed to", async () => {
+      await handleRoute("/not-found");
 
-//       expect(content.innerHTML).toContain(
-//          `<p>Error loading page: Failed to load HTML from pages/not-exist.html: Not Found</p>`
-//       );
-//    });
-// });
+      const content = document.querySelector(".main-content");
+
+      expect(content.innerHTML).toContain(
+         `<p>Error loading page: Failed to load HTML from not-found.html: Not found</p>`
+      );
+   });
+});
