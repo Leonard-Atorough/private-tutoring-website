@@ -75,6 +75,10 @@ button {
    font-size: var(--font-size-1);
 }
 
+section {
+   scroll-margin-top: 10rem;
+}
+
 /* Layout Styles */
 #content {
    display: block;
@@ -94,7 +98,7 @@ button {
    flex-direction: column;
    align-items: center;
    width: 100%;
-   padding: 0 20px;
+   padding: 0 2rem;
 }
 
 .row {
@@ -108,38 +112,51 @@ button {
    width: 100%;
    height: auto;
    object-fit: cover;
-   object-position: center;
 }
 
 .banner {
    display: block;
-   border-radius: 20px;
+   border-radius: 2rem;
    position: relative;
    width: 100%;
    min-width: 360px;
    height: 85vh;
+   padding: 0 4rem;
 
    .banner-img {
-      border-radius: 20px;
+      border-radius: 2rem;
       height: 100%;
+      object-position: left;
    }
 
    .banner-text {
-      color: var(--color-white);
-      background: rgba(from var(--color-grey-1) r g b/0.33);
-      padding: 20px;
+      color: var(--color-green-1);
+      background: rgba(from var(--color-white) r g b/0.33);
+      /* color: var(--color-white);
+      background: rgba(from var(--color-grey-1) r g b/0.33); */
+      padding: 2rem;
       position: absolute;
       top: 0px;
-      left: 0px;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
+      right: 0px;
+      border-radius: 2rem;
+      text-align: right;
+
+      h1 {
+         font-size: var(--font-size-xl);
+         line-height: 1.25;
+         max-width: 100rem;
+         width: 100%;
+      }
+
+      h4 {
+         width: 100%;
+      }
    }
 
    #ctaBtn {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
+      bottom: 2rem;
+      right: 6rem;
 
       color: var(--color-white);
    }
@@ -147,23 +164,61 @@ button {
 
 .img-main {
    display: block;
-   border-radius: 20px;
-   position: relative;
-   width: 100%;
-   min-width: 360px;
+   border-radius: 2rem;
+   width: 50%;
+   flex: 1 1 0;
 }
 
 .testimonial {
    flex: 1 1 0;
-   min-height: 30rem;
+   min-height: 40rem;
+   justify-content: space-around;
 }
 
-@media (max-width: 830px) {
+@media (max-width: 480px) {
+   section {
+      scroll-margin-top: 48rem;
+   }
+
    h1 {
       font-size: var(--font-size-5);
    }
 
    .column {
       padding: 0 1rem;
+   }
+
+   .navbar {
+      margin-bottom: 0;
+   }
+
+   .banner {
+      padding: 0 1rem;
+
+      .banner-text {
+         margin: 1rem 2rem;
+         display: block;
+         box-sizing: border-box;
+         h1 {
+            font-size: var(--font-size-4);
+         }
+
+         h4 {
+            font-size: var(--font-size-2);
+         }
+      }
+
+      .banner-img {
+         height: 82vh;
+      }
+
+      #ctaBtn {
+         bottom: 3rem;
+         right: 1rem;
+      }
+   }
+
+   .img-main {
+      width: 100%;
    }
 }

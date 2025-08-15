@@ -1,9 +1,11 @@
 :root {
-    --scale-ratio: 1.333;
-    --font-size-1: clamp(14px, 1.6rem, 16px);
-    --font-size-2: clamp(18px, calc(var(--font-size-1)* var(--scale-ratio)), 20px);
-    --font-size-3: clamp(24px, calc(var(--font-size-2)* var(--scale-ratio)), 28px);
-    --font-size-4: clamp(32px, calc(var(--font-size-3)* var(--scale-ratio)), 36px);
-    --font-size-5: clamp(40px, calc(var(--font-size-4)* var(--scale-ratio)), 44px);
-    --font-size-6: clamp(48px, calc(var(--font-size-5)* var(--scale-ratio)), 52px);
+   --scale-ratio: 1.333;
+   --font-size-1: clamp(14px, 1.6rem, 16px);
+   --font-size-2: clamp(18px, calc(var(--font-size-1) * var(--scale-ratio)), 20px);
+   --font-size-3: clamp(24px, calc(var(--font-size-2) * var(--scale-ratio)), 28px);
+   --font-size-4: clamp(32px, calc(var(--font-size-3) * var(--scale-ratio)), 36px);
+   --font-size-5: clamp(40px, calc(var(--font-size-4) * var(--scale-ratio)), 44px);
+   --font-size-6: clamp(48px, calc(var(--font-size-5) * var(--scale-ratio)), 52px);
+
+   --font-size-xl: clamp(6rem, 7rem, 8rem);
 }

@@ -27,7 +27,7 @@ async function loadMainLayout() {
 
 async function handleRoute(path) {
    const content = document.querySelector(".main-content");
-   content.innerHTML = "";
+   content.innerHTML = `<div class="loading">Loading...</div>`;
 
    const config = pageConfig[path] || pageConfig["/home"];
 
@@ -49,14 +49,26 @@ async function handleRoute(path) {
             .appendChild(componentTemplate.content.cloneNode(true));
       }
    }
-
+   content.innerHTML = "";
    content.appendChild(page);
 }
 
-async function navigateTo(path) {
-   console.log(path);
-   history.pushState({}, "", path);
+async function navigateTo(path, sectionid) {
+   console.log(path, sectionid);
+   history.pushState({}, "", sectionid ? `${path}#${sectionid}` : path);
+
    await handleRoute(path);
+
+   const tryScroll = () => {
+      if (sectionid) {
+         const target = document.getElementById(sectionid);
+         if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+         }
+      }
+
+      setTimeout(tryScroll, 50);
+   };
 }
 
 export { loadMainLayout, handleRoute, navigateTo };

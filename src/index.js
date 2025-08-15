@@ -1,4 +1,5 @@
 import { loadMainLayout, navigateTo } from "./lib/router.js";
+import { toggleNavMenu } from "./layout/header.js";
 
 window.addEventListener("load", async () => {
    await loadMainLayout();
@@ -6,14 +7,29 @@ window.addEventListener("load", async () => {
 });
 
 window.addEventListener("popstate", () => {
-   navigateTo(location.pathname);
+   const path = location.pathname;
+   const sectionId = location.hash.replace("#", "");
+   navigateTo(path).then(() => {
+      if (sectionId) {
+         const target = document.getElementById(sectionId);
+         if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            toggleNavMenu();
+         }
+      }
+   });
 });
 
 document.querySelectorAll("a").forEach((link) => {
    link.addEventListener("click", (e) => {
-      if (link.origin === location.origin) {
+      // const href = link.getAttribute("href");
+      // console.log(href);
+      // const [path, sectionid] = href.split("#");
+      const path = link.pathname;
+      const hash = link.hash ? link.hash.slice(1) : null;
+      if (link.origin === location.origin && path.startsWith("/")) {
          e.preventDefault();
       }
-      navigateTo(link.getAttribute("href"));
+      navigateTo(path, hash);
    });
 });
