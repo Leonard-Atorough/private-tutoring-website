@@ -149,3 +149,12 @@ sftp-config.json
 .settings/
 .vscode/
 src/assets/sample_picture.jpg
+
+# Visual Studio Code - User specific files
+html/index.html
+html/bg.png
+html/favicon.ico
+html/favicon.svg
+html/html.meta.json.gz
+html/assets/index-D_ryMEPs.js
+html/assets/index-X8b7Z_4p.css

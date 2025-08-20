@@ -12,6 +12,7 @@
       "dev": "lite-server --baseDir=src --watch=src --watch=layout --watch=assets",
       "test": "vitest",
       "test:watch": "vitest --watch",
+      "test:coverage": "vitest --coverage",
       "dev:test": "concurrently \"npm run dev\" \"npm run test:watch\""
    },
    "keywords": [],
@@ -20,6 +21,8 @@
    "description": "",
    "devDependencies": {
       "@types/jsdom": "^21.1.7",
+      "@vitest/coverage-v8": "^3.2.4",
+      "@vitest/ui": "^3.2.4",
       "eslint": "^9.32.0",
       "eslint-config-prettier": "^10.1.8",
       "globals": "^16.3.0",
