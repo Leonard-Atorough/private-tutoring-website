@@ -1,5 +1,8 @@
-import { loadMainLayout, navigateTo } from "./lib/router.js";
+import { loadHTML } from "./lib/loader.js";
+import { createRouter} from "./lib/router.js";
 import { toggleNavMenu } from "./layout/header.js";
+
+const { loadMainLayout, navigateTo} = createRouter(loadHTML)
 
 window.addEventListener("load", async () => {
    await loadMainLayout();

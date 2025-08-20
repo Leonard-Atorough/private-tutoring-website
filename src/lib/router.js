@@ -1,74 +1,80 @@
-import { loadHTML } from "./loader.js";
 import { pageConfig } from "../config/pageConfig.js";
 import { toggleNavMenu } from "../layout/header.js";
 
-async function loadMainLayout() {
-   const layoutContainer = document.getElementById("content");
+function createRouter(loadHTML) {
+   async function loadMainLayout() {
+      const layoutContainer = document.getElementById("content");
 
-   const [headerHTML, footerHTML] = await Promise.all([
-      loadHTML("layout/header.html"),
-      loadHTML("layout/footer.html")
-   ]);
+      const [headerHTML, footerHTML] = await Promise.all([
+         loadHTML("layout/header.html"),
+         loadHTML("layout/footer.html")
+      ]);
 
-   const headerTemplate = headerHTML.querySelector("div #header-template");
-   const footerTemplate = footerHTML.querySelector("div #footer-template");
+      const headerTemplate = headerHTML.querySelector("div #header-template");
+      const footerTemplate = footerHTML.querySelector("div #footer-template");
 
-   const headerElement = headerTemplate.content.firstElementChild.cloneNode(true);
-   const footerElement = footerTemplate.content.firstElementChild.cloneNode(true);
+      const headerElement = headerTemplate.content.firstElementChild.cloneNode(true);
+      const footerElement = footerTemplate.content.firstElementChild.cloneNode(true);
 
-   layoutContainer.insertAdjacentElement("afterbegin", headerElement);
-   layoutContainer.insertAdjacentElement("beforeend", footerElement);
+      layoutContainer.insertAdjacentElement("afterbegin", headerElement);
+      layoutContainer.insertAdjacentElement("beforeend", footerElement);
 
-   const navToggle = document.querySelector("#menu-toggle");
-   if (navToggle) {
-      navToggle.addEventListener("click", toggleNavMenu);
-   }
-}
-
-async function handleRoute(path) {
-   const content = document.querySelector(".main-content");
-   content.innerHTML = `<div class="loading">Loading...</div>`;
-
-   const config = pageConfig[path] || pageConfig["/home"];
-
-   let page = "";
-   try {
-      page = await loadHTML(config.page);
-   } catch (error) {
-      console.error("Error loading page:", error);
-      content.innerHTML = `<p>Error loading page: ${error.message}</p>`;
-      return;
-   }
-
-   for (const componentUrl of config.components) {
-      const componentWrapper = await loadHTML(componentUrl);
-      const componentTemplate = componentWrapper.querySelector("template");
-      if (componentTemplate && page.querySelector(`[data-component="${componentTemplate.id}"]`)) {
-         page
-            .querySelector(`[data-component="${componentTemplate.id}"]`)
-            .appendChild(componentTemplate.content.cloneNode(true));
+      const navToggle = document.querySelector("#menu-toggle");
+      if (navToggle) {
+         navToggle.addEventListener("click", toggleNavMenu);
       }
    }
-   content.innerHTML = "";
-   content.appendChild(page);
-}
 
-async function navigateTo(path, sectionid) {
-   console.log(path, sectionid);
-   history.pushState({}, "", sectionid ? `${path}#${sectionid}` : path);
+   async function handleRoute(path) {
+      const content = document.querySelector(".main-content");
+      content.innerHTML = `<div class="loading">Loading...</div>`;
 
-   await handleRoute(path);
+      const config = pageConfig[path] || pageConfig["/home"];
 
-   const tryScroll = () => {
-      if (sectionid) {
-         const target = document.getElementById(sectionid);
-         if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
+      let page = "";
+      try {
+         page = await loadHTML(config.page);
+      } catch (error) {
+         console.error("Error loading page:", error);
+         content.innerHTML = `<p>Error loading page: ${error.message}</p>`;
+         return;
+      }
+
+      for (const componentUrl of config.components || []) {
+         const componentWrapper = await loadHTML(componentUrl);
+         const componentTemplate = componentWrapper.querySelector("template");
+         if (
+            componentTemplate &&
+            page.querySelector(`[data-component="${componentTemplate.id}"]`)
+         ) {
+            page
+               .querySelector(`[data-component="${componentTemplate.id}"]`)
+               .appendChild(componentTemplate.content.cloneNode(true));
          }
-      } else {
-         setTimeout(tryScroll, 50);
       }
-   };
+      content.innerHTML = "";
+      content.appendChild(page);
+   }
+
+   async function navigateTo(path, sectionid) {
+      console.log(path, sectionid);
+      history.pushState({}, "", sectionid ? `${path}#${sectionid}` : path);
+
+      await handleRoute(path);
+
+      const tryScroll = () => {
+         if (sectionid) {
+            const target = document.getElementById(sectionid);
+            if (target) {
+               target.scrollIntoView({ behavior: "smooth" });
+            }
+         } else {
+            setTimeout(tryScroll, 50);
+         }
+      };
+   }
+
+   return { loadMainLayout, handleRoute, navigateTo };
 }
 
-export { loadMainLayout, handleRoute, navigateTo };
+export { createRouter };
