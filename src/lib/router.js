@@ -65,9 +65,9 @@ async function navigateTo(path, sectionid) {
          if (target) {
             target.scrollIntoView({ behavior: "smooth" });
          }
+      } else {
+         setTimeout(tryScroll, 50);
       }
-
-      setTimeout(tryScroll, 50);
    };
 }
 

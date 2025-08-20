@@ -28,6 +28,7 @@ body {
    line-height: 2;
    -webkit-font-smoothing: antialiased;
    background: var(--color-grey-3);
+   color: var(--color-green-1);
    height: 100%;
 }
 
