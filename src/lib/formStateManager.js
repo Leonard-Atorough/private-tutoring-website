@@ -2,18 +2,12 @@
 function createFormStateManager(persistState, getPersistedState) {
    function getFormData(formId) {
       const form = document.getElementById(formId);
-      console.log(form, form.elements);
       if (!form) {
          console.warn(`Form with id ${formId} not found`);
          return;
       }
       const formData = new FormData(form);
-      for (let [key, value] of formData.entries()) {
-         console.log(`${key}: ${value}`);
-      }
-
       const data = Object.fromEntries(formData);
-      console.log(data);
 
       return data;
    }
@@ -33,30 +27,42 @@ function createFormStateManager(persistState, getPersistedState) {
          console.warn(`Form with id ${formId} not found`);
          return;
       }
+      //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
+      const formSubmitted = getPersistedState("formSubmitted");
+      if (formSubmitted) {
+         persistState("formSubmitted", false);
+         clearFormState(formId);
+      }
+      // we always want to load the persisted state when the form is created, even if it has been submitted.
       const saved = getPersistedState(formId);
       if (saved) {
          setFormData(form, saved);
+
+         let idleTimer;
+         const saveState = () => {
+            persistState(formId, getFormData(formId));
+            console.log("Form state saved");
+         };
+
+         const resetIdleTimer = () => {
+            if (idleTimer) clearTimeout(idleTimer);
+            idleTimer = setTimeout(saveState, 2000);
+         };
+
+         form.addEventListener("input", resetIdleTimer);
+
+         form.addEventListener("submit", () => {
+            if (idleTimer) clearTimeout(idleTimer);
+            saveState();
+         });
+         window.addEventListener("beforeunload", saveState);
       }
-
-      let idleTimer;
-      const saveState = () => {
-         persistState(formId, getFormData(formId));
-         console.log("Form state saved");
-      };
-
-      const resetIdleTimer = () => {
-         if (idleTimer) clearTimeout(idleTimer);
-         idleTimer = setTimeout(saveState, 2000);
-      };
-
-      form.addEventListener("input", resetIdleTimer);
-
-      form.addEventListener("submit", () => {
-         if (idleTimer) clearTimeout(idleTimer);
-         saveState();
-      });
-      window.addEventListener("beforeunload", saveState);
    }
-   return { persistFormState };
+
+   function clearFormState(formId) {
+      persistState(formId, null);
+   }
+
+   return { persistFormState, clearFormState };
 }
 export { createFormStateManager };

@@ -56,7 +56,6 @@ function createRouter(loadHTML, pageConfig) {
    }
 
    async function navigateTo(path, sectionid = "") {
-      console.log(path, sectionid);
       history.pushState({}, "", sectionid ? `${path}#${sectionid}` : path);
 
       await handleRoute(path);

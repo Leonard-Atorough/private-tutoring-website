@@ -7,7 +7,8 @@
             </a>
         </div>
         <div class="card card-primary flex-row form-content">
-            <form class="flex-col m-2 gap-6" id="contact-form" method="post" action="#">
+            <form class="flex-col m-2 gap-6" id="contact-form" method="POST"
+                action="https://formsubmit.co/f38c273a100d8e08fadefa3f09463203 ">
                 <input type="text" id="name" name="name" placeholder="Name" required />
                 <div class="flex-row flex-col-sm gap-6" style="width: 100%;">
                     <input type="email" id="email" name="email" placeholder="Email" required />
@@ -17,6 +18,8 @@
                 <textarea id="message" name="message" rows="10" placeholder="Enter your inquiry here..."
                     required></textarea>
                 <button type="submit" class="btn btn-primary">Send</button>
+
+                <input type="text" name="_gotcha" style="display:none" />
             </form>
         </div>
     </section>
