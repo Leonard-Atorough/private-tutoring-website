@@ -11,3 +11,18 @@ export function persistState(key, value) {
    //saves to local storage
    localStorage.setItem(STATE_KEY, payload);
 }
+
+export function getPersistedState() {
+   let persisted = localStorage.getItem(STATE_KEY);
+   if (!persisted) return {};
+   try {
+      const { data, timestamp } = JSON.parse(persisted);
+      if (Date.now() - timestamp > EXPIRY_HOURS * 60 * 60 * 1000) {
+         localStorage.removeItem(STATE_KEY);
+         return {};
+      }
+      return data;
+   } catch {
+      return {};
+   }
+}

@@ -4,39 +4,62 @@
 import { vi, it, expect, beforeEach, afterEach, describe } from "vitest";
 import * as state from "./state.js";
 
-// we want to save state to local storage
-// local storage is a key value store so we will need a key. As its per user a static key
-// we also want to define a ttl for local storage, say 3 hrs - this should be in the actual state
-
 const TEST_KEY = "theme";
 const TEST_VALUE = "dark";
 const FIXED_TIMESTAMP = 1690000000000;
 
+const EXPIRATION_MS = 1000 * 60 * 60 * 24;
 // define our first test where we just call to persistState
 
-describe("persistState", () => {
+describe("state persistence", () => {
    beforeEach(() => {
       localStorage.clear();
-      //   vi.spyOn(localStorage, 'setItem');
+      let mockStore = {};
       vi.stubGlobal("localStorage", {
-         setItem: vi.fn(),
-         clear: vi.fn()
+         setItem: vi.fn((key, value) => (mockStore[key] = value)),
+         getItem: vi.fn((key) => mockStore[key]),
+         removeItem: vi.fn((key) => delete mockStore[key] ?? null),
+         clear: () => (mockStore = {})
       });
-      vi.spyOn(Date, "now").mockReturnValue(FIXED_TIMESTAMP);
+
+      vi.useFakeTimers({ now: FIXED_TIMESTAMP });
    });
 
    afterEach(() => {
       vi.restoreAllMocks();
+      vi.useRealTimers();
+   });
+   describe("persistState", () => {
+      it("should update state and persist to localStorage", () => {
+         state.persistState(TEST_KEY, TEST_VALUE);
+
+         const expectedPayload = JSON.stringify({
+            data: { theme: "dark" },
+            timestamp: FIXED_TIMESTAMP
+         });
+
+         expect(localStorage.setItem).toHaveBeenCalledWith("appState", expectedPayload);
+      });
    });
 
-   it("should update state and persist to localStorage", () => {
-      state.persistState(TEST_KEY, TEST_VALUE);
-
-      const expectedPayload = JSON.stringify({
-         data: { theme: "dark" },
-         timestamp: FIXED_TIMESTAMP
+   describe("getPersistedState", () => {
+      it("should get state from local storage and load it into memory", () => {
+         state.persistState(TEST_KEY, TEST_VALUE);
+         const persisted = state.getPersistedState();
+         expect(persisted[TEST_KEY]).toEqual(TEST_VALUE);
       });
 
-      expect(localStorage.setItem).toHaveBeenCalledWith("appState", expectedPayload);
+      it("should remove state from local storage once it has expired and return an empty state object", () => {
+         state.persistState(TEST_KEY, TEST_VALUE);
+
+         const fastForwardTime = FIXED_TIMESTAMP + EXPIRATION_MS + 1;
+         vi.setSystemTime(fastForwardTime);
+
+         const persisted = state.getPersistedState();
+
+         expect(localStorage.removeItem).toHaveBeenCalledWith("appState");
+         expect(localStorage.getItem("appState")).toBeUndefined();
+         expect(persisted).toStrictEqual({});
+      });
    });
 });
