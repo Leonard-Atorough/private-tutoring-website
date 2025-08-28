@@ -55,7 +55,7 @@ function createRouter(loadHTML, pageConfig) {
       content.appendChild(page);
    }
 
-   async function navigateTo(path, sectionid) {
+   async function navigateTo(path, sectionid = "") {
       console.log(path, sectionid);
       history.pushState({}, "", sectionid ? `${path}#${sectionid}` : path);
 
@@ -71,6 +71,8 @@ function createRouter(loadHTML, pageConfig) {
             setTimeout(tryScroll, 50);
          }
       };
+
+      tryScroll();
    }
 
    return { loadMainLayout, handleRoute, navigateTo };

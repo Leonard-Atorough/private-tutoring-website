@@ -2,7 +2,8 @@
  * @vitest-environment jsdom
  */
 import { createRouter } from "./router.js";
-import { loadHTMLmock } from "./mocks/loadHTML.mock.js";
+import * as header from "../layout/header.js";
+import { loadHTMLMock, loadHeaderFooterHTMLMock } from "./mocks/loadHTML.mock.js";
 import { pageConfigMock } from "./mocks/pageConfig.mock.js";
 import { vi, it, expect, beforeEach, afterEach, describe } from "vitest";
 
@@ -10,17 +11,44 @@ import { vi, it, expect, beforeEach, afterEach, describe } from "vitest";
 //    loadHTML: loadHTMLmock
 // }));
 
-beforeEach(() => {
-   document.body.innerHTML = `<div class="main-content"></div>`;
-});
-
 afterEach(() => {
    vi.clearAllMocks();
 });
 
-const { loadMainLayout, handleRoute, navigateTo } = createRouter(loadHTMLmock, pageConfigMock);
+describe("loadMianLayout", () => {
+   let loadMainLayout;
+
+   beforeEach(() => {
+      document.body.innerHTML = `<div id="content"></div>`;
+      ({ loadMainLayout } = createRouter(loadHeaderFooterHTMLMock, pageConfigMock));
+
+      vi.spyOn(header, "toggleNavMenu").mockImplementation(() => {});
+   });
+
+   it("loads the page header and footer attaches them correctly", async () => {
+      await loadMainLayout();
+
+      const header = document.querySelector("#header");
+      expect(header.innerHTML).toContain("Hello from header!");
+
+      const toggleSpy = vi.fn();
+      document.querySelector("#menu-toggle").addEventListener("click", toggleSpy);
+      document.querySelector("#menu-toggle").click();
+      expect(toggleSpy).toHaveBeenCalled();
+
+      const footer = document.querySelector("#footer");
+      expect(footer.innerHTML).toContain("Hello from footer!");
+   });
+});
 
 describe("handleRoute", () => {
+   let handleRoute;
+
+   beforeEach(() => {
+      document.body.innerHTML = `<div class="main-content"></div>`;
+      ({ handleRoute } = createRouter(loadHTMLMock, pageConfigMock));
+   });
+
    it("loads a page with no components", async () => {
       await handleRoute("/simple");
       const content = document.querySelector(".main-content");
@@ -52,5 +80,37 @@ describe("handleRoute", () => {
       const content = document.querySelector(".main-content");
       const placeholder = content.querySelector('[data-component="no-template-component"]');
       expect(placeholder).toBeNull();
+   });
+});
+
+describe("navigateTo", () => {
+   let navigateTo;
+
+   beforeEach(() => {
+      document.body.innerHTML = `
+       <div class="main-content"></div>
+       <div id="section1"></div>
+     `;
+
+      const router = createRouter(loadHTMLMock, pageConfigMock);
+      navigateTo = router.navigateTo;
+      Element.prototype.scrollIntoView = vi.fn();
+   });
+
+   it("should push state and scroll to section", async () => {
+      await navigateTo("/home", "section1");
+
+      expect(history.pushState).toBeDefined();
+      expect(location.pathname).toBe("/home");
+      expect(location.hash).toBe("#section1");
+      expect(document.getElementById("section1").scrollIntoView).toHaveBeenCalled();
+   });
+
+   it("should push state without hash and not scroll", async () => {
+      await navigateTo("/home");
+
+      expect(history.pushState).toBeDefined();
+      expect(history.hash).toBeNull;
+      expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
    });
 });
