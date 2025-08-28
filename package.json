@@ -9,7 +9,9 @@
       "prettier": "npx prettier src test --check",
       "prettier:fix": "npm run prettier -- --write",
       "format": "npm run prettier:fix && npm run lint:fix",
-      "dev": "lite-server --baseDir=src --watch=src --watch=layout --watch=assets",
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview",
       "test": "vitest",
       "test:watch": "vitest --watch",
       "test:coverage": "vitest --coverage",
@@ -27,8 +29,8 @@
       "eslint-config-prettier": "^10.1.8",
       "globals": "^16.3.0",
       "jsdom": "^26.1.0",
-      "lite-server": "^2.6.1",
       "prettier": "^3.6.2",
+      "vite": "^7.1.3",
       "vitest": "^3.2.4"
    }
 }
