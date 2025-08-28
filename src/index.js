@@ -2,12 +2,17 @@ import { loadHTML } from "./lib/loader.js";
 import { pageConfig } from "./config/pageConfig.js";
 import { createRouter } from "./lib/router.js";
 import { toggleNavMenu } from "./layout/header.js";
+import { createFormStateManager } from "./lib/formStateManager.js";
+import { persistState, getPersistedState } from "./lib/stateManager.js";
 
 const { loadMainLayout, navigateTo } = createRouter(loadHTML, pageConfig);
 
 window.addEventListener("load", async () => {
    await loadMainLayout();
    await navigateTo(location.pathname);
+
+   const formManager = createFormStateManager(persistState, getPersistedState);
+   formManager.persistFormState("contact-form");
 });
 
 window.addEventListener("popstate", () => {

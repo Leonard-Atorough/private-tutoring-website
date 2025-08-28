@@ -2,10 +2,10 @@
  * @vitest-environment jsdom
  */
 import { vi, it, expect, beforeEach, afterEach, describe } from "vitest";
-import * as state from "./state.js";
+import * as state from "./stateManager.js";
 
-const TEST_KEY = "theme";
-const TEST_VALUE = "dark";
+const TEST_KEY = "settings";
+const TEST_VALUE = { theme: "dark" };
 const FIXED_TIMESTAMP = 1690000000000;
 
 const EXPIRATION_MS = 1000 * 60 * 60 * 24;
@@ -34,7 +34,7 @@ describe("state persistence", () => {
          state.persistState(TEST_KEY, TEST_VALUE);
 
          const expectedPayload = JSON.stringify({
-            data: { theme: "dark" },
+            data: { settings: { theme: "dark" } },
             timestamp: FIXED_TIMESTAMP
          });
 
@@ -45,8 +45,8 @@ describe("state persistence", () => {
    describe("getPersistedState", () => {
       it("should get state from local storage and load it into memory", () => {
          state.persistState(TEST_KEY, TEST_VALUE);
-         const persisted = state.getPersistedState();
-         expect(persisted[TEST_KEY]).toEqual(TEST_VALUE);
+         const persisted = state.getPersistedState(TEST_KEY);
+         expect(persisted).toEqual(TEST_VALUE);
       });
 
       it("should remove state from local storage once it has expired and return an empty state object", () => {
