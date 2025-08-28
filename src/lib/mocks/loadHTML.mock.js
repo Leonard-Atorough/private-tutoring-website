@@ -21,8 +21,10 @@ export const loadHTMLmock = (url) => {
       const pageWrapper = document.createElement("div");
       pageWrapper.innerHTML = `<div>Simple page content</div>`;
       return Promise.resolve(pageWrapper);
-   } else if (url === "broken.html") {
-      return Promise.reject(new Error("Failed to load HTML from broken.html: Not Found"));
+   } else if (url === "home.html") {
+      const pageWrapper = document.createElement("div");
+      pageWrapper.innerHTML = `<div>Home page loaded as default</div>`;
+      return Promise.resolve(pageWrapper);
    } else {
       return Promise.reject(new Error(`Failed to load HTML from ${url}: Not Found`));
    }

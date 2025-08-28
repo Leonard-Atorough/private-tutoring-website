@@ -1,7 +1,6 @@
-import { pageConfig } from "../config/pageConfig.js";
 import { toggleNavMenu } from "../layout/header.js";
 
-function createRouter(loadHTML) {
+function createRouter(loadHTML, pageConfig) {
    async function loadMainLayout() {
       const layoutContainer = document.getElementById("content");
 
