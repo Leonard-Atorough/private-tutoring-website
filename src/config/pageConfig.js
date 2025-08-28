@@ -21,6 +21,6 @@ export const pageConfig = {
    },
    "/calendar": {
       page: "pages/calendar.html",
-      components: ["components/booking-form.html", "components/contact-form.html"]
+      components: ["components/contact-form.html"]
    }
 };
