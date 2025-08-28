@@ -6,7 +6,7 @@ export default defineConfig({
          provider: "v8",
          enabled: true,
          exclude: ["bs-config.js", ...coverageConfigDefaults.exclude]
-      },
-      reporters: ["html"]
+      }
+      // reporters: ["html"]
    }
 });
