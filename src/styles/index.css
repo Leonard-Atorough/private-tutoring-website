@@ -127,7 +127,7 @@ section {
    .banner-img {
       border-radius: 2rem;
       height: 100%;
-      object-position: left;
+      object-position: left top;
    }
 
    .banner-text {
@@ -141,16 +141,17 @@ section {
       right: 0px;
       border-radius: 2rem;
       text-align: right;
+      max-width: 90rem;
 
       h1 {
          font-size: var(--font-size-xl);
          line-height: 1.25;
-         max-width: 100rem;
          width: 100%;
       }
 
-      h4 {
+      h2 {
          width: 100%;
+         font-size: var(--font-size-4);
       }
    }
 
@@ -165,9 +166,11 @@ section {
 
 .img-main {
    display: block;
+   box-sizing: border-box;
    border-radius: 2rem;
    width: 50%;
    flex: 1 1 0;
+   /* margin: 8rem 0; */
 }
 
 .testimonial {
