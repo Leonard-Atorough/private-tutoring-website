@@ -2,10 +2,6 @@
 function createFormStateManager(persistState, getPersistedState) {
    function getFormData(formId) {
       const form = document.getElementById(formId);
-      if (!form) {
-         console.warn(`Form with id ${formId} not found`);
-         return;
-      }
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
 
@@ -25,7 +21,7 @@ function createFormStateManager(persistState, getPersistedState) {
       const form = document.getElementById(formId);
       if (!form) {
          console.warn(`Form with id ${formId} not found`);
-         return;
+         throw new Error("Form not found");
       }
       //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
       const formSubmitted = getPersistedState("formSubmitted");
@@ -53,7 +49,6 @@ function createFormStateManager(persistState, getPersistedState) {
 
          form.addEventListener("submit", () => {
             if (idleTimer) clearTimeout(idleTimer);
-            saveState();
          });
          window.addEventListener("beforeunload", saveState);
       }
