@@ -20,7 +20,7 @@ function createRouter(loadHTML, pageConfig) {
 
       const navToggle = document.querySelector("#menu-toggle");
       if (navToggle) {
-         navToggle.addEventListener("click", toggleNavMenu);
+         navToggle.addEventListener("click", () => toggleNavMenu(navToggle));
       }
    }
 
