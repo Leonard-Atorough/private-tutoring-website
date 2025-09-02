@@ -1,15 +1,16 @@
 <template id="header-template">
-    <header class="navbar mb-2" aria-label="Main navigation">
+    <header class="navbar mb-2" aria-label="Main header">
         <a href="/home">
             <img src="./assets/logo.webp" width="100" height="100" alt="Person Stacey Tutoring Logo"
-                class="logo img-responsive" />
+                class="logo img-responsive" aria-label="Person Stacey Tutoring Logo" />
         </a>
-        <button class="btn" id="menu-toggle">
+        <button class="btn" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+            aria-controls="navigation-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
-        <nav class="nav-menu">
+        <nav class="nav-menu" aria-label="Main navigation menu">
             <a href="/home#About" aria-label="About">About</a>
             <a href="/home#Testimonials" aria-label="Testimonials">Testimonials</a>
             <a href="/services" aria-label="Services">Services</a>
