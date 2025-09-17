@@ -175,8 +175,9 @@ section {
 
 .testimonial {
    flex: 1 1 0;
-   min-height: 40rem;
-   justify-content: space-around;
+   min-height: 30rem;
+   justify-content: start;
+   text-align: justify;
 }
 
 @media (max-width: 480px) {
