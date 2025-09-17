@@ -28,14 +28,13 @@ body {
    line-height: 2;
    -webkit-font-smoothing: antialiased;
    background: var(--color-grey-3);
-   color: var(--color-green-1);
+   color: var(--color-black);
    height: 100%;
 }
 
 a,
 a:visited {
    text-decoration: none;
-   color: inherit;
 }
 
 li {
@@ -191,10 +190,6 @@ section {
 
    .column {
       padding: 0 1rem;
-   }
-
-   .navbar {
-      margin-bottom: 0;
    }
 
    .banner {

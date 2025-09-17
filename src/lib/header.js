@@ -4,10 +4,12 @@ function toggleNavMenu(forceClose) {
    const nav = document.querySelector(".nav-menu");
    const button = document.getElementById(TOGGLE_BUTTON_ID);
 
-   if (forceClose && nav.classList.contains("active")) {
-      nav.classList.remove("active");
+   const shouldBeActive = forceClose ? false : !nav.classList.contains("active");
+
+   if (shouldBeActive) {
+      nav.classList.add("active");
    } else {
-      nav.classList.toggle("active");
+      nav.classList.remove("active");
    }
    button.setAttribute("aria-expanded", nav.classList.contains("active"));
 }
@@ -27,6 +29,8 @@ function attachToggleHandler() {
    if (!toggleButton) throw Error("Navigation toggle button not found");
 
    toggleButton.addEventListener("click", () => toggleNavMenu());
+
+   window.removeEventListener("scrollend", () => toggleNavMenu(true));
    window.addEventListener("scrollend", () => toggleNavMenu(true));
 }
 

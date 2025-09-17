@@ -1,21 +1,21 @@
 <template id="header-template">
-    <header class="navbar mb-2" aria-label="Main header">
-        <a href="/home">
-            <img src="/public/assets/logo.webp" width="100" height="100" alt="Person Stacey Tutoring Logo"
-                class="logo img-responsive" aria-label="Person Stacey Tutoring Logo" />
+    <header class="header-section mb-2" aria-label="Main header">
+        <a class="logo" href="/home">
+            <img src="/assets/logo.webp" width="100" height="100" alt="Person Stacey Tutoring Logo"
+                class="img-responsive" aria-label="Person Stacey Tutoring Logo" />
         </a>
-        <button class="btn" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+        <button class="btn menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
             aria-controls="navigation-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
         <nav id="navigation-menu" class="nav-menu" aria-label="Main navigation menu">
-            <a href="/home#About" aria-label="About">About</a>
-            <a href="/home#Testimonials" aria-label="Testimonials">Testimonials</a>
-            <a href="/services" aria-label="Services">Services</a>
-            <a href="/calendar" aria-label="Availability Calendar">Calendar</a>
-            <a href="/contact" aria-label="Contact">Contact</a>
+            <a class="link" href="/home#About" aria-label="About">About</a>
+            <a class="link" href="/home#Testimonials" aria-label="Testimonials">Testimonials</a>
+            <a class="link" href="/services" aria-label="Services">Services</a>
+            <a class="link" href="/contact" aria-label="Contact">Contact</a>
         </nav>
+        <a class="book btn btn-primary" href="/calendar" aria-label="Book now">Book a session</a>
     </header>
 </template>
