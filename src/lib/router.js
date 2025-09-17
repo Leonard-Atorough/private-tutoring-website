@@ -1,12 +1,12 @@
-import { toggleNavMenu } from "../layout/header.js";
+import { initHeader } from "./header";
 
 function createRouter(loadHTML, pageConfig) {
    async function loadMainLayout() {
       const layoutContainer = document.getElementById("content");
 
       const [headerHTML, footerHTML] = await Promise.all([
-         loadHTML("layout/header.html"),
-         loadHTML("layout/footer.html")
+         loadHTML("/layout/header.html"),
+         loadHTML("/layout/footer.html")
       ]);
 
       const headerTemplate = headerHTML.querySelector("div #header-template");
@@ -18,10 +18,7 @@ function createRouter(loadHTML, pageConfig) {
       layoutContainer.insertAdjacentElement("afterbegin", headerElement);
       layoutContainer.insertAdjacentElement("beforeend", footerElement);
 
-      const navToggle = document.querySelector("#menu-toggle");
-      if (navToggle) {
-         navToggle.addEventListener("click", () => toggleNavMenu(navToggle));
-      }
+      initHeader();
    }
 
    async function handleRoute(path) {

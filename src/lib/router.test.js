@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { createRouter } from "./router.js";
-import * as header from "../layout/header.js";
+import * as header from "./header.js";
 import { loadHTMLMock, loadHeaderFooterHTMLMock } from "./mocks/loadHTML.mock.js";
 import { pageConfigMock } from "./mocks/pageConfig.mock.js";
 import { vi, it, expect, beforeEach, afterEach, describe } from "vitest";
@@ -22,7 +22,7 @@ describe("loadMianLayout", () => {
       document.body.innerHTML = `<div id="content"></div>`;
       ({ loadMainLayout } = createRouter(loadHeaderFooterHTMLMock, pageConfigMock));
 
-      vi.spyOn(header, "toggleNavMenu").mockImplementation(() => {});
+      vi.spyOn(header, "initHeader").mockImplementation(() => {});
    });
 
    it("loads the page header and footer attaches them correctly", async () => {

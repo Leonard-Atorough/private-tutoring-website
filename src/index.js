@@ -1,14 +1,13 @@
 import { loadHTML } from "./lib/loader.js";
 import { pageConfig } from "./config/pageConfig.js";
 import { createRouter } from "./lib/router.js";
-import { toggleNavMenu } from "./layout/header.js";
 import { createFormStateManager } from "./lib/formStateManager.js";
 import { formHandler } from "./lib/formHandler.js";
 import * as stateManager from "./lib/stateManager.js";
 
 const { loadMainLayout, navigateTo } = createRouter(loadHTML, pageConfig);
 
-window.addEventListener("load", async () => {
+window.addEventListener("DOMContentLoaded", async () => {
    await loadMainLayout();
    await navigateTo(location.pathname);
 
@@ -30,7 +29,6 @@ window.addEventListener("popstate", () => {
          const target = document.getElementById(sectionId);
          if (target) {
             target.scrollIntoView({ behavior: "smooth", block: "start" });
-            toggleNavMenu();
          }
       }
    });
