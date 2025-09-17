@@ -7,6 +7,7 @@ export default defineConfig({
       emptyOutDir: true
    },
    test: {
+      globals: true,
       coverage: {
          provider: "v8",
          enabled: true,
