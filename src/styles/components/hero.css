@@ -2,16 +2,20 @@
   display: block;
   position: relative;
   height: 85vh;
-  border-radius: 2rem;
   overflow: hidden;
   margin-bottom: 4rem;
 
   > .image {
     width: 100%;
-    height: 100%;
+    height: 95%;
     object-fit: cover;
     border-radius: 2rem;
     object-position: left top;
+  }
+
+  > .attribution {
+    color: var(--text);
+    padding-left: 2rem;
   }
 }
 
