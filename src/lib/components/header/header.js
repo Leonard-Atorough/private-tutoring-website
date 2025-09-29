@@ -40,8 +40,8 @@ function attachToggleHandler() {
 
   toggleButton.addEventListener("click", () => toggleNavMenu());
 
-  window.removeEventListener("scrollend", () => toggleNavMenu(true));
-  window.addEventListener("scrollend", () => toggleNavMenu(true));
+  window.removeEventListener("scroll", () => toggleNavMenu(true));
+  window.addEventListener("scroll", () => toggleNavMenu(true));
 }
 
 function attachScrollHandler() {
