@@ -25,7 +25,7 @@
     margin-bottom: 3rem;
     font-weight: 400;
     font-style: italic;
-    color: var(--text-300);
+    color: var(--primary-700);
     font-size: var(--font-size-2);
   }
 }
