@@ -2,7 +2,7 @@ import { coverageConfigDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   build: {
-    outDir: "../dist",
+    outDir: "./dist",
     emptyOutDir: true,
   },
   test: {
