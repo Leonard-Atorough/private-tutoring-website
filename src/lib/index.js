@@ -1,5 +1,6 @@
 import { initHeader } from "./components/header/header.js";
 import Carousel from "./components/carousel/carousel.js";
+import { initModal } from "./components/modal/modal.js";
 import { createFormStateManager } from "./formStateManager.js";
 import { formHandler } from "./formHandler.js";
 import * as stateManager from "./stateManager.js";
@@ -10,6 +11,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   carousels.forEach((carousel) => {
     new Carousel(carousel);
   });
+
+  initModal();
 
   const formManager = createFormStateManager(
     stateManager.persistState,

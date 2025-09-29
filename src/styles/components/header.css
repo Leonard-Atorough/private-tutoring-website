@@ -8,10 +8,6 @@
   background: var(--background);
   padding: 1rem 2rem;
   border-bottom: 1px solid var(--text-100);
-
-  > .logo {
-    max-width: 96px;
-  }
 }
 
 .nav-menu {

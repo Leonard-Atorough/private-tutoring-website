@@ -11,6 +11,7 @@
 @import url(./components/testimonials.css);
 @import url(./components/services.css);
 @import url(./components/about.css);
+@import url(./components/modal.css);
 
 html {
   scroll-behavior: smooth;
@@ -23,6 +24,7 @@ html {
 
 body {
   background: var(--background);
+  position: relative;
 }
 
 .main-content {
@@ -44,3 +46,4 @@ body {
   max-width: 1200px;
   min-height: 60vh;
 }
+

@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /assets/favicon.ico
+
+# Block access to source files and development assets
+Disallow: /src/
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.json$
+
+# Block development and system files
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*.md$
+Disallow: /*.log$
+
+# Set crawl rate
+Crawl-delay: 10
+
+# Add sitemap when deployed
+# Sitemap: https://www.yourdomain.com/sitemap.xml

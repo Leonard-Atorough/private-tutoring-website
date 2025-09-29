@@ -8,6 +8,8 @@
   <meta name="description"
     content="Personalized, online, 1-on-1 math and science tutoring for secondary and university students. My services are tailored to meet the unique needs of each student, helping them achieve their academic goals." />
   <meta name="robots" content="index, follow" />
+  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+  <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
   <link rel="stylesheet" href="src/styles/index.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,48 +17,86 @@
     rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
   <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
       {
-         "@context": "https://schema.org",
-         "@graph": [
+        "@type": "OnlineBusiness",
+        "@id": "https://www.example.com/#business",
+        "name": "Kaili Stacey Tutoring",
+        "url": "https://www.example.com",
+        "description": "Personalized, online, 1-on-1 math and science tutoring for secondary and university students.",
+        "provider": {
+          "@type": "Person",
+          "@id": "https://www.example.com/#person",
+          "name": "Kaili Stacey",
+          "jobTitle": "Private Tutor",
+          "description": "PhD holder in Nanochemistry with over 8 years of teaching experience",
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "PhD",
+            "name": "Doctor of Philosophy in Nanochemistry"
+          }
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Tutoring Services",
+          "itemListElement": [
             {
-               "@type": "Local Business",
-               "name": "Person Stacey Tutoring",
-               "url": "https://www.example.com",
-               "description": "Personalized, online, 1-on-1 math and science tutoring for secondary and university students.",
-               "telephone": "+1-555-555-5555",
-               "areaServed": {
-                  "@type": "Place",
-                  "name": "Australia"
-               },
-               "serviceType": {
-                  "@type": "EducationalOrganization",
-                  "name": "Tutoring"
-               },
-               "provider": {
-                  "@type": "Person",
-                  "name": " Person Stacey"
-               }
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Mathematics Tutoring",
+                "description": "Private mathematics tutoring for primary, secondary and university students"
+              },
+              "areaServed": {"@type": "Country", "name": "Australia"}
             },
             {
-               "@type": "ContactPoint",
-               "telephone": "+1-555-555-5555",
-               "contactType": "Customer Service",
-               "areaServed": {
-                  "@type": "Place",
-                  "name": "Australia"
-               },
-               "availableLanguage": ["English"],
-               "email": "personstacey@example.com"
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Chemistry Tutoring",
+                "description": "Private chemistry tutoring for secondary and university students"
+              },
+              "areaServed": {"@type": "Country", "name": "Australia"}
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Physics Tutoring",
+                "description": "Private physics tutoring for secondary students"
+              },
+              "areaServed": {"@type": "Country", "name": "Australia"}
             }
-         ]
+          ]
+        },
+        "image": "https://www.example.com/src/assets/profile_picture.webp",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-555-555-5555",
+        "contactType": "Customer Service",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        },
+        "availableLanguage": ["English"],
+        "email": "personstacey@example.com"
       }
-   </script>
+    ]
+  }
+</script>
 </head>
 
 <body>
   <header class="header-section" aria-label="Main header">
-    <a class="logo" href="#Main" aria-label="Person Stacey Tutoring Home">
-      <img src="src/assets/logo.webp" width="100" height="100" alt="Person Stacey Tutoring Logo" class="img-responsive"
+    <a href="#Main" aria-label="Person Stacey Tutoring Home">
+      <img src="src/assets/logo.webp" width="100" height="100" alt="Person Stacey Tutoring Logo"
         aria-label="Person Stacey Tutoring Logo" />
     </a>
     <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
@@ -70,7 +110,7 @@
       <a class="link" href="#Services" aria-label="Services">Services</a>
       <a class="link" href="#Testimonials" aria-label="Testimonials">Testimonials</a>
       <a class="link" href="#Contact" aria-label="Contact">Contact</a>
-      <button class="btn btn-primary book" href="/calendar" aria-label="Book now">Book a session</button>
+      <button class="btn btn-primary book" id="bookBtn" href="/calendar" aria-label="Book now">Book a session</button>
     </nav>
   </header>
 
@@ -217,7 +257,17 @@
     </div>
     <div><span>&copy;2025 by Leonard Atorough</span></div>
   </footer>
-
+  <section class="modal-section" id="booking-modal">
+    <div class="container">
+      <span class="container-heading">
+        <h2>Booking Calendar</h2>
+        <button class="btn btn-secondary close" id="modal-close">&times;</button>
+      </span>
+      <iframe
+        src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3M8umBcScIb1EudMtuVSK1SqmiA6eniuni9EPQTH93OQlHuxS-F_mGO2v7dXsq1mSxlmo2JJLn?gv=true"
+        style="border: 0" width="100%" height="720px" frameborder="0"></iframe>
+    </div>
+  </section>
 </body>
 <script type="module" src="src/lib/index.js"></script>
 

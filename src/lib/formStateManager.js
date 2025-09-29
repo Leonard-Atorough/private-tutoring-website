@@ -23,11 +23,9 @@ function createFormStateManager(persistState, getPersistedState) {
       console.warn(`Form with id ${formId} not found`);
       throw new Error("Form not found");
     }
-    console.log("Persisting form state for", formId);
     //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
     const formSubmitted = getPersistedState("formSubmitted");
     if (formSubmitted) {
-      console.log("setting this here")
       console.log(formSubmitted)
       persistState("formSubmitted", false);
       clearFormState(formId);

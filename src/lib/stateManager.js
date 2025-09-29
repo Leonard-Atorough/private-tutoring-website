@@ -12,7 +12,6 @@ export function persistState(key, value) {
 
 export function getPersistedState(key) {
    let persisted = localStorage.getItem(STATE_KEY);
-   console.log(persisted);
    if (!persisted) return {};
    try {
       const { data, timestamp } = JSON.parse(persisted);
@@ -21,7 +20,6 @@ export function getPersistedState(key) {
          return {};
       }
       state = data;
-      console.log(data[key])
       return data[key] || null;
    } catch {
       return null;
