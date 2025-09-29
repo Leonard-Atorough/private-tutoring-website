@@ -1,0 +1,7 @@
+.services-section {
+  position: relative;
+
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+  }
+}

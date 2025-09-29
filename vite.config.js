@@ -1,18 +1,17 @@
 import { coverageConfigDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
-   root: "src",
-   build: {
-      outDir: "../dist",
-      emptyOutDir: true
-   },
-   test: {
-      globals: true,
-      coverage: {
-         provider: "v8",
-         enabled: true,
-         exclude: ["bs-config.js", ...coverageConfigDefaults.exclude]
-      }
-      // reporters: ["html"]
-   }
+  build: {
+    outDir: "../dist",
+    emptyOutDir: true,
+  },
+  test: {
+    globals: true,
+    coverage: {
+      provider: "v8",
+      enabled: true,
+      exclude: ["bs-config.js", ...coverageConfigDefaults.exclude],
+    },
+    // reporters: ["html"]
+  },
 });

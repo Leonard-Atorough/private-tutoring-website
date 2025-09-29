@@ -1,230 +1,45 @@
 @import url(./base/_reset.css);
 @import url(./base/_typography.css);
+@import url(./base/_palette.css);
+@import url(./base/_layout.css);
 
-@import url(./helpers/palettes/colors.css);
-@import url(./helpers/buttons/buttons.css);
-
-@import url(./layout/flex.css);
-@import url(./layout/_spacing.css);
-
-@import url(./components/form.css);
 @import url(./components/header.css);
 @import url(./components/footer.css);
-@import url(./components/card.css);
-
-/* Reset and Global Styles */
-* {
-   box-sizing: border-box;
-   font-family: "Noto Sans", Arial, Helvetica, sans-serif;
-   font-weight: 300;
-   letter-spacing: 0.5px;
-   margin: 0;
-}
+@import url(./components/hero.css);
+@import url(./components/button.css);
+@import url(./components/contact-form.css);
+@import url(./components/testimonials.css);
+@import url(./components/services.css);
 
 html {
-   scroll-behavior: smooth;
-   font-size: 62.5%;
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  font-weight: 300;
+  line-height: 1.5;
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-size: var(--font-size-1);
 }
 
 body {
-   line-height: 2;
-   -webkit-font-smoothing: antialiased;
-   background: var(--color-grey-3);
-   color: var(--color-black);
-   height: 100%;
-}
-
-a,
-a:visited {
-   text-decoration: none;
-}
-
-li {
-   list-style: none;
-   margin: 0;
-   padding: 0;
-}
-
-/* Typography Styles */
-h1,
-h2,
-h3 {
-   font-weight: 600;
-   margin: 0;
-}
-
-h1 {
-   font-size: var(--font-size-6);
-}
-
-h2 {
-   font-size: var(--font-size-5);
-}
-
-h3 {
-   font-size: var(--font-size-4);
-}
-
-h4 {
-   font-size: var(--font-size-3);
-}
-
-h5,
-p,
-li,
-a,
-button {
-   font-size: var(--font-size-1);
-}
-
-section {
-   scroll-margin-top: 10rem;
-}
-
-/* Layout Styles */
-#content {
-   display: block;
-   margin: 0 auto;
-   height: 100%;
-   min-width: 30rem;
+  background: var(--background);
 }
 
 .main-content {
-   display: block;
-   margin: 0 auto;
-   min-height: 100vh;
+  min-height: 80vh;
+  display: block;
+  margin: 0 auto;
+  min-width: 320px;
+  padding: 2rem;
+
+  @media only screen and (max-width: 480px) {
+    padding: 1rem;
+  }
 }
 
-.column {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   width: 100%;
-   padding: 0 2rem;
-}
-
-.row {
-   min-height: 30rem;
-   height: 100%;
-   width: 100%;
-   max-width: 120rem;
-}
-
-.img-responsive {
-   width: 100%;
-   height: auto;
-   object-fit: cover;
-}
-
-.banner {
-   display: block;
-   border-radius: 2rem;
-   position: relative;
-   width: 100%;
-   min-width: 360px;
-   height: 85vh;
-   padding: 0 4rem;
-
-   .banner-img {
-      border-radius: 2rem;
-      height: 100%;
-      object-position: left top;
-   }
-
-   .banner-text {
-      color: var(--color-green-1);
-      background: rgba(from var(--color-white) r g b/0.33);
-      /* color: var(--color-white);
-      background: rgba(from var(--color-grey-1) r g b/0.33); */
-      padding: 2rem;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      border-radius: 2rem;
-      text-align: right;
-      max-width: 90rem;
-
-      h1 {
-         font-size: var(--font-size-xl);
-         line-height: 1.25;
-         width: 100%;
-      }
-
-      h2 {
-         width: 100%;
-         font-size: var(--font-size-4);
-      }
-   }
-
-   #ctaBtn {
-      position: absolute;
-      bottom: 2rem;
-      right: 6rem;
-
-      color: var(--color-white);
-   }
-}
-
-.img-main {
-   display: block;
-   box-sizing: border-box;
-   border-radius: 2rem;
-   width: 50%;
-   flex: 1 1 0;
-   /* margin: 8rem 0; */
-}
-
-.testimonial {
-   flex: 1 1 0;
-   min-height: 30rem;
-   justify-content: start;
-   text-align: justify;
-}
-
-@media (max-width: 480px) {
-   section {
-      scroll-margin-top: 48rem;
-   }
-
-   h1 {
-      font-size: var(--font-size-5);
-   }
-
-   .column {
-      padding: 0 1rem;
-   }
-
-   .banner {
-      padding: 0 1rem;
-
-      .banner-text {
-         margin: 1rem 2rem;
-         display: block;
-         box-sizing: border-box;
-         text-align: justify;
-         max-width: 30rem;
-         left: 0;
-         h1 {
-            font-size: var(--font-size-4);
-         }
-
-         h2 {
-            font-size: var(--font-size-2);
-         }
-      }
-
-      .banner-img {
-         height: 82vh;
-         object-fit: cover;
-      }
-
-      #ctaBtn {
-         bottom: 4rem;
-         right: 2rem;
-      }
-   }
-
-   .img-main {
-      width: 100%;
-   }
+.body-content {
+  display: block;
+  margin: 0 auto;
+  margin-top: 4rem;
+  max-width: 1200px;
+  min-height: 60vh;
 }
