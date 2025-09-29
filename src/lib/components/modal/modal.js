@@ -8,8 +8,10 @@ export function initModal() {
   const closeButton = document.getElementById(MODAL_CLOSE_ID);
 
   function openModal() {
+    setTimeout(() => {
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
+    }, 100);
   }
 
   function closeModal() {

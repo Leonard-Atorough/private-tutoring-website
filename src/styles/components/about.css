@@ -1,5 +1,5 @@
 .about-section {
-    @media screen and (max-width: 600px) {
+  @media screen and (max-width: 600px) {
     padding: 0.5rem;
   }
 }
@@ -28,6 +28,10 @@
   > .image {
     border-radius: 1rem;
     height: auto;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
   > .bubble {
     flex: 1;
@@ -49,6 +53,10 @@
       width: 30%;
       opacity: 0.3;
       border-radius: 2rem;
+    }
+
+    &:hover {
+      transform: scale(1.02);
     }
 
     @media screen and (max-width: 1024px) {
