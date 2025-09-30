@@ -25,7 +25,7 @@ html {
 #app {
   background: var(--background);
   position: relative;
-  opacity: 0;
+  opacity: 0.01;
   transition: opacity 0.4s;
   -webkit-transition: opacity 0.4s;
 }
