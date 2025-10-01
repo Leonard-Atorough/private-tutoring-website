@@ -83,7 +83,7 @@
     background-color: var(--primary);
     border-radius: 10px;
   }
-  @media only screen and (max-width: 870px) {
+  @media only screen and (max-width: 880px) {
     display: flex;
     position: relative;
   }
