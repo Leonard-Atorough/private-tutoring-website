@@ -174,7 +174,12 @@
       <h2 class="title">OUR SERVICES</h2>
       <h3 class="subtitle">Personalized tutoring for Maths and Science subjects</h3>
       <div class="services-container">
-        <div class="service-card">
+        <div class="service-tabs" role="tablist" aria-label="Services Tabs">
+          <button class="button btn active" id="service-tab-1" aria-controls="panel-1" role="tab">Middle School</button>
+          <button class="button btn" id="service-tab-2" aria-controls="panel-2" role="tab">High School</button>
+          <button class="button btn" id="service-tab-3" aria-controls="panel-3" role="tab">University</button>
+        </div>
+        <div class="service-card active" id="panel-1" role="tabpanel" aria-labelledby="service-tab-1">
           <h4>Middle School | Years 7 - 9</h4>
           <ul>
             <li></li>
@@ -182,7 +187,7 @@
             <li></li>
           </ul>
         </div>
-        <div class="service-card">
+        <div class="service-card" id="panel-2" role="tabpanel" aria-labelledby="service-tab-2">
           <h4>High School | Years 10 - 12</h4>
           <ul>
             <li></li>
@@ -191,7 +196,7 @@
           </ul>
         </div>
 
-        <div class="service-card">
+        <div class="service-card" id="panel-3" role="tabpanel" aria-labelledby="service-tab-3">
           <h4>University | 1st & 2nd Year</h4>
           <ul>
             <li></li>

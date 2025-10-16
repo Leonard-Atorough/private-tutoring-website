@@ -2,7 +2,7 @@
   position: relative;
 
   @media (max-width: 600px) {
-    padding: 0.5rem;
+    padding: 0.5rem 0;
   }
 }
 
@@ -12,19 +12,63 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 3rem;
   align-items: flex-start;
   padding: 1rem 2rem;
+
+  @media (max-width: 600px) {
+    padding: 0.5rem 0;
+  }
+}
+
+.service-tabs {
+  display: flex;
+  gap: 4px;
+
+  @media (max-width: 600px) {
+    gap: 0;
+  }
+
+  > .button {
+    background-color: var(--secondary);
+    border-radius: 1rem 1rem 0 0;
+    margin: 0;
+    padding: 1rem;
+    font-weight: 500;
+    transform: translateY(6px);
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+      background-color: var(--primary);
+      transform: translateY(0px);
+      color: var(--text-50);
+    }
+
+    &.active {
+      background-color: var(--primary);
+      transform: translateY(0px);
+      z-index: 1;
+      color: var(--text-50);
+    }
+  }
 }
 
 .service-card {
   background: var(--background-100);
   padding: 2rem;
   border-radius: 0.5rem;
-  box-shadow: 2px 2px 5px var(--background-50);
+  border: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  display: none;
 
+  &.active {
+    display: flex;
+    background-color: var(--primary);
+    color: var(--text-50);
+    z-index: 1;
+    transform: translateY(-6px);
+  }
 }
