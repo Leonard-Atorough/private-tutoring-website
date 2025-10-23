@@ -4,8 +4,8 @@ const MODAL_CLOSE_ID = "modal-close";
 
 export function initModal() {
   const modal = document.getElementById(MODAL_ID);
-  const openButton = document.querySelectorAll(`#${MODAL_BUTTON_ID}`);
-  const closeButton = document.getElementById(MODAL_CLOSE_ID);
+  const openModalBtns = document.querySelectorAll(`#${MODAL_BUTTON_ID}`);
+  const closeModalBtn = document.getElementById(MODAL_CLOSE_ID);
   const iframe = modal?.querySelector("iframe");
   let lastActiveElement;
 
@@ -42,10 +42,10 @@ export function initModal() {
       modal.classList.add("active");
       document.body.style.overflow = "hidden";
 
-      // Focus the iframe after a brief delay to ensure it's loaded
+      // Focus the close button not the iframe initially
       if (iframe) {
         setTimeout(() => {
-          iframe.focus();
+          closeModalBtn.focus();
         }, 300);
       }
     }, 100);
@@ -60,8 +60,8 @@ export function initModal() {
     }
   }
 
-  Array.from(openButton).forEach((e) => e.addEventListener("click", openModal));
-  closeButton?.addEventListener("click", closeModal);
+  Array.from(openModalBtns).forEach((e) => e.addEventListener("click", openModal));
+  closeModalBtn?.addEventListener("click", closeModal);
 
   modal?.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
