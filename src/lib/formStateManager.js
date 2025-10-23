@@ -26,7 +26,7 @@ function createFormStateManager(persistState, getPersistedState) {
     //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
     const formSubmitted = getPersistedState("formSubmitted");
     if (formSubmitted) {
-      console.log(formSubmitted)
+      console.log(formSubmitted);
       persistState("formSubmitted", false);
       clearFormState(formId);
     }
@@ -42,12 +42,12 @@ function createFormStateManager(persistState, getPersistedState) {
       console.log(`Form state saved for ${formId}`);
     };
 
-    const resetIdleTimer = () => {
+    const debounceSaveState = () => {
       if (idleTimer) clearTimeout(idleTimer);
       idleTimer = setTimeout(saveState, 2000);
     };
 
-    form.addEventListener("input", resetIdleTimer);
+    form.addEventListener("input", debounceSaveState);
 
     form.addEventListener("submit", () => {
       if (idleTimer) clearTimeout(idleTimer);

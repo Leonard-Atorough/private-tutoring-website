@@ -7,6 +7,8 @@ export default defineConfig({
   },
   test: {
     globals: true,
+    jsdom: true,
+    environment: "jsdom",
     coverage: {
       provider: "v8",
       enabled: true,
