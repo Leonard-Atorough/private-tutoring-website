@@ -28,5 +28,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   formManager.persistFormState("contact-form");
 
   const handler = formHandler(stateManager);
-  handler.handleFormSubmit("contact-form");
+  handler.mountFormHandler("contact-form");
 });

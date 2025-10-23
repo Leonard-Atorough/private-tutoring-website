@@ -1,10 +1,7 @@
-const _tabBtnContainer = document.querySelector(".service-tabs");
-const _tabs = document.querySelectorAll(".service-card");
-
-const onTabButtonClick = (e) => {
+const onTabButtonClick = (e, tabs) => {
   if (!e.target.closest(".button")) return;
 
-  _tabs.forEach((tab) => tab.classList.remove("active"));
+  tabs.forEach((tab) => tab.classList.remove("active"));
 
   const button = e.target.closest(".button");
   const allBtns = button.parentElement.children;
@@ -17,10 +14,13 @@ const onTabButtonClick = (e) => {
   button.classList.add("active");
 };
 
-function attachTabHandler() {
-  _tabBtnContainer.addEventListener("click", onTabButtonClick);
+function attachTabHandler(tabBtnContainer, tabs) {
+  tabBtnContainer.addEventListener("click", (e) => onTabButtonClick(e, tabs));
 }
 
 export const initTabs = () => {
-  attachTabHandler();
+  const tabBtnContainer = document.querySelector(".service-tabs");
+  const tabs = document.querySelectorAll(".service-card");
+  if (!tabBtnContainer || !tabs.length) return;
+  attachTabHandler(tabBtnContainer, tabs);
 };

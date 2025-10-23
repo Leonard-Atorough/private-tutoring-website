@@ -3,6 +3,8 @@ Allow: /
 Allow: /index.html
 Allow: /assets/favicon.ico
 
+Sitemap: https://kaili-tutor.netlify.app/sitemap.xml
+
 # Block access to source files and development assets
 Disallow: /src/
 Disallow: /*.js$
