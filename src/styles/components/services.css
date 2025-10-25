@@ -35,6 +35,7 @@
     padding: 1rem;
     font-weight: 500;
     transform: translateY(6px);
+    /* border: 1px solid var(--text); */
 
     &:hover,
     &:focus {
@@ -54,7 +55,6 @@
 }
 
 .service-card {
-  background: var(--background-100);
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0;
