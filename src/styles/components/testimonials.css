@@ -49,10 +49,24 @@
     overflow: hidden;
     border-radius: 0.5rem;
     box-shadow: 2px 2px 5px var(--background-400);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    &.primary {
+      background: var(--secondary);
+    }
+
+    &.secondary {
+      background: var(--accent);
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 4px 4px 10px var(--background-400);
+    }
 
     > .text {
       flex: 0 0 80%;
-      font-weight: 400;
+      font-weight: 600;
       font-style: italic;
       text-align: center;
       line-height: 1.75;
@@ -68,31 +82,6 @@
       text-align: right;
       margin: 0;
       padding: 0;
-    }
-
-    &.primary {
-      background: var(--primary);
-      color: var(--text-50);
-      border: 2px solid var(--primary);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 4px 4px 10px var(--background-400);
-      }
-    }
-
-    &.secondary {
-      background: var(--secondary);
-      color: var(--text);
-      border: 2px solid var(--secondary);
-      box-shadow: 2px 2px 5px var(--background-400);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 4px 4px 10px var(--background-400);
-      }
     }
   }
 }
