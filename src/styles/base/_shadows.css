@@ -1,0 +1,21 @@
+:root {
+  --shadow-color: 150deg 4% 51%;
+  --shadow-elevation-low: 0.3px 0.3px 0.4px hsl(var(--shadow-color) / 0.65),
+    0.6px 0.6px 0.8px -1.8px hsl(var(--shadow-color) / 0.51),
+    1.6px 1.6px 2.2px -3.6px hsl(var(--shadow-color) / 0.38);
+  --shadow-elevation-medium: 0.3px 0.3px 0.4px hsl(var(--shadow-color) / 0.55),
+    0.7px 0.7px 0.9px -0.9px hsl(var(--shadow-color) / 0.48),
+    1.7px 1.7px 2.3px -1.8px hsl(var(--shadow-color) / 0.41),
+    3.8px 3.8px 5.1px -2.7px hsl(var(--shadow-color) / 0.34),
+    7.9px 7.9px 10.6px -3.6px hsl(var(--shadow-color) / 0.27);
+  --shadow-elevation-high: 0.3px 0.3px 0.4px hsl(var(--shadow-color) / 0.51),
+    1.3px 1.3px 1.8px -0.4px hsl(var(--shadow-color) / 0.48),
+    2.4px 2.4px 3.2px -0.8px hsl(var(--shadow-color) / 0.44),
+    4px 4px 5.4px -1.2px hsl(var(--shadow-color) / 0.41),
+    6.4px 6.4px 8.6px -1.6px hsl(var(--shadow-color) / 0.38),
+    10.1px 10.1px 13.6px -2px hsl(var(--shadow-color) / 0.35),
+    15.4px 15.4px 20.7px -2.4px hsl(var(--shadow-color) / 0.32),
+    22.7px 22.6px 30.5px -2.8px hsl(var(--shadow-color) / 0.28),
+    32.2px 32.2px 43.4px -3.2px hsl(var(--shadow-color) / 0.25),
+    44.5px 44.5px 59.9px -3.6px hsl(var(--shadow-color) / 0.22);
+}

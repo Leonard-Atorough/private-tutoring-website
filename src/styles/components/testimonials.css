@@ -48,7 +48,7 @@
     height: 25rem;
     overflow: hidden;
     border-radius: 0.5rem;
-    box-shadow: 2px 2px 5px var(--background-400);
+    box-shadow: var(--shadow-elevation-low);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 
     &.primary {
@@ -61,7 +61,7 @@
 
     &:hover {
       transform: scale(1.05);
-      box-shadow: 4px 4px 10px var(--background-400);
+      box-shadow: var(--shadow-elevation-medium);
     }
 
     > .text {

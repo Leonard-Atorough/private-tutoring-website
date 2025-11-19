@@ -29,9 +29,11 @@
     border-radius: 1rem;
     height: auto;
     transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow-elevation-low);
 
     &:hover {
       transform: scale(1.03);
+      box-shadow: var(--shadow-elevation-medium);
     }
   }
   > .bubble {
@@ -41,10 +43,12 @@
     width: 90%;
     opacity: 0.9;
     transition: all 0.3s;
+    box-shadow: var(--shadow-elevation-low);
 
     &:hover {
       transform: scale(1.02);
       transform: translateY(-20%);
+      box-shadow: var(--shadow-elevation-medium);
     }
 
     &:nth-child(3) {

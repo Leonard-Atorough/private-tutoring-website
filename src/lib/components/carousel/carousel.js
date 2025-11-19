@@ -24,7 +24,7 @@ export default class Carousel {
     const screenWidth = window.innerWidth;
 
     if (screenWidth >= 1024) {
-      this.slideWidth = this.carouselElement.clientWidth / 3; // 3 cards per view
+      this.slideWidth = (this.carouselElement.clientWidth / 3); // 3 cards per view
       this.visibleItems = 3;
     } else if (screenWidth >= 600) {
       this.slideWidth = this.carouselElement.clientWidth / 2; // 2 cards per view

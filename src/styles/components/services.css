@@ -35,7 +35,7 @@
     padding: 1rem;
     font-weight: 500;
     transform: translateY(6px);
-    /* border: 1px solid var(--text); */
+    box-shadow: var(--shadow-elevation-low);
 
     &:hover,
     &:focus {
@@ -43,6 +43,7 @@
       background-color: var(--primary);
       transform: translateY(0px);
       color: var(--text-50);
+      box-shadow: var(--shadow-elevation-medium);
     }
 
     &.active {
@@ -50,35 +51,46 @@
       transform: translateY(0px);
       z-index: 1;
       color: var(--text-50);
+      box-shadow: var(--shadow-elevation-medium);
     }
   }
 }
 
 .service-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   display: none;
+  box-shadow: var(--shadow-elevation-medium);
 
   &.active {
     display: flex;
     background-color: var(--primary);
-    color: var(--text-50);
+
     z-index: 1;
     transform: translateY(-6px);
   }
 
   > .content,
   > .visuals {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
+    border-radius: 0.5rem;
   }
 
   > .visuals > .image {
     border-radius: 0.5rem;
+  }
+
+  > .content {
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #fff;
   }
 }

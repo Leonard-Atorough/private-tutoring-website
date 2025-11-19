@@ -2,6 +2,7 @@
 @import url(./base/_typography.css);
 @import url(./base/_palette.css);
 @import url(./base/_layout.css);
+@import url(./base/_shadows.css);
 
 @import url(./components/header.css);
 @import url(./components/footer.css);
@@ -49,4 +50,3 @@ html {
   max-width: 1200px;
   min-height: 60vh;
 }
-
