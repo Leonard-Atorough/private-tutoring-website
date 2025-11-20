@@ -8,6 +8,7 @@
   background: var(--background);
   padding: 1rem 2rem;
   border-bottom: 1px solid var(--text-100);
+  box-shadow: var(--shadow-elevation-medium);
 }
 
 .nav-menu {
@@ -35,7 +36,7 @@
 
     &.active {
       max-height: 850px; /* Adjust based on number of menu items */
-      box-shadow: 0 4px 6px var(--background-100);
+      box-shadow: var(--shadow-elevation-high);
       border: 1px solid var(--text-100);
       border-radius: 0 0 1rem 1rem;
     }
