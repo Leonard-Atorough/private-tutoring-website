@@ -52,4 +52,10 @@
   & .field:-webkit-autofill {
     -webkit-background-clip: text;
   }
+
+  > .submit {
+    box-sizing: border-box;
+    max-width: 400px;
+    width: 100%;
+  }
 }
