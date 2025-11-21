@@ -30,7 +30,7 @@
 
   > .button {
     background-color: var(--accent-200);
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 0.5rem;
     margin: 0;
     padding: 1rem;
     font-weight: 500;
@@ -57,22 +57,22 @@
 }
 
 .service-card {
-  display: flex;
+  display: none;
   /* flex-direction: column; */
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 1rem 0;
   border-radius: 0.5rem;
   border: 0;
   width: 100%;
-  display: none;
-  box-shadow: var(--shadow-elevation-medium);
+  transition: display 0.25s;
+  /* box-shadow: var(--shadow-elevation-medium); */
 
   &.active {
     display: flex;
-    background-color: var(--primary);
-
+    /* background-color: var(--primary); */
+    color: var(--text-50);
     z-index: 1;
     transform: translateY(-6px);
   }
@@ -86,7 +86,7 @@
   > .content {
     height: 100%;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0;
     flex-direction: column;
     list-style: none;
     gap: 2rem;
@@ -94,11 +94,11 @@
 
   > .visuals {
     border-radius: 0.5rem;
-    display: none;
   }
 
   > .visuals > .image {
     border-radius: 0.5rem;
+    box-shadow: var(--shadow-elevation-medium);
   }
 
   > .content > .item {
@@ -106,8 +106,12 @@
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     font-weight: 600;
-    background-color: var(--accent-200);
+    background-color: var(--primary);
     font-size: var(--font-size-4);
     box-shadow: var(--shadow-elevation-medium);
   }
 }
+
+/* Mobile section */
+
+/* Optional tablet tweaks */
