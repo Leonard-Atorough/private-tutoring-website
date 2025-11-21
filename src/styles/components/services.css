@@ -94,6 +94,7 @@
 
   > .visuals {
     border-radius: 0.5rem;
+    display: none;
   }
 
   > .visuals > .image {
