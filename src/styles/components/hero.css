@@ -52,7 +52,7 @@
 
   > .title {
     font-size: var(--font-size-10);
-    color: var(--primary-800);
+    color: var(--primary-900);
     text-wrap: pretty;
   }
 
@@ -60,7 +60,7 @@
     font-size: var(--font-size-4);
     font-style: italic;
     font-weight: 400;
-    color: var(--primary-800);
+    color: var(--primary-900);
     margin: 1rem 0;
   }
 
