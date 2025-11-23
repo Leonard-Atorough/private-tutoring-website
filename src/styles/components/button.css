@@ -25,12 +25,10 @@ button {
 .btn-primary {
   background-color: var(--primary);
   color: var(--text-50);
-  border: 2px solid var(--primary);
 
   &:hover,
   &:focus {
-    background-color: var(--secondary);
-    border-color: var(--secondary);
+    background-color: var(--primary-200);
     color: var(--text);
   }
 }
@@ -38,7 +36,6 @@ button {
 .btn-secondary {
   background-color: var(--secondary);
   color: var(--text);
-  border: 2px solid var(--secondary);
 
   &:hover,
   &:focus {
@@ -49,13 +46,10 @@ button {
 }
 
 .btn-tertiary {
-  background-color: transparent;
-  color: var(--text);
-  border: 2px solid var(--text);
+  background-color: var(--accent-100);
 
   &:hover,
   &:focus {
-    background-color: var(--text);
-    color: var(--text-50);
+    background-color: var(--accent-200);
   }
 }
