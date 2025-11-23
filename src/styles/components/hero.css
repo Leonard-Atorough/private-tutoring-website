@@ -19,9 +19,9 @@
   }
 
   @media only screen and (max-width: 600px) {
-    height: auto;
     > .image {
-      height: 20rem;
+      height: 70vh;
+      border-radius: 1rem;
       margin-top: 2rem;
     }
     > .attribution {
@@ -52,24 +52,35 @@
 
   > .title {
     font-size: var(--font-size-10);
+    color: var(--primary-800);
+    text-wrap: pretty;
   }
 
   > .tagline {
     font-size: var(--font-size-4);
     font-style: italic;
     font-weight: 400;
+    color: var(--primary-800);
     margin: 1rem 0;
   }
 
   @media (max-width: 600px) {
-    position: static;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 0) 90%
+    );
+    top: 0;
+    height: 100%;
     transform: none;
     text-align: left;
     margin: 0;
-    padding: 1rem 0;
+    padding: 1rem;
     > .title {
-      font-size: var(--font-size-6);
+      font-size: var(--font-size-5);
       margin: 0.5rem;
+      text-wrap: pretty;
     }
 
     > .tagline {
