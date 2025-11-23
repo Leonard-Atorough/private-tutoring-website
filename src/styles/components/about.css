@@ -1,16 +1,7 @@
-.about-section {
-  @media screen and (max-width: 600px) {
-    padding: 0.5rem;
-  }
-}
-
+/* Desktop screen styling */
 .about-body {
   display: flex;
   gap: 4rem;
-
-  @media screen and (max-width: 1024px) {
-    flex-direction: column;
-  }
 }
 
 .about-image {
@@ -20,10 +11,6 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-
-  @media screen and (max-width: 600px) {
-    min-width: 100%;
-  }
 
   > .image {
     border-radius: 1rem;
@@ -68,10 +55,6 @@
       width: 10%;
       opacity: 0.2;
     }
-
-    @media screen and (max-width: 1024px) {
-      display: none;
-    }
   }
 }
 
@@ -83,37 +66,104 @@
   gap: 0.75rem;
 
   > .heading {
-    font-size: var(--font-size-5);
+    font-size: var(--font-size-4);
     font-weight: 700;
-    text-align: right;
   }
 
   > .subheading {
     font-weight: 400;
     font-style: italic;
-    color: var(--text-600);
-    text-align: justify;
+    color: var(--primary-600);
+    font-size: var(--font-size-2);
+    text-wrap: pretty;
   }
 
   > .content {
     font-weight: 400;
     text-align: justify;
-    margin: 0;
   }
 
   > .experience {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: var(--accent);
+    background-color: var(--primary-100);
     padding: 1rem;
     padding-left: 2rem;
     border-radius: 0.5rem;
     box-shadow: var(--shadow-elevation-low);
-    font-weight: 600;
   }
 
   > .experience > .item {
     text-align: justify;
+  }
+}
+/* End of desktop section */
+
+/* Mobile screen styling */
+@media screen and (max-width: 600px) {
+  .about-section {
+    padding: 0.5rem;
+  }
+
+  .about-body {
+    gap: 1.5rem;
+    flex-direction: column;
+  }
+
+  .about-image {
+    min-width: 100%;
+    flex: none;
+
+    > .bubble {
+      display: none;
+    }
+  }
+
+  .about-text {
+    > .heading {
+      font-size: var(--font-size-3);
+      text-wrap: pretty;
+    }
+
+    > .subheading {
+      font-size: var(--font-size-2);
+    }
+
+    > .experience {
+      padding-left: 1rem;
+      list-style: none;
+    }
+  }
+}
+
+/* End of mobile section */
+
+/* Tablet screen styling */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .about-body {
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .about-image {
+    min-width: 100%;
+    flex: none;
+
+    > .bubble {
+      display: none;
+    }
+  }
+
+  .about-text {
+    > .heading {
+      font-size: var(--font-size-3);
+      text-wrap: pretty;
+    }
+
+    > .subheading {
+      font-size: var(--font-size-2);
+      text-wrap: pretty;
+    }
   }
 }
