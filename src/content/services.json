@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "cardId": "services-v1",
+  "panels": [
+    {
+      "id": "panel-1",
+      "title": "Middle School",
+      "image": "src/assets/middle_school_study.jpg",
+      "items": [
+        {
+          "id": "ms-maths",
+          "label": "Maths",
+          "summary": "Foundations, arithmetic, basic algebra.",
+          "details": "One-on-one lessons covering fractions, decimals, early algebra, problem solving and numeracy skills. Perfect for building confidence."
+        },
+        {
+          "id": "ms-science",
+          "label": "Science",
+          "summary": "Introductory science topics.",
+          "details": "Hands-on explanations of basic biology, chemistry and physics concepts tailored to the school curriculum."
+        }
+      ]
+    },
+    {
+      "id": "panel-2",
+      "title": "High School",
+      "image": "src/assets/middle_school_study.jpg",
+      "items": [
+        {
+          "id": "hs-maths",
+          "label": "Maths",
+          "summary": "Algebra, functions, geometry.",
+          "details": "Targeted lessons for SACE / HSC level topics with worked examples, exam technique and practice material."
+        },
+        {
+          "id": "hs-chemistry",
+          "label": "Chemistry",
+          "summary": "Foundations to advanced chemistry.",
+          "details": "Structured lessons covering theoretical and practical chemistry concepts, problem solving and assessment preparation."
+        },
+        {
+          "id": "hs-physics",
+          "label": "Physics",
+          "summary": "Mechanics, electricity, waves.",
+          "details": "Clear explanations and worked problems for key physics topics, with emphasis on conceptual understanding and exam-style problems."
+        }
+      ]
+    },
+    {
+      "id": "panel-3",
+      "title": "University",
+      "image": "src/assets/middle_school_study.jpg",
+      "items": [
+        {
+          "id": "uni-chem-1",
+          "label": "1st Year Chemistry",
+          "summary": "Introductory university chemistry.",
+          "details": "Support for first year chemistry topics including general chemistry, analytical methods and laboratory technique."
+        },
+        {
+          "id": "uni-org",
+          "label": "2nd Year Organic Chemistry",
+          "summary": "Organic reaction mechanisms and structure.",
+          "details": "Focused tuition on organic chemistry, reaction mechanisms, spectroscopy and problem solving at second-year level."
+        },
+        {
+          "id": "uni-bridging",
+          "label": "University Bridging",
+          "summary": "Math, Physics, Chemistry bridging courses.",
+          "details": "Bridging courses to prepare students for university-level STEM subjects: tailored lessons to shore up maths and science foundations."
+        }
+      ]
+    }
+  ]
+}

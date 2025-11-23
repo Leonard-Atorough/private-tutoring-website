@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "profile": {
+    "name": "Kaili Stacey",
+    "title": "Private Maths & Science Tutor",
+    "tagline": "Helping you achieve your academic goals, one step at a time",
+    "summary": "I'm Kaili, a PhD holder in Nanochemistry and your next Maths and Science tutor. I specialise in teaching Primary and Secondary level Maths, Chemistry and Physics and University level Maths and Chemistry.",
+    "bio": [
+      "I love helping students discover what they're capable of. Even a small boost in confidence can make a big difference, and I find real joy in supporting students as they begin to trust their own abilities. Watching someone achieve something they didn’t think was possible is one of the most rewarding parts of teaching.",
+      "Sharing my enthusiasm for STEM is just as important. I've always been drawn to math and science because they help explain how the world works and offer tools to build something new. These subjects also provide a foundation for solving real-world problems and making meaningful change.",
+      "Outside of teaching, I’m a lifelong reader and always have a book with me. I also started sewing during my PhD, and it quickly became a favourite creative outlet. I love the process of turning a flat piece of fabric into a finished garment — it’s a satisfying blend of structure and imagination."
+    ],
+    "experience": [
+      "I have been working as a full-time tutor for over 2 years with over 1900 tutoring hours.",
+      "Experience with SACE, HSC, QCAA, WACE, and VCE year 11/12 curriculums.",
+      "I am familiar with AUS8-10 maths and science curriculums.",
+      "I spent five years as a chemistry laboratory demonstrator at Flinders University, teaching practical and theoretical chemistry to hundreds of students across all levels."
+    ]
+  }
+}
