@@ -52,11 +52,13 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 
     &.primary {
-      background: var(--secondary);
+      background: var(--primary-100);
+      color: var(--accent-700);
     }
 
     &.secondary {
-      background: var(--accent);
+      background: var(--primary-200);
+      color: var(--accent-800);
     }
 
     &:hover {
