@@ -11,16 +11,60 @@
   box-shadow: var(--shadow-elevation-medium);
 }
 
-.nav-menu {
+.header-section > .logo {
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  text-decoration: none;
+  color: var(--primary-700);
+}
+
+.header-section > .logo > .text {
+  font-size: var(--font-size-4);
+}
+
+.nav-menu {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   > .link {
-    font-size: var(--font-size-1);
+    font-size: var(--font-size-2);
+  }
+}
+
+.menu-toggle {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 46px;
+  height: 26px;
+  border: none;
+
+  > .bar {
+    display: block;
+    height: 5px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: var(--primary);
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header-section {
+    padding: 0 1rem;
   }
 
-  @media only screen and (max-width: 880px) {
+  .header-section > .logo > h1 {
+    font-size: var(--font-size-3);
+  }
+
+  .nav-menu {
     position: absolute;
     top: 100%;
     right: 50%;
@@ -38,11 +82,11 @@
       max-height: 850px; /* Adjust based on number of menu items */
       box-shadow: var(--shadow-elevation-high);
       border: 1px solid var(--text-100);
-      border-radius: 0 0 1rem 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
     }
 
     > .link {
-      padding: 2rem;
+      padding: 1.5rem 2rem;
       width: 100%;
       border-top: 1px solid var(--text-100);
       font-size: var(--font-size-3);
@@ -63,29 +107,15 @@
       font-size: var(--font-size-3);
     }
   }
-}
 
-.menu-toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 46px;
-  height: 26px;
-  border: none;
-
-  > .bar {
-    display: block;
-    height: 5px;
-    width: 80%;
-    margin: 0 auto;
-    background-color: var(--primary);
-    border-radius: 10px;
-  }
-  @media only screen and (max-width: 880px) {
+  .menu-toggle {
     display: flex;
     position: relative;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-section > .logo > .text {
+    display: none;
   }
 }
