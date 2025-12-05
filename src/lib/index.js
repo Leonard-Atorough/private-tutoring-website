@@ -1,9 +1,8 @@
 import { initHeader } from "./components/header/header.js";
 import { initModal } from "./components/modal/modal.js";
-import { initTabs } from "./components/tabs/tabs.js";
 import Carousel from "./components/carousel/carousel.js";
 import { createFormStateManager } from "./formStateManager.js";
-import { formHandler } from "./formHandler.js";
+import { formHandler } from "./form/formHandler.js";
 import * as stateManager from "./stateManager.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   initModal();
-  initTabs();
 
   const formManager = createFormStateManager(
     stateManager.persistState,

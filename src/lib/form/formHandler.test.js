@@ -1,7 +1,7 @@
 // Tests
 import { describe } from "vitest";
 import { formHandler } from "./formHandler.js";
-import { createMockStateManager } from "../__mocks__/mockStateManager.js";
+import { createMockStateManager } from "../../__mocks__/mockStateManager.js";
 
 describe("formHandler", () => {
   let mockStateManager;
