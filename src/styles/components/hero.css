@@ -7,14 +7,6 @@
   background: url("../assets/banner.webp") left / cover no-repeat;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);
   border-radius: 1rem;
-
-  > .attribution {
-    position: absolute;
-    bottom: 0.5rem;
-    color: var(--background);
-    padding-left: 2rem;
-    font-weight: 500;
-  }
 }
 
 .banner-text {

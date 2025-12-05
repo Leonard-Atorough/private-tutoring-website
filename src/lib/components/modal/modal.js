@@ -40,6 +40,7 @@ export function initModal() {
     lastActiveElement = document.activeElement;
     setTimeout(() => {
       modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
 
       // Focus the close button not the iframe initially
@@ -53,6 +54,7 @@ export function initModal() {
 
   function closeModal() {
     modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     // Return focus to the element that opened the modal
     if (lastActiveElement) {

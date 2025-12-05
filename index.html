@@ -158,9 +158,6 @@
           <a class="contact btn btn-tertiary" id="contactBtn" href="#Contact">Get In Touch</a>
         </div>
       </div>
-      <a class="attribution"
-        href="https://www.freepik.com/free-photo/cheerful-friendly-charismatic-redhead-woman-laughing-joyfully-texting-friends-chatting-with-smar_37081183.htm#fromView=search&page=1&position=47&uuid=8bf36467-24f0-4cd1-8cd7-8cc816eb6690&query=education+Banner">Image
-        by benzoix on Freepik</a>
     </section>
 
     <!-- About Section -->
@@ -225,12 +222,7 @@
       <h2 class="title">MY SERVICES</h2>
       <h3 class="subtitle">Personalized tutoring for Maths and Science subjects</h3>
       <div class="services-container">
-        <div class="service-tabs" role="tablist" aria-label="Services Tabs">
-          <button class="button btn active" id="service-tab-1" aria-controls="panel-1" role="tab">Middle School</button>
-          <button class="button btn" id="service-tab-2" aria-controls="panel-2" role="tab">High School</button>
-          <button class="button btn" id="service-tab-3" aria-controls="panel-3" role="tab">University</button>
-        </div>
-        <div class="service-card active" id="panel-1" role="tabpanel" aria-labelledby="service-tab-1">
+        <div class="service-card" id="panel-1" role="tabpanel" aria-labelledby="service-tab-1">
           <div class="content">
             <h4 class="title">Middle School Level Tutoring</h4>
             <ul class="item">
@@ -248,9 +240,6 @@
               <span class="bubble"></span>
               <span class="bubble"></span>
             </div>
-          </div>
-          <div class="visuals">
-            <img class="image" src="src/assets/middle_school_study.jpg" />
           </div>
         </div>
         <div class="service-card" id="panel-2" role="tabpanel" aria-labelledby="service-tab-2">
@@ -277,11 +266,7 @@
               <span class="bubble"></span>
             </div>
           </div>
-          <div class="visuals">
-            <img class="image" src="src/assets/high_school_study.jpg" />
-          </div>
         </div>
-
         <div class="service-card" id="panel-3" role="tabpanel" aria-labelledby="service-tab-3">
           <div class="content">
             <h4 class="title">University Level Tutoring</h4>
@@ -306,9 +291,6 @@
               <span class="bubble"></span>
               <span class="bubble"></span>
             </div>
-          </div>
-          <div class="visuals">
-            <img class="image" src="src/assets/middle_school_study.jpg" />
           </div>
         </div>
       </div>
@@ -393,23 +375,19 @@
   </main>
 
   <footer class="site-footer">
-    <div>
-      <address>000-000-0000</address>
-    </div>
-    <div class="social-links">
-      <a href="#" aria-label="Social Link A">link A</a>
-      <a href="#" aria-label="Social Link B">link B</a>
-    </div>
     <div><span>&copy;2025 by Leonard Atorough</span></div>
+    <div>
+      Images by <a href="https://www.freepik.com">freepik</a>
+    </div>
   </footer>
   <!-- Modal Section -->
-  <section class="modal-section" id="booking-modal">
+  <section class="modal-section" id="booking-modal" aria-hidden="true" aria-label="booking modal" role="dialog">
     <div class="container">
       <span class="container-heading">
         <h2>Booking Calendar</h2>
         <button class="btn btn-secondary close" id="modal-close">&times;</button>
       </span>
-      <iframe
+      <iframe aria-label="booking"
         src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3M8umBcScIb1EudMtuVSK1SqmiA6eniuni9EPQTH93OQlHuxS-F_mGO2v7dXsq1mSxlmo2JJLn?gv=true"
         style="border: 0" width="100%" height="720px" frameborder="0" loading="lazy"></iframe>
     </div>
