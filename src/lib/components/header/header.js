@@ -9,8 +9,10 @@ function toggleNavMenu(forceClose) {
 
   if (shouldBeActive) {
     nav.classList.add("active");
+    nav.setAttribute("aria-hidden", "false");
   } else {
     nav.classList.remove("active");
+    nav.setAttribute("aria-hidden", "true");
   }
   button.setAttribute("aria-expanded", nav.classList.contains("active"));
 }
@@ -46,15 +48,15 @@ function attachToggleHandler() {
 
 function attachScrollHandler() {
   const nav = document.getElementById(NAVIGATION_MENU_ID);
-   if (!nav) throw Error("Navigation menu not found");
-   const links = nav.querySelectorAll("a.link");
-   Array.from(links).forEach((link) => {
-       link.addEventListener("click", (event) => {
-           event.preventDefault();
-           const targetId = link.getAttribute("href").substring(1);
-           scrollToSection(targetId);
-       });
-   });
+  if (!nav) throw Error("Navigation menu not found");
+  const links = nav.querySelectorAll("a.link");
+  Array.from(links).forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const targetId = link.getAttribute("href").substring(1);
+      scrollToSection(targetId);
+    });
+  });
 }
 
 export function initHeader() {

@@ -137,12 +137,12 @@
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
-    <nav id="navigation-menu" class="nav-menu" aria-label="Main navigation menu">
+    <nav id="navigation-menu" class="nav-menu" aria-label="Main navigation menu" aria-hidden="true">
       <a class="link" href="#About" aria-label="About">About</a>
       <a class="link" href="#Services" aria-label="Services">Services</a>
       <a class="link" href="#Testimonials" aria-label="Testimonials">Testimonials</a>
       <a class="link" href="#Contact" aria-label="Contact">Contact</a>
-      <button class="btn btn-primary book" id="bookBtn" href="/calendar" aria-label="Book now">
+      <button class="btn btn-primary book-btn" href="/calendar" aria-label="Book now">
         Book a session
       </button>
     </nav>
@@ -154,7 +154,7 @@
         <h1 class="title">Personalized, Online Math and Science Tutoring</h1>
         <h2 class="tagline">Helping you achieve your academic goals, one step at a time</h2>
         <div class="banner-buttons">
-          <button class="book btn btn-primary" id="bookBtn">Book a session</button>
+          <button class="book-btn btn btn-primary">Book a session</button>
           <a class="contact btn btn-tertiary" id="contactBtn" href="#Contact">Get In Touch</a>
         </div>
       </div>
@@ -222,7 +222,7 @@
       <h2 class="title">MY SERVICES</h2>
       <h3 class="subtitle">Personalized tutoring for Maths and Science subjects</h3>
       <div class="services-container">
-        <div class="service-card" id="panel-1" role="tabpanel" aria-labelledby="service-tab-1">
+        <div class="service-card" aria-label="Middle School Level Tutoring">
           <div class="content">
             <h4 class="title">Middle School Level Tutoring</h4>
             <ul class="item">
@@ -242,7 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="service-card" id="panel-2" role="tabpanel" aria-labelledby="service-tab-2">
+        <div class="service-card" aria-label="High School Level Tutoring">
           <div class="content">
             <h4 class="title">High School Level Tutoring</h4>
             <ul class="item">
@@ -267,7 +267,7 @@
             </div>
           </div>
         </div>
-        <div class="service-card" id="panel-3" role="tabpanel" aria-labelledby="service-tab-3">
+        <div class="service-card" aria-label="University Level Tutoring">
           <div class="content">
             <h4 class="title">University Level Tutoring</h4>
             <ul class="item">
@@ -302,7 +302,8 @@
       <h3 class="subtitle">Testimonials from satisfied students and parents</h3>
       <div class="testimonials-carousel" aria-roledescription="carousel" aria-label="Testimonials carousel">
         <div class="carousel-track" data-carousel-track tabindex="0" role="region" aria-label="Testimonials slideshow">
-          <article class="testimonial-card" data-carousel-slide>
+          <article class="testimonial-card" data-carousel-slide role="group" aria-roledescription="slide"
+            aria-label="Testimonial 1 of 4">
             <blockquote class="content primary">
               <p class="text">
                 Person is an inspiring tutor for my daughter Chiara. She is always able to provide
@@ -312,7 +313,8 @@
               <cite class="author">— A Satisfied Parent</cite>
             </blockquote>
           </article>
-          <article class="testimonial-card" data-carousel-slide>
+          <article class="testimonial-card" data-carousel-slide role="group" aria-roledescription="slide"
+            aria-label="Testimonial 2 of 4">
             <blockquote class="content secondary">
               <p class="text">
                 Person is an amazing tutor! She has helped me improve my understanding of complex
@@ -322,7 +324,8 @@
               <cite class="author">— A Happy Student</cite>
             </blockquote>
           </article>
-          <article class="testimonial-card" data-carousel-slide>
+          <article class="testimonial-card" data-carousel-slide role="group" aria-roledescription="slide"
+            aria-label="Testimonial 3 of 4">
             <blockquote class="content primary">
               <p class="text">
                 I highly recommend Person as a tutor. She is patient, knowledgeable, and always
@@ -332,7 +335,8 @@
               <cite class="author">— Another Satisfied Student</cite>
             </blockquote>
           </article>
-          <article class="testimonial-card" data-carousel-slide>
+          <article class="testimonial-card" data-carousel-slide role="group" aria-roledescription="slide"
+            aria-label="Testimonial 4 of 4">
             <blockquote class="content secondary">
               <p class="text">
                 Person is a fantastic tutor who truly cares about her students' success. She has a
@@ -360,7 +364,7 @@
         <div class="flex-row flex-col-sm gap-6 contact" style="width: 100%">
           <input type="email" id="email" class="field" name="email" placeholder="Email" aria-label="Email"
             autocomplete="email" required />
-          <input type="phone" id="phone" class="field" name="phone" placeholder="Phone" aria-label="Phone"
+          <input type="tel" id="phone" class="field" name="phone" placeholder="Phone" aria-label="Phone"
             autocomplete="tel" required />
         </div>
         <input type="text" id="subject" class="field" name="subject" placeholder="Subject" maxlength="50"
@@ -381,12 +385,13 @@
     </div>
   </footer>
   <!-- Modal Section -->
-  <section class="modal-section" id="booking-modal" aria-hidden="true" aria-label="booking modal" role="dialog">
+  <section class="modal-section" id="booking-modal" aria-hidden="true" aria-label="booking modal" role="dialog"
+    aria-modal="true">
     <div class="container">
       <div class="container-heading">
         <button class="btn close" id="modal-close">&times;</button>
       </div>
-      <iframe aria-label="booking"
+      <iframe title="Booking calendar - Google Calendar appointments"
         src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3M8umBcScIb1EudMtuVSK1SqmiA6eniuni9EPQTH93OQlHuxS-F_mGO2v7dXsq1mSxlmo2JJLn?gv=true"
         style="border: 0" width="100%" height="720px" frameborder="0" loading="lazy"></iframe>
     </div>

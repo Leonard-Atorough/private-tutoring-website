@@ -1,10 +1,10 @@
 const MODAL_ID = "booking-modal";
-const MODAL_BUTTON_ID = "bookBtn";
+const MODAL_BUTTON_SELECTOR = ".book-btn";
 const MODAL_CLOSE_ID = "modal-close";
 
 export function initModal() {
   const modal = document.getElementById(MODAL_ID);
-  const openModalBtns = document.querySelectorAll(`#${MODAL_BUTTON_ID}`);
+  const openModalBtns = document.querySelectorAll(MODAL_BUTTON_SELECTOR);
   const closeModalBtn = document.getElementById(MODAL_CLOSE_ID);
   const iframe = modal?.querySelector("iframe");
   let lastActiveElement;

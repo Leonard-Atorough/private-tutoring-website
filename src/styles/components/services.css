@@ -1,7 +1,8 @@
 /* Services Component Styles */
 .services-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 500px);
+  /* create columns that are between 320px and 500px wide; fit as many as possible */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 500px));
   gap: 2rem;
   justify-content: center;
   max-width: 100%;
@@ -11,8 +12,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  /* keep card height fixed but let width be controlled by the grid cell
+      card will never exceed 500px thanks to the grid minmax above */
   height: 500px;
-  width: 500px;
+  width: 100%;
+  min-width: 320px;
+  max-width: 500px;
   gap: 0.5rem;
   background: var(--primary-200);
   border-radius: 0.5rem;
