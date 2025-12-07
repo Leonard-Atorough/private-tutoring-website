@@ -50,7 +50,7 @@
   > .content > .title {
     font-weight: 600;
     text-align: center;
-    border-bottom: 2px solid var(--accent-500);
+    border-bottom: 2px solid var(--primary-300);
     padding: 0 1rem;
   }
   > .content > .item {
@@ -71,7 +71,7 @@
     max-width: 35px;
     height: 35px;
     width: 100%;
-    background-color: var(--accent-500);
+    background-color: var(--accent-100);
     border-radius: 2rem;
     align-self: center;
     transition: transform 0.3s ease;

@@ -48,22 +48,20 @@
     height: 25rem;
     overflow: hidden;
     border-radius: 0.5rem;
-    box-shadow: var(--shadow-elevation-low);
+    box-shadow: var(--shadow-elevation-medium);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    color: var(--accent-800);
 
     &.primary {
-      background: var(--primary-100);
-      color: var(--accent-700);
+      background: var(--primary-50);
     }
 
     &.secondary {
-      background: var(--primary-200);
-      color: var(--accent-800);
+      background: var(--primary-100);
     }
 
     &:hover {
       transform: scale(1.05);
-      box-shadow: var(--shadow-elevation-medium);
     }
 
     > .text {
