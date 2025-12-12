@@ -39,14 +39,6 @@ html {
   padding: 2rem;
 
   @media only screen and (max-width: 480px) {
-    padding: 1rem;
+    padding: 0.5rem;
   }
-}
-
-.body-content {
-  display: block;
-  margin: 0 auto;
-  margin-top: 4rem;
-  max-width: 1200px;
-  min-height: 60vh;
 }

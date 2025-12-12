@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kaili-tutor.netlify.app/sitemap.xml
+Sitemap: https://kailistutoring.netlify.app/sitemap.xml
 
 # This file allows all crawlers to access the site and its assets.

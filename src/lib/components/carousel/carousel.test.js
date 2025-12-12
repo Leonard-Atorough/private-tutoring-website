@@ -1,4 +1,5 @@
-import { beforeEach, describe } from "vitest";
+/** @vitest-environment jsdom */
+import { describe } from "vitest";
 import Carousel from "./carousel";
 
 // testing the carousel requires mock dom elements and simulating time for the auto-advance feature
@@ -25,7 +26,8 @@ beforeEach(() => {
 describe("Carousel Component", () => {
   describe("On large screens (>=1024px)", () => {
     beforeEach(() => {
-      Object.defineProperty(window, "innerWidth", { value: 1024, writable: true });
+      // use a value greater than 1024 to trigger the "large" breakpoint in the implementation
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
     });
     it("should initialize correctly", () => {
       const carousel = document.querySelector(".carousel-track");
