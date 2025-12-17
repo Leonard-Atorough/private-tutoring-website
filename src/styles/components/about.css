@@ -102,7 +102,7 @@
 /* End of desktop section */
 
 /* Mobile screen styling */
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .about-section {
     padding: 0.5rem;
   }
@@ -141,7 +141,7 @@
 /* End of mobile section */
 
 /* Tablet screen styling */
-@media screen and (min-width: 601px) and (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 1024px) {
   .about-body {
     gap: 2rem;
     flex-direction: column;

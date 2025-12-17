@@ -34,7 +34,7 @@
 }
 
 /* Mobile and Tablet */
-@media only screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
   .hero-section {
     height: 85vh;
     margin-bottom: 2rem;
