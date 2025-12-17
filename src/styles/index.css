@@ -19,7 +19,7 @@ html {
   font-size: 62.5%;
   font-weight: 300;
   line-height: 1.5;
-  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-display: swap;
   font-size: var(--font-size-1);
 }
 

@@ -46,6 +46,21 @@
     calc(var(--font-size-9) * var(--scale-ratio)),
     84px
   );
+
+  /* Font families */
+  --font-heading: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Set body-friendly font as default */
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
 }
 
 h1 {

@@ -1,22 +1,22 @@
 const TOGGLE_BUTTON_ID = "menu-toggle";
 const NAVIGATION_MENU_ID = "navigation-menu";
+const HAMBURGER_VIEW_WIDTH = 1024;
+
+let nav = null;
+let button = null;
+const scrollHandler = () => toggleNavMenu(true);
 
 function isNavMenuHidden() {
-  const nav = document.getElementById(NAVIGATION_MENU_ID);
-  return nav.classList.contains("active") === false;
+  return !nav.classList.contains("active");
 }
 
 function setNavMenuAccessibilityAttributes() {
-  const nav = document.getElementById(NAVIGATION_MENU_ID);
-  const button = document.getElementById(TOGGLE_BUTTON_ID);
-  nav.setAttribute("aria-hidden", isNavMenuHidden() ? "true" : "false");
-  button.setAttribute("aria-expanded", isNavMenuHidden() ? "false" : "true");
+  const isHidden = isNavMenuHidden();
+  nav.setAttribute("aria-hidden", isHidden ? "true" : "false");
+  button.setAttribute("aria-expanded", isHidden ? "false" : "true");
 }
 
 function toggleNavMenu(forceClose) {
-  const nav = document.getElementById(NAVIGATION_MENU_ID);
-  const button = document.getElementById(TOGGLE_BUTTON_ID);
-
   const shouldBeActive = forceClose ? false : !nav.classList.contains("active");
 
   if (shouldBeActive) {
@@ -25,16 +25,6 @@ function toggleNavMenu(forceClose) {
     nav.classList.remove("active");
   }
   setNavMenuAccessibilityAttributes();
-}
-
-let scrollRafId = null;
-function closeOnScroll() {
-  if (scrollRafId !== null) return; // already scheduled
-
-  scrollRafId = requestAnimationFrame(() => {
-    toggleNavMenu(true); // force close
-    scrollRafId = null;
-  });
 }
 
 function scrollToSection(sectionId) {
@@ -47,18 +37,16 @@ function scrollToSection(sectionId) {
 }
 
 function attachToggleHandler() {
-  const toggleButton = document.getElementById(TOGGLE_BUTTON_ID);
-  if (!toggleButton) throw Error("Navigation toggle button not found");
-  toggleButton.addEventListener("click", () => {
+  if (!button) throw Error("Navigation toggle button not found");
+  button.addEventListener("click", () => {
     toggleNavMenu();
     setNavMenuAccessibilityAttributes();
   });
-  window.removeEventListener("scroll", () => toggleNavMenu(true));
-  window.addEventListener("scroll", () => toggleNavMenu(true));
+  window.removeEventListener("scroll", scrollHandler);
+  window.addEventListener("scroll", scrollHandler);
 }
 
 function attachScrollHandler() {
-  const nav = document.getElementById(NAVIGATION_MENU_ID);
   if (!nav) throw Error("Navigation menu not found");
   const links = nav.querySelectorAll("a.link");
   Array.from(links).forEach((link) => {
@@ -72,20 +60,21 @@ function attachScrollHandler() {
 
 function attachResizeHandler() {
   window.addEventListener("resize", () => {
-    const nav = document.getElementById(NAVIGATION_MENU_ID);
     if (window.innerWidth < 768) {
       toggleNavMenu(true); // force close
       setNavMenuAccessibilityAttributes();
     } else {
       // remove accessibility attributes when not in mobile view
       nav.removeAttribute("aria-hidden");
-      const button = document.getElementById(TOGGLE_BUTTON_ID);
       button.removeAttribute("aria-expanded");
     }
   });
 }
 
 export function initHeader() {
+  nav = document.getElementById(NAVIGATION_MENU_ID);
+  button = document.getElementById(TOGGLE_BUTTON_ID);
+  
   attachToggleHandler();
   attachScrollHandler();
   attachResizeHandler();
