@@ -1,6 +1,18 @@
 /** @vitest-environment jsdom */
-import { describe } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import Carousel from "./carousel";
+
+// Mock IntersectionObserver
+global.IntersectionObserver = class IntersectionObserver {
+  constructor(callback) {
+    this.callback = callback;
+  }
+  observe() {}
+  disconnect() {}
+  triggerIntersection(isIntersecting) {
+    this.callback([{ isIntersecting }]);
+  }
+};
 
 // testing the carousel requires mock dom elements and simulating time for the auto-advance feature
 
@@ -352,6 +364,171 @@ describe("Carousel Component", () => {
       // Max index for 1 visible item is 4 (5 - 1 = 4)
       // Current index should remain valid
       expect(carouselInstance.currentIndex).toBeLessThanOrEqual(4);
+    });
+  });
+
+  describe("Visibility-Based Focus Management", () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div class="carousel-track" style="width: 600px; overflow: hidden;">
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 3</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
+        </div>
+      `;
+      const carousel = document.querySelector(".carousel-track");
+      Object.defineProperty(carousel, "clientWidth", { value: 600, writable: true });
+      carousel.scrollLeft = 0;
+      carousel.scrollTo = function ({ left }) {
+        this.scrollLeft = left;
+      };
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+    });
+
+    it("should initialize with isCarouselVisible set to false", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+
+      expect(carouselInstance.isCarouselVisible).toBe(false);
+    });
+
+    it("should not focus slides when carousel is not visible", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Carousel is not visible, so focus should not be applied
+      carouselInstance.goTo(1);
+
+      // Card should not have focus even though it was navigated to
+      expect(document.activeElement).not.toBe(cards[1]);
+    });
+
+    it("should focus slides when carousel becomes visible", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Simulate carousel becoming visible
+      carouselInstance.isCarouselVisible = true;
+
+      carouselInstance.goTo(1);
+
+      // Card should now be focused since carousel is visible
+      expect(cards[1].getAttribute("tabindex")).toBe("0");
+    });
+
+    it("should stop focusing slides when carousel becomes hidden", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Carousel is visible
+      carouselInstance.isCarouselVisible = true;
+      carouselInstance.goTo(0);
+
+      // Now carousel becomes hidden
+      carouselInstance.isCarouselVisible = false;
+      carouselInstance.goTo(2);
+
+      // Card should not be focused since carousel is hidden
+      expect(document.activeElement).not.toBe(cards[2]);
+    });
+
+    it("should respect focus management when user is typing", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+
+      // Create an input element and focus it
+      const input = document.createElement("input");
+      document.body.appendChild(input);
+      input.focus();
+
+      // Make carousel visible
+      carouselInstance.isCarouselVisible = true;
+
+      // Try to focus carousel slide
+      carouselInstance.goTo(1);
+
+      // Should not steal focus from input
+      expect(document.activeElement).toBe(input);
+    });
+
+    it("should not focus slides when a modal is open", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Carousel is visible
+      carouselInstance.isCarouselVisible = true;
+
+      // Create and open a modal
+      const modal = document.createElement("div");
+      modal.setAttribute("aria-modal", "true");
+      modal.classList.add("active");
+      document.body.appendChild(modal);
+
+      carouselInstance.goTo(1);
+
+      // Card should not be focused since modal is open
+      expect(document.activeElement).not.toBe(cards[1]);
+    });
+
+    it("should resume focusing slides when modal closes", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      carouselInstance.isCarouselVisible = true;
+
+      // Open a modal
+      const modal = document.createElement("div");
+      modal.setAttribute("aria-modal", "true");
+      modal.classList.add("active");
+      document.body.appendChild(modal);
+
+      carouselInstance.goTo(1);
+
+      // Modal is open, card should not have focus
+      expect(cards[1]).not.toBe(document.activeElement);
+
+      // Close the modal
+      modal.classList.remove("active");
+
+      carouselInstance.goTo(2);
+
+      // Modal is closed, card should now be focused
+      expect(cards[2].getAttribute("tabindex")).toBe("0");
+    });
+
+    it("should not steal focus from modal when carousel auto-advances", () => {
+      vi.useFakeTimers();
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel, 1000);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      carouselInstance.isCarouselVisible = true;
+
+      // Create and open a modal with a button
+      const modal = document.createElement("div");
+      modal.setAttribute("aria-modal", "true");
+      modal.classList.add("active");
+      const modalBtn = document.createElement("button");
+      modal.appendChild(modalBtn);
+      document.body.appendChild(modal);
+      modalBtn.focus();
+
+      expect(document.activeElement).toBe(modalBtn);
+
+      // Auto-advance carousel
+      vi.advanceTimersByTime(1000);
+
+      // Focus should remain on modal button, not move to carousel
+      expect(document.activeElement).toBe(modalBtn);
+
+      vi.useRealTimers();
     });
   });
 });

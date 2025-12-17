@@ -10,9 +10,11 @@ export default class Carousel {
     this.totalItems = this.items.length;
     this.visibleItems = 1; // default, will be updated in readyCarousel
     this.restartTimeout = null;
+    this.isCarouselVisible = false;
     this.readyCarousel();
     this.attachControls();
     this.updateAriaForSlides();
+    this.setupVisibilityObserver();
     this.startAutoAdvance();
   }
 
@@ -22,6 +24,17 @@ export default class Carousel {
     window.addEventListener("resize", () => this.updateSlideWidth());
     this.carouselElement.addEventListener("mouseenter", () => this.stopAutoAdvance());
     this.carouselElement.addEventListener("mouseleave", () => this.startAutoAdvance());
+  }
+
+  // Setup Intersection Observer to track when carousel is visible
+  setupVisibilityObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        this.isCarouselVisible = entry.isIntersecting;
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(this.carouselElement);
   }
   updateSlideWidth() {
     const screenWidth = window.innerWidth;
@@ -104,16 +117,22 @@ export default class Carousel {
       behavior: "smooth",
     });
     this.updateAriaForSlides();
-    // focus the active slide for screen reader users, but only if user isn't actively focused elsewhere
-    const active = this.items[this.currentIndex];
-    const activeElement = document.activeElement;
-    const isUserTyping = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable);
     
-    if (active && !isUserTyping) {
-      active.setAttribute("tabindex", "0");
-      active.focus({ preventScroll: true });
-    } else if (active) {
-      active.setAttribute("tabindex", "0");
+    // Only manage focus if carousel is visible on screen and no modal is overlaying it
+    // This prevents the carousel from stealing focus when user is interacting with other parts of the page
+    const isModalOpen = document.querySelector("[aria-modal='true'].active") !== null;
+    
+    if (this.isCarouselVisible && !isModalOpen) {
+      const active = this.items[this.currentIndex];
+      const activeElement = document.activeElement;
+      const isUserTyping = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable);
+      
+      if (active && !isUserTyping) {
+        active.setAttribute("tabindex", "0");
+        active.focus({ preventScroll: true });
+      } else if (active) {
+        active.setAttribute("tabindex", "0");
+      }
     }
   }
 
