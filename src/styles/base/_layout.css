@@ -1,5 +1,6 @@
 :root {
   --mobile-breakpoint: 480px;
+  --large-mobile-breakpoint: 600px;
   --tablet-breakpoint: 768px;
   --desktop-breakpoint: 1024px;
   --max-width: 1200px;

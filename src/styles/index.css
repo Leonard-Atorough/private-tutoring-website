@@ -37,10 +37,9 @@ html {
   margin: 0 auto;
   min-width: 320px;
   padding: 2rem;
-
 }
 
-@media (max-width: var(--mobile-breakpoint)) {
+@media (max-width: 768px) {
   .main-content {
     padding: 0.5rem;
   }
