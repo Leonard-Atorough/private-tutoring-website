@@ -14,7 +14,7 @@ describe("Modal Component", () => {
   describe("Open and Close Modal", () => {
     beforeEach(() => {
       document.body.innerHTML = `
-        <button id="bookBtn">Open Modal</button>
+        <button id="bookBtn" class="book-btn">Open Modal</button>
         <div id="booking-modal" class="modal">
             <button id="modal-close">Close</button>
             <iframe src="about:blank"></iframe>

@@ -104,11 +104,16 @@ export default class Carousel {
       behavior: "smooth",
     });
     this.updateAriaForSlides();
-    // focus the active slide for screen reader users
+    // focus the active slide for screen reader users, but only if user isn't actively focused elsewhere
     const active = this.items[this.currentIndex];
-    if (active) {
+    const activeElement = document.activeElement;
+    const isUserTyping = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable);
+    
+    if (active && !isUserTyping) {
       active.setAttribute("tabindex", "0");
       active.focus({ preventScroll: true });
+    } else if (active) {
+      active.setAttribute("tabindex", "0");
     }
   }
 

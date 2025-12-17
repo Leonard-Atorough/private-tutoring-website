@@ -83,4 +83,273 @@ describe("Carousel Component", () => {
       expect(carouselInstance.slideWidth).toBe(600); // full width
     });
   });
+
+  describe("Navigation Controls", () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div class="carousel-container">
+          <button class="carousel-prev">Previous</button>
+          <div class="carousel-track" style="width: 600px; overflow: hidden;">
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 3</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
+          </div>
+          <button class="carousel-next">Next</button>
+        </div>
+      `;
+      const carousel = document.querySelector(".carousel-track");
+      Object.defineProperty(carousel, "clientWidth", { value: 600, writable: true });
+      carousel.scrollLeft = 0;
+      carousel.scrollTo = function ({ left }) {
+        this.scrollLeft = left;
+      };
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+    });
+
+    it("should navigate to next slide when next button is clicked", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const nextBtn = document.querySelector(".carousel-next");
+      const initialIndex = carouselInstance.currentIndex;
+
+      nextBtn.click();
+
+      expect(carouselInstance.currentIndex).toBeGreaterThan(initialIndex);
+    });
+
+    it("should navigate to previous slide when prev button is clicked", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const nextBtn = document.querySelector(".carousel-next");
+      const prevBtn = document.querySelector(".carousel-prev");
+
+      // Move forward first
+      nextBtn.click();
+      const indexAfterNext = carouselInstance.currentIndex;
+
+      // Then move back
+      prevBtn.click();
+
+      expect(carouselInstance.currentIndex).toBeLessThan(indexAfterNext);
+    });
+
+    it("should wrap to start when next is clicked at the end", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const nextBtn = document.querySelector(".carousel-next");
+      const maxIndex = Math.max(0, carouselInstance.totalItems - carouselInstance.visibleItems);
+
+      // Navigate to the last slide
+      carouselInstance.currentIndex = maxIndex;
+
+      // Click next to wrap around
+      nextBtn.click();
+
+      expect(carouselInstance.currentIndex).toBe(0);
+    });
+
+    it("should wrap to end when prev is clicked at the start", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const prevBtn = document.querySelector(".carousel-prev");
+      const maxIndex = Math.max(0, carouselInstance.totalItems - carouselInstance.visibleItems);
+
+      // Start at index 0
+      carouselInstance.currentIndex = 0;
+
+      // Click prev to wrap to end
+      prevBtn.click();
+
+      expect(carouselInstance.currentIndex).toBe(maxIndex);
+    });
+  });
+
+  describe("User Interaction Behavior", () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div class="carousel-container">
+          <button class="carousel-prev">Previous</button>
+          <div class="carousel-track" style="width: 600px; overflow: hidden;">
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 3</div>
+          </div>
+          <button class="carousel-next">Next</button>
+        </div>
+      `;
+      const carousel = document.querySelector(".carousel-track");
+      Object.defineProperty(carousel, "clientWidth", { value: 600, writable: true });
+      carousel.scrollLeft = 0;
+      carousel.scrollTo = function ({ left }) {
+        this.scrollLeft = left;
+      };
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+    });
+
+    it("should pause auto-advance when button is clicked and restart after delay", () => {
+      vi.useFakeTimers();
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel, 1000);
+      const nextBtn = document.querySelector(".carousel-next");
+      const initialScrollLeft = carousel.scrollLeft;
+
+      // Click button to trigger user interaction
+      nextBtn.click();
+
+      // Should not auto-advance during pause (even after normal interval)
+      vi.advanceTimersByTime(2000);
+      const scrollAfterPause = carousel.scrollLeft;
+
+      // Should restart after 5 second delay
+      vi.advanceTimersByTime(3000); // Total 5 seconds
+      vi.advanceTimersByTime(1000); // One more interval
+
+      expect(carousel.scrollLeft).toBeGreaterThan(scrollAfterPause);
+      vi.useRealTimers();
+    });
+
+    it("should resume auto-advance when mouse leaves", () => {
+      vi.useFakeTimers();
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel, 1000);
+      const initialScrollLeft = carousel.scrollLeft;
+
+      // Simulate mouse enter to pause
+      carousel.dispatchEvent(new Event("mouseenter"));
+
+      // Verify paused - advance time but carousel shouldn't move
+      vi.advanceTimersByTime(2000);
+      expect(carousel.scrollLeft).toBe(initialScrollLeft);
+
+      // Simulate mouse leave to resume
+      carousel.dispatchEvent(new Event("mouseleave"));
+
+      // Should now auto-advance after one interval
+      vi.advanceTimersByTime(1000);
+      expect(carousel.scrollLeft).toBeGreaterThan(initialScrollLeft);
+
+      vi.useRealTimers();
+    });
+  });
+
+  describe("ARIA and Accessibility", () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div class="carousel-track" style="width: 600px; overflow: hidden;">
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 3</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
+        </div>
+      `;
+      const carousel = document.querySelector(".carousel-track");
+      Object.defineProperty(carousel, "clientWidth", { value: 600, writable: true });
+      carousel.scrollLeft = 0;
+      carousel.scrollTo = function ({ left }) {
+        this.scrollLeft = left;
+      };
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+    });
+
+    it("should set aria-hidden=false for visible slides", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // First 3 cards should be visible (visibleItems = 3)
+      expect(cards[0].getAttribute("aria-hidden")).toBe("false");
+      expect(cards[1].getAttribute("aria-hidden")).toBe("false");
+      expect(cards[2].getAttribute("aria-hidden")).toBe("false");
+    });
+
+    it("should set aria-hidden=true for hidden slides", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Cards 4 and 5 should be hidden
+      expect(cards[3].getAttribute("aria-hidden")).toBe("true");
+      expect(cards[4].getAttribute("aria-hidden")).toBe("true");
+    });
+
+    it("should update ARIA attributes when navigating", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Navigate forward
+      carouselInstance.next();
+
+      // Cards 1-3 should now be visible (index 1, 2, 3)
+      expect(cards[0].getAttribute("aria-hidden")).toBe("true");
+      expect(cards[1].getAttribute("aria-hidden")).toBe("false");
+      expect(cards[2].getAttribute("aria-hidden")).toBe("false");
+      expect(cards[3].getAttribute("aria-hidden")).toBe("false");
+      expect(cards[4].getAttribute("aria-hidden")).toBe("true");
+    });
+
+    it("should set tabindex=-1 for hidden slides", () => {
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+      const cards = carousel.querySelectorAll(".testimonial-card");
+
+      // Hidden cards should have tabindex="-1"
+      expect(cards[3].getAttribute("tabindex")).toBe("-1");
+      expect(cards[4].getAttribute("tabindex")).toBe("-1");
+    });
+  });
+
+  describe("Resize Handling", () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <div class="carousel-track" style="width: 600px; overflow: hidden;">
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 3</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
+          <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
+        </div>
+      `;
+      const carousel = document.querySelector(".carousel-track");
+      Object.defineProperty(carousel, "clientWidth", { value: 600, writable: true });
+      carousel.scrollLeft = 0;
+      carousel.scrollTo = function ({ left }) {
+        this.scrollLeft = left;
+      };
+    });
+
+    it("should update visible items when window is resized", () => {
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true, configurable: true });
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+
+      expect(carouselInstance.visibleItems).toBe(3);
+
+      // Simulate resize to mobile
+      Object.defineProperty(window, "innerWidth", { value: 500, writable: true, configurable: true });
+      window.dispatchEvent(new Event("resize"));
+
+      expect(carouselInstance.visibleItems).toBe(1);
+    });
+
+    it("should clamp currentIndex when resizing reduces visible items", () => {
+      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true, configurable: true });
+      const carousel = document.querySelector(".carousel-track");
+      const carouselInstance = new Carousel(carousel);
+
+      // Navigate to last possible position for 3 visible items
+      carouselInstance.currentIndex = 2; // Max index for 3 visible items is 2 (5 - 3 = 2)
+
+      // Resize to show only 1 item at a time
+      Object.defineProperty(window, "innerWidth", { value: 500, writable: true, configurable: true });
+      window.dispatchEvent(new Event("resize"));
+
+      // Max index for 1 visible item is 4 (5 - 1 = 4)
+      // Current index should remain valid
+      expect(carouselInstance.currentIndex).toBeLessThanOrEqual(4);
+    });
+  });
 });
