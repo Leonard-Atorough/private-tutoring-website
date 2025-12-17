@@ -55,10 +55,7 @@
     box-shadow: var(--shadow-elevation-low);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     color: var(--text-50);
-
-    &.primary {
-      background: var(--primary);
-    }
+    background-color: var(--background-700);
 
     &:hover {
       transform: scale(1.05);
