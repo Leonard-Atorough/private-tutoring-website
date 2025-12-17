@@ -16,7 +16,7 @@ function formHandler(stateManager) {
       console.log("Form submitted:", data);
 
       //save a form submission token to local storage
-      stateManager.persistState("formSubmitted", true);
+      stateManager.saveStateToLocalStorage("formSubmitted", true);
     });
   }
   return { mountFormHandler };

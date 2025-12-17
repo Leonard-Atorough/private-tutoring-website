@@ -175,6 +175,8 @@ describe("Carousel Component", () => {
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 3</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
+            <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
           </div>
           <button class="carousel-next">Next</button>
         </div>

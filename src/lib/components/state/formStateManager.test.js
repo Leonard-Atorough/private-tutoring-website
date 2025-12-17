@@ -6,8 +6,8 @@ import { describe, beforeEach, it, vi, expect } from "vitest";
 import { createFormStateManager } from "./formStateManager.js";
 
 describe("Given a formStateManager", () => {
-  let persistState;
-  let getPersistedState;
+  let saveStateToLocalStorage;
+  let fetchStoredState;
   let persistFormState;
   beforeEach(() => {
     //setup a mock form in mock DOM
@@ -23,8 +23,8 @@ describe("Given a formStateManager", () => {
       </form>`;
 
     // mock state persistence for stateManager functions using a spyOn
-    persistState = vi.fn();
-    getPersistedState = vi.fn((key) => {
+    saveStateToLocalStorage = vi.fn();
+    fetchStoredState = vi.fn((key) => {
       if (key === "test-form") {
         return {
           username: "persistedUser",
@@ -38,7 +38,7 @@ describe("Given a formStateManager", () => {
       }
       return null;
     });
-    ({ persistFormState } = createFormStateManager(persistState, getPersistedState));
+    ({ persistFormState } = createFormStateManager(saveStateToLocalStorage, fetchStoredState));
   });
 
   describe("when persistFormState is called", () => {
@@ -54,7 +54,7 @@ describe("Given a formStateManager", () => {
       persistFormState("test-form");
       form.dispatchEvent(new Event("input"));
       vi.advanceTimersByTime(3000);
-      expect(persistState).toHaveBeenCalledWith("test-form", formData);
+      expect(saveStateToLocalStorage).toHaveBeenCalledWith("test-form", formData);
       vi.useRealTimers();
     });
 
@@ -65,16 +65,16 @@ describe("Given a formStateManager", () => {
     });
 
     it("should not persist state if the form has been submitted", () => {
-      getPersistedState = vi.fn((key) => {
+      fetchStoredState = vi.fn((key) => {
         if (key === "formSubmitted") {
           return true;
         }
         return null;
       });
-      ({ persistFormState } = createFormStateManager(persistState, getPersistedState));
+      ({ persistFormState } = createFormStateManager(saveStateToLocalStorage, fetchStoredState));
       persistFormState("test-form");
-      expect(persistState).toHaveBeenCalledWith("formSubmitted", false);
-      expect(persistState).not.toHaveBeenCalledWith("test-form", expect.anything());
+      expect(saveStateToLocalStorage).toHaveBeenCalledWith("formSubmitted", false);
+      expect(saveStateToLocalStorage).not.toHaveBeenCalledWith("test-form", expect.anything());
     });
 
     it("should clear idle timer if form is submitted and debounce the saveState call", () => {
@@ -88,7 +88,7 @@ describe("Given a formStateManager", () => {
       form.dispatchEvent(new Event("submit"));
       vi.advanceTimersByTime(3000);
 
-      expect(persistState).toHaveBeenCalledTimes(1);
+      expect(saveStateToLocalStorage).toHaveBeenCalledTimes(1);
       vi.useRealTimers();
     });
 

@@ -1,5 +1,5 @@
 // firstly, we want to write a function to save form state
-function createFormStateManager(persistState, getPersistedState) {
+function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
   function getFormData(formId) {
     const form = document.getElementById(formId);
     const formData = new FormData(form);
@@ -24,21 +24,21 @@ function createFormStateManager(persistState, getPersistedState) {
       throw new Error("Form not found");
     }
     //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
-    const formSubmitted = getPersistedState("formSubmitted");
+    const formSubmitted = fetchStoredState("formSubmitted");
     if (formSubmitted) {
       console.log(formSubmitted);
-      persistState("formSubmitted", false);
+      saveStateToLocalStorage("formSubmitted", false);
       clearFormState(formId);
     }
     // we always want to load the persisted state when the form is created, even if it has been submitted.
-    const saved = getPersistedState(formId);
+    const saved = fetchStoredState(formId);
     if (saved) {
       setFormData(form, saved);
     }
 
     let idleTimer;
     const saveState = () => {
-      persistState(formId, getFormData(formId));
+      saveStateToLocalStorage(formId, getFormData(formId));
       console.log(`Form state saved for ${formId}`);
     };
 
@@ -56,7 +56,7 @@ function createFormStateManager(persistState, getPersistedState) {
   }
 
   function clearFormState(formId) {
-    persistState(formId, null);
+    saveStateToLocalStorage(formId, null);
   }
 
   return { persistFormState, clearFormState };

@@ -1,9 +1,9 @@
 import { initHeader } from "./components/header/header.js";
 import { initModal } from "./components/modal/modal.js";
 import Carousel from "./components/carousel/carousel.js";
-import { createFormStateManager } from "./formStateManager.js";
-import { formHandler } from "./form/formHandler.js";
-import * as stateManager from "./stateManager.js";
+import { createFormStateManager } from "./components/state/formStateManager.js";
+import { formHandler } from "./components/form/formHandler.js";
+import * as storeManager from "./components/store/storeManager.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const body = document.getElementById("app");
@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   initModal();
 
   const formManager = createFormStateManager(
-    stateManager.persistState,
-    stateManager.getPersistedState
+    storeManager.saveStateToLocalStorage,
+    storeManager.fetchStoredState
   );
   formManager.persistFormState("contact-form");
 
-  const handler = formHandler(stateManager);
+  const handler = formHandler(storeManager);
   handler.mountFormHandler("contact-form");
 });

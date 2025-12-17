@@ -3,14 +3,14 @@ const EXPIRY_HOURS = 24; //hours
 
 let state = {};
 
-export function persistState(key, value) {
+export function saveStateToLocalStorage(key, value) {
   state[key] = value;
   console.log(value);
   const payload = JSON.stringify({ data: state, timestamp: Date.now() });
   localStorage.setItem(STATE_KEY, payload);
 }
 
-export function getPersistedState(key) {
+export function fetchStoredState(key) {
   let persisted = localStorage.getItem(STATE_KEY);
   if (!persisted) return {};
   try {

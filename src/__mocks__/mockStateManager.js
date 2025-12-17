@@ -1,11 +1,11 @@
 export function createMockStateManager() {
   const store = new Map();
 
-  function persistState(key, value) {
+  function saveStateToLocalStorage(key, value) {
     store.set(key, value);
   }
-  function getPersistedState(key) {
+  function fetchStoredState(key) {
     return store.get(key);
   }
-  return { persistState, getPersistedState };
+  return { saveStateToLocalStorage, fetchStoredState };
 }
