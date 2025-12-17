@@ -1,0 +1,15 @@
+:root {
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 2rem; /* 32px */
+  --space-xl: 4rem; /* 64px */
+  --space-2xl: 8rem; /* 128px */
+
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 2rem; /* 32px */
+  --radius-full: 9999px; /* Full circle */
+}

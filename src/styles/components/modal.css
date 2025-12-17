@@ -26,12 +26,12 @@
     max-width: 1200px;
     width: 100%;
     background: #ffffff;
-    padding: 1rem;
-    border-radius: 1rem;
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-elevation-high);
 
     iframe:focus-visible {
-      border-radius: 1rem;
+      border-radius: var(--radius-md);
     }
   }
 }
@@ -39,13 +39,13 @@
 .container-heading {
   display: flex;
   justify-content: flex-end;
-  padding-left: 2rem;
-  margin-top: 0.5rem;
+  padding-left: var(--space-lg);
+  margin-top: var(--space-sm);
 
   > .close {
     font-size: 3rem;
     line-height: 0.5;
-    padding: 1rem;
+    padding: var(--space-md);
     float: right;
     text-align: center;
     background: none;
@@ -64,8 +64,8 @@
 @media (max-width: 600px) {
   .modal-section > .container {
     width: 95%;
-    padding: 0.25rem;
-    border-radius: 0.5rem;
+    padding: var(--space-xs);
+    border-radius: var(--radius-md);
   }
 
   .container-heading {
@@ -74,7 +74,7 @@
 
     > .close {
       font-size: 3rem;
-      padding: 0.5rem;
+      padding: var(--space-sm);
     }
   }
 }
@@ -83,8 +83,8 @@
 @media (min-width: 601px) and (max-width: 1024px) {
   .modal-section > .container {
     width: 80%;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
   }
 
   .container-heading {
@@ -93,7 +93,7 @@
 
     > .close {
       font-size: 3rem;
-      padding: 0.5rem;
+      padding: var(--space-sm);
     }
   }
 }

@@ -3,6 +3,7 @@
 @import url(./base/_palette.css);
 @import url(./base/_layout.css);
 @import url(./base/_shadows.css);
+@import url(./base/_spacing.css);
 
 @import url(./components/header.css);
 @import url(./components/footer.css);
@@ -36,11 +37,11 @@ html {
   display: block;
   margin: 0 auto;
   min-width: 320px;
-  padding: 2rem;
+  padding: var(--space-lg);
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding: 0.5rem;
+    padding: var(--space-sm);
   }
 }

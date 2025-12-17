@@ -3,10 +3,10 @@
   width: 100%;
   height: 80vh;
   overflow: hidden;
-  margin-bottom: 4rem;
+  margin-bottom: var(--space-xl);
   background: url("/src/assets/banner.webp") left / cover no-repeat;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
 }
 
 .banner-text {
@@ -14,8 +14,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
   height: 100%;
   text-align: center;
 
@@ -29,7 +29,7 @@
     font-size: var(--font-size-3);
     font-weight: 500;
     color: var(--background);
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-xl);
   }
 }
 
@@ -37,7 +37,7 @@
 @media (max-width: 1024px) {
   .hero-section {
     height: 85vh;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-lg);
     background-position: 7% 0%;
   }
 

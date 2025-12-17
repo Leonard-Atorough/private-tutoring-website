@@ -1,5 +1,5 @@
 .site-footer {
-  padding : 2rem 0;
+  padding : var(--space-lg) 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
