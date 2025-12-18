@@ -34,14 +34,15 @@
 
     > .label {
       align-self: flex-start;
-      font-size: var(--font-size-1);
+      font-size: var(--font-size-2);
       font-weight: 500;
-      margin-bottom: var(--space-xs);
+      margin-bottom: var(--space-sm);
+      padding-left: var(--space-sm);
     }
 
     > .field {
       width: 100%;
-      padding: var(--space-sm) var(--space-md);
+      padding: var(--space-md) var(--space-md);
       border: 1px solid var(--primary);
       border-radius: var(--radius-sm);
       font-size: var(--font-size-1);
@@ -49,11 +50,12 @@
       font-family: inherit;
       resize: vertical;
       background-color: transparent;
+      background-color: #fff;
+      box-shadow: var(--shadow-elevation-low);
       transition: all 0.3s ease;
 
       &:focus {
         outline: none;
-        background-color: #fff;
         border-bottom: 2px solid var(--primary);
         box-shadow: var(--shadow-elevation-high);
       }

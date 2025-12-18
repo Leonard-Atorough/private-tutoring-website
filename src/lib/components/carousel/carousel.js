@@ -86,7 +86,7 @@ export default class Carousel {
 
     if (this.prevBtn) {
       // apply existing button styles if not already present
-      this.prevBtn.classList.add("button", "-tertiary");
+      this.prevBtn.classList.add("button", "-secondary");
       this.prevBtn.addEventListener("click", (e) => {
         e.preventDefault();
         this.userInteracted();
@@ -94,7 +94,7 @@ export default class Carousel {
       });
     }
     if (this.nextBtn) {
-      this.nextBtn.classList.add("button", "-tertiary");
+      this.nextBtn.classList.add("button", "-secondary");
       this.nextBtn.addEventListener("click", (e) => {
         e.preventDefault();
         this.userInteracted();

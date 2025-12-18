@@ -33,12 +33,12 @@ button {
 }
 
 .button.-secondary {
-  background-color: var(--secondary);
+  background-color: var(--secondary-200);
   color: var(--text);
 
   &:hover,
   &:focus {
-    background-color: var(--secondary-200);
+    background-color: var(--secondary-300);
   }
 }
 
