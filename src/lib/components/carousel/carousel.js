@@ -28,11 +28,14 @@ export default class Carousel {
 
   // Setup Intersection Observer to track when carousel is visible
   setupVisibilityObserver() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        this.isCarouselVisible = entry.isIntersecting;
-      });
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          this.isCarouselVisible = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.1 }
+    );
 
     observer.observe(this.carouselElement);
   }
@@ -83,7 +86,7 @@ export default class Carousel {
 
     if (this.prevBtn) {
       // apply existing button styles if not already present
-      this.prevBtn.classList.add("btn", "btn-tertiary");
+      this.prevBtn.classList.add("button", "-tertiary");
       this.prevBtn.addEventListener("click", (e) => {
         e.preventDefault();
         this.userInteracted();
@@ -91,7 +94,7 @@ export default class Carousel {
       });
     }
     if (this.nextBtn) {
-      this.nextBtn.classList.add("btn", "btn-tertiary");
+      this.nextBtn.classList.add("button", "-tertiary");
       this.nextBtn.addEventListener("click", (e) => {
         e.preventDefault();
         this.userInteracted();
@@ -117,16 +120,20 @@ export default class Carousel {
       behavior: "smooth",
     });
     this.updateAriaForSlides();
-    
+
     // Only manage focus if carousel is visible on screen and no modal is overlaying it
     // This prevents the carousel from stealing focus when user is interacting with other parts of the page
     const isModalOpen = document.querySelector("[aria-modal='true'].active") !== null;
-    
+
     if (this.isCarouselVisible && !isModalOpen) {
       const active = this.items[this.currentIndex];
       const activeElement = document.activeElement;
-      const isUserTyping = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable);
-      
+      const isUserTyping =
+        activeElement &&
+        (activeElement.tagName === "INPUT" ||
+          activeElement.tagName === "TEXTAREA" ||
+          activeElement.isContentEditable);
+
       if (active && !isUserTyping) {
         active.setAttribute("tabindex", "0");
         active.focus({ preventScroll: true });

@@ -3,7 +3,7 @@ button {
   cursor: pointer;
 }
 
-.btn {
+.button {
   display: inline-block;
   margin: var(--space-sm);
   font-size: var(--font-size-2);
@@ -21,8 +21,7 @@ button {
     box-shadow: var(--shadow-elevation-high);
   }
 }
-
-.btn-primary {
+.button.-primary {
   background-color: var(--primary);
   color: var(--text-50);
 
@@ -33,23 +32,25 @@ button {
   }
 }
 
-.btn-secondary {
+.button.-secondary {
   background-color: var(--secondary);
   color: var(--text);
 
   &:hover,
   &:focus {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--text-50);
+    background-color: var(--secondary-200);
   }
 }
 
-.btn-tertiary {
-  background-color: var(--accent-100);
+.button.-tertiary {
+  background-color: var(--background);
+  border: 2px solid var(--accent);
+  color: var(--text);
 
   &:hover,
   &:focus {
     background-color: var(--accent-200);
+    border: 2px solid var(--accent-200);
+    color: var(--text);
   }
 }
