@@ -7,8 +7,8 @@ import { initHeader } from "./header.js";
 const buildDom = () => {
   document.body.innerHTML = `
       <div class="main-content">
-          <button id="menu-toggle" aria-expanded="false"></button>
-          <nav id="navigation-menu" class="nav-menu">
+          <button id="hamburger-button" aria-expanded="false"></button>
+          <nav id="navigation-menu" class="navigation-menu">
              <a href="#section-one" class="link">Section One</a>
              <a href="#section-two" class="link">Section Two</a>
           </nav>
@@ -36,7 +36,7 @@ describe("Navigation toggle", () => {
   });
 
   it("adds .active to the nav and sets aria-expanded=true on first click", () => {
-    const toggle = document.getElementById("menu-toggle");
+    const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
 
     toggle.click();
@@ -46,7 +46,7 @@ describe("Navigation toggle", () => {
   });
 
   it("removes .active from the nav and sets aria-expanded=false on second click", () => {
-    const toggle = document.getElementById("menu-toggle");
+    const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
 
     toggle.click();
@@ -57,7 +57,7 @@ describe("Navigation toggle", () => {
   });
 
   it("throws an error if the toggle button is missing", () => {
-    document.getElementById("menu-toggle")?.remove();
+    document.getElementById("hamburger-button")?.remove();
     expect(() => initHeader()).toThrow("Navigation toggle button not found");
   });
 });

@@ -1,4 +1,4 @@
-const TOGGLE_BUTTON_ID = "menu-toggle";
+const TOGGLE_BUTTON_ID = "hamburger-button";
 const NAVIGATION_MENU_ID = "navigation-menu";
 const HAMBURGER_VIEW_WIDTH = 1024;
 
