@@ -17,7 +17,7 @@ export function initModal() {
   }
 
   function trapFocus(e) {
-    if (!modal.classList.contains("active")) console.error("Modal is not active");
+    if (!modal.classList.contains("-active")) console.error("Modal is not active");
 
     const focusable = Array.from(getFocusableElements());
     const firstFocusable = focusable[0];
@@ -39,7 +39,7 @@ export function initModal() {
   function openModal() {
     lastActiveElement = document.activeElement;
     setTimeout(() => {
-      modal.classList.add("active");
+      modal.classList.add("-active");
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
 
@@ -53,7 +53,7 @@ export function initModal() {
   }
 
   function closeModal() {
-    modal.classList.remove("active");
+    modal.classList.remove("-active");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     // Return focus to the element that opened the modal
@@ -71,10 +71,10 @@ export function initModal() {
 
   // Handle keyboard events
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("active")) {
+    if (e.key === "Escape" && modal.classList.contains("-active")) {
       closeModal();
     }
-    if (e.key === "Tab" && modal.classList.contains("active")) {
+    if (e.key === "Tab" && modal.classList.contains("--active")) {
       trapFocus(e);
     }
   });
