@@ -65,6 +65,16 @@
     & .field:-webkit-autofill {
       -webkit-background-clip: text;
     }
+
+    > .warning {
+      margin: var(--space-sm) var(--space-sm) 0;
+      font-size: var(--font-size-1);
+      background-color: var(--error-background);
+      color: var(--error);
+      padding: var(--space-sm);
+      border: 1px solid var(--error);
+      display: none;
+    }
   }
 }
 

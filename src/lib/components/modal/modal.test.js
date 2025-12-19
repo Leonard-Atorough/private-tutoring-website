@@ -32,12 +32,12 @@ describe("Modal Component", () => {
       // Open modal
       openBtn.click();
       vi.runAllTimers();
-      expect(modal.classList.contains("active")).toBe(true);
+      expect(modal.classList.contains("-active")).toBe(true);
 
       // Close modal
       closeBtn.click();
       vi.runAllTimers();
-      expect(modal.classList.contains("active")).toBe(false);
+      expect(modal.classList.contains("-active")).toBe(false);
     });
   });
   //   describe("Focus Trapping", () => {

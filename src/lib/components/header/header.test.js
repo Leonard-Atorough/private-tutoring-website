@@ -35,24 +35,24 @@ describe("Navigation toggle", () => {
     initHeader();
   });
 
-  it("adds .active to the nav and sets aria-expanded=true on first click", () => {
+  it("adds .-active to the nav and sets aria-expanded=true on first click", () => {
     const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
 
     toggle.click();
 
-    expect(nav.classList.contains("active")).toBe(true);
+    expect(nav.classList.contains("-active")).toBe(true);
     expect(toggle.getAttribute("aria-expanded")).toBe("true");
   });
 
-  it("removes .active from the nav and sets aria-expanded=false on second click", () => {
+  it("removes .-active from the nav and sets aria-expanded=false on second click", () => {
     const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
 
     toggle.click();
     toggle.click();
 
-    expect(nav.classList.contains("active")).toBe(false);
+    expect(nav.classList.contains("-active")).toBe(false);
     expect(toggle.getAttribute("aria-expanded")).toBe("false");
   });
 

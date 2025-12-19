@@ -7,7 +7,7 @@ let button = null;
 const scrollHandler = () => toggleNavMenu(true);
 
 function isNavMenuHidden() {
-  return !nav.classList.contains("active");
+  return !nav.classList.contains("-active");
 }
 
 function setNavMenuAccessibilityAttributes() {
@@ -17,12 +17,14 @@ function setNavMenuAccessibilityAttributes() {
 }
 
 function toggleNavMenu(forceClose) {
-  const shouldBeActive = forceClose ? false : !nav.classList.contains("active");
+  const shouldBeActive = forceClose ? false : !nav.classList.contains("-active");
 
   if (shouldBeActive) {
-    nav.classList.add("active");
+    nav.classList.add("-active");
+    button.classList.add("-active");
   } else {
-    nav.classList.remove("active");
+    nav.classList.remove("-active");
+    button.classList.remove("-active");
   }
   setNavMenuAccessibilityAttributes();
 }

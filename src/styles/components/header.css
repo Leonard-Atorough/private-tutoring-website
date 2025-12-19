@@ -78,7 +78,7 @@
     gap: 0;
   }
 
-  .navigation-menu.active {
+  .navigation-menu.-active {
     max-height: 850px; /* Adjust based on number of menu items */
     box-shadow: var(--shadow-elevation-high);
     border: 1px solid var(--text-100);
@@ -110,6 +110,26 @@
   .hamburger-button {
     display: flex;
     position: relative;
+  }
+
+  .hamburger-button > .bar {
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-button.-active > .bar:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 9px);
+  }
+
+  .hamburger-button.-active > .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-button.-active > .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .hamburger-button.-active > .bar {
+    transition: all 0.3s ease;
   }
 }
 
