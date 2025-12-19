@@ -64,4 +64,9 @@
   --accent-800: #1d3749;
   --accent-900: #0e1b25;
   --accent-950: #070e12;
+
+  --sucess: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+  --error-background: #ffebee;
 }
