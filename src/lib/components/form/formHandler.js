@@ -10,10 +10,6 @@ function formHandler(stateManager) {
       try {
         //disabled so that formsubmit.co can handle the form submission
         //  e.preventDefault();
-
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-
         //save a form submission token to local storage
         try {
           stateManager.saveStateToLocalStorage("formSubmitted", true);
