@@ -3,19 +3,34 @@
 
 export default class Carousel {
   constructor(carouselElement, interval = 3000) {
-    this.carouselElement = carouselElement;
-    this.interval = interval;
-    this.currentIndex = 0;
-    this.items = carouselElement.querySelectorAll(".testimonial-card");
-    this.totalItems = this.items.length;
-    this.visibleItems = 1; // default, will be updated in readyCarousel
-    this.restartTimeout = null;
-    this.isCarouselVisible = false;
-    this.readyCarousel();
-    this.attachControls();
-    this.updateAriaForSlides();
-    this.setupVisibilityObserver();
-    this.startAutoAdvance();
+    try {
+      if (!carouselElement) {
+        throw new Error("Carousel element is required");
+      }
+
+      this.carouselElement = carouselElement;
+      this.interval = interval;
+      this.currentIndex = 0;
+      this.items = carouselElement.querySelectorAll(".testimonial-card");
+      this.totalItems = this.items.length;
+
+      if (this.totalItems === 0) {
+        console.warn("No carousel items found");
+        return;
+      }
+
+      this.visibleItems = 1; // default, will be updated in readyCarousel
+      this.restartTimeout = null;
+      this.isCarouselVisible = false;
+
+      this.readyCarousel();
+      this.attachControls();
+      this.updateAriaForSlides();
+      this.setupVisibilityObserver();
+      this.startAutoAdvance();
+    } catch (error) {
+      console.error("Carousel initialization failed:", error);
+    }
   }
 
   // the ready carousel function takes the carousel element, determines how many cards are visible based on screen width and thus what each slide width is
@@ -34,7 +49,7 @@ export default class Carousel {
           this.isCarouselVisible = entry.isIntersecting;
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(this.carouselElement);
@@ -81,8 +96,8 @@ export default class Carousel {
   attachControls() {
     // controls are expected to be siblings of the track inside the carousel container
     const container = this.carouselElement.parentElement || document;
-    this.prevBtn = document.querySelector(".carousel-prev");
-    this.nextBtn = document.querySelector(".carousel-next");
+    this.prevBtn = container.querySelector(".carousel-prev");
+    this.nextBtn = container.querySelector(".carousel-next");
 
     if (this.prevBtn) {
       // apply existing button styles if not already present

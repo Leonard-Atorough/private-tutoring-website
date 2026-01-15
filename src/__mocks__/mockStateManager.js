@@ -1,11 +1,15 @@
+import { vi } from "vitest";
+
 export function createMockStateManager() {
   const store = new Map();
 
-  function saveStateToLocalStorage(key, value) {
+  const saveStateToLocalStorage = vi.fn((key, value) => {
     store.set(key, value);
-  }
-  function fetchStoredState(key) {
-    return store.get(key);
-  }
-  return { saveStateToLocalStorage, fetchStoredState };
+  });
+
+  const fetchStoredState = vi.fn((key) => {
+    return store?.get(key);
+  });
+
+  return { saveStateToLocalStorage, fetchStoredState, store };
 }

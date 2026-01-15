@@ -6,25 +6,50 @@ import { formHandler } from "./components/form/formHandler.js";
 import * as storeManager from "./components/store/storeManager.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const body = document.getElementById("app");
-  setTimeout(() => {
-    body.style.opacity = 1;
-  }, 500);
+  try {
+    const body = document.getElementById("app");
+    setTimeout(() => {
+      body.style.opacity = 1;
+    }, 500);
 
-  initHeader();
-  const carousels = document.querySelectorAll(".carousel-track");
-  carousels.forEach((carousel) => {
-    new Carousel(carousel);
-  });
+    try {
+      initHeader();
+    } catch (headerError) {
+      console.error("Error initializing header:", headerError);
+    }
 
-  initModal();
+    try {
+      const carousels = document.querySelectorAll(".carousel-track");
+      carousels.forEach((carousel) => {
+        new Carousel(carousel);
+      });
+    } catch (carouselError) {
+      console.error("Error initializing carousel:", carouselError);
+    }
 
-  const formManager = createFormStateManager(
-    storeManager.saveStateToLocalStorage,
-    storeManager.fetchStoredState
-  );
-  formManager.persistFormState("contact-form");
+    try {
+      initModal();
+    } catch (modalError) {
+      console.error("Error initializing modal:", modalError);
+    }
 
-  const handler = formHandler(storeManager);
-  handler.mountFormHandler("contact-form");
+    try {
+      const formManager = createFormStateManager(
+        storeManager.saveStateToLocalStorage,
+        storeManager.fetchStoredState,
+      );
+      formManager.persistFormState("contact-form");
+    } catch (formStateError) {
+      console.error("Error initializing form state manager:", formStateError);
+    }
+
+    try {
+      const handler = formHandler(storeManager);
+      handler.mountFormHandler("contact-form");
+    } catch (formHandlerError) {
+      console.error("Error initializing form handler:", formHandlerError);
+    }
+  } catch (error) {
+    console.error("Error initializing application:", error);
+  }
 });

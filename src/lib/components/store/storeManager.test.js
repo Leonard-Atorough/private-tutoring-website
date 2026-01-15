@@ -18,7 +18,7 @@ describe("state persistence", () => {
     vi.stubGlobal("localStorage", {
       setItem: vi.fn((key, value) => (mockStore[key] = value)),
       getItem: vi.fn((key) => mockStore[key]),
-      removeItem: vi.fn((key) => delete mockStore[key] ?? null),
+      removeItem: vi.fn((key) => delete mockStore[key] || null),
       clear: () => (mockStore = {}),
     });
 
