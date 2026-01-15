@@ -11,7 +11,6 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
 
   function setFormData(form, data) {
     try {
-      if (!form || !data) return;
       for (const [key, value] of Object.entries(data)) {
         try {
           const field = form.elements.namedItem(key);
