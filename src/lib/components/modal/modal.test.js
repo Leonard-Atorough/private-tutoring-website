@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /**
  * @vitest-environment jsdom
  */
@@ -56,7 +57,7 @@ describe("Modal Component", () => {
       const modal = document.getElementById("booking-modal");
       const openBtn = document.getElementById("bookBtn");
       const closeBtn = document.getElementById("modal-close");
-      
+
       // Open modal
       openBtn.click();
       vi.runAllTimers();
@@ -284,6 +285,7 @@ describe("Modal Component", () => {
 
       // Should wrap to last focusable element and prevent default
       expect(shiftTabEvent.defaultPrevented).toBe(true);
+      expect(document.activeElement).toBe(iframe);
 
       vi.useRealTimers();
     });
@@ -306,6 +308,8 @@ describe("Modal Component", () => {
 
       // Tab should not be prevented when modal is closed
       expect(tabEvent.defaultPrevented).toBe(false);
+      expect(document.activeElement).toBe(outsideBtn);
+      expect(modal.classList.contains("-active")).toBe(false);
 
       vi.useRealTimers();
     });

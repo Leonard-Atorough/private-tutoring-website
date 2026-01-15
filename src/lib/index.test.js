@@ -39,7 +39,7 @@ describe("Index Module - Application Initialization", () => {
   beforeEach(() => {
     // Clear all mocks before each test
     vi.clearAllMocks();
-    
+
     // Reset DOM
     document.body.innerHTML = `
       <div id="app" style="opacity: 0;"></div>
@@ -87,7 +87,7 @@ describe("Index Module - Application Initialization", () => {
 
   it("should initialize app opacity animation on DOMContentLoaded", async () => {
     vi.useFakeTimers();
-    
+
     const appElement = document.getElementById("app");
     expect(appElement.style.opacity).toBe("0");
 
@@ -114,7 +114,7 @@ describe("Index Module - Application Initialization", () => {
 
     // Trigger DOMContentLoaded
     document.dispatchEvent(new Event("DOMContentLoaded"));
-    
+
     // Fast-forward timers to complete async operations
     vi.advanceTimersByTime(1000);
 
@@ -148,7 +148,7 @@ describe("Index Module - Application Initialization", () => {
 
   it("should handle header initialization errors gracefully", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     // Make initHeader throw an error
     modules.header.initHeader.mockImplementation(() => {
       throw new Error("Header initialization failed");
@@ -160,7 +160,7 @@ describe("Index Module - Application Initialization", () => {
     // Should log error but not crash
     expect(consoleError).toHaveBeenCalledWith(
       "Error initializing header:",
-      expect.any(Error)
+      expect.any(Error),
     );
 
     // Other components should still be initialized
@@ -171,7 +171,7 @@ describe("Index Module - Application Initialization", () => {
 
   it("should handle carousel initialization errors gracefully", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     // Make Carousel constructor throw an error
     modules.carousel.default.mockImplementation(() => {
       throw new Error("Carousel initialization failed");
@@ -182,7 +182,7 @@ describe("Index Module - Application Initialization", () => {
 
     expect(consoleError).toHaveBeenCalledWith(
       "Error initializing carousel:",
-      expect.any(Error)
+      expect.any(Error),
     );
 
     // Other components should still be initialized
@@ -193,7 +193,7 @@ describe("Index Module - Application Initialization", () => {
 
   it("should handle modal initialization errors gracefully", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     modules.modal.initModal.mockImplementation(() => {
       throw new Error("Modal initialization failed");
     });
@@ -203,7 +203,7 @@ describe("Index Module - Application Initialization", () => {
 
     expect(consoleError).toHaveBeenCalledWith(
       "Error initializing modal:",
-      expect.any(Error)
+      expect.any(Error),
     );
 
     // Other components should still be initialized
@@ -214,7 +214,7 @@ describe("Index Module - Application Initialization", () => {
 
   it("should handle form state manager errors gracefully", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     modules.formState.createFormStateManager.mockImplementation(() => {
       throw new Error("Form state manager failed");
     });
@@ -224,7 +224,7 @@ describe("Index Module - Application Initialization", () => {
 
     expect(consoleError).toHaveBeenCalledWith(
       "Error initializing form state manager:",
-      expect.any(Error)
+      expect.any(Error),
     );
 
     // Form handler should still be attempted
@@ -235,7 +235,7 @@ describe("Index Module - Application Initialization", () => {
 
   it("should handle form handler errors gracefully", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     modules.form.formHandler.mockImplementation(() => {
       throw new Error("Form handler failed");
     });
@@ -245,7 +245,7 @@ describe("Index Module - Application Initialization", () => {
 
     expect(consoleError).toHaveBeenCalledWith(
       "Error initializing form handler:",
-      expect.any(Error)
+      expect.any(Error),
     );
 
     consoleError.mockRestore();
@@ -253,12 +253,12 @@ describe("Index Module - Application Initialization", () => {
 
   it("should handle missing app element gracefully", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     // Remove app element
     document.getElementById("app")?.remove();
 
     await import("./index.js");
-    
+
     // Should throw and be caught by outer try-catch
     expect(() => {
       document.dispatchEvent(new Event("DOMContentLoaded"));

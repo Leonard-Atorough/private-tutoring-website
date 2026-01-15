@@ -85,7 +85,7 @@ export function initModal() {
       if (e.key === "Escape" && modal.classList.contains("-active")) {
         closeModal();
       }
-      if (e.key === "Tab" && modal.classList.contains("--active")) {
+      if (e.key === "Tab" && modal.classList.contains("-active")) {
         trapFocus(e);
       }
     });
