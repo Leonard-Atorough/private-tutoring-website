@@ -3,11 +3,22 @@ const MODAL_BUTTON_SELECTOR = ".book-btn";
 const MODAL_CLOSE_ID = "modal-close";
 
 export function initModal() {
-  const modal = document.getElementById(MODAL_ID);
-  const openModalBtns = document.querySelectorAll(MODAL_BUTTON_SELECTOR);
-  const closeModalBtn = document.getElementById(MODAL_CLOSE_ID);
-  const iframe = modal?.querySelector("iframe");
-  let lastActiveElement;
+  try {
+    const modal = document.getElementById(MODAL_ID);
+    const openModalBtns = document.querySelectorAll(MODAL_BUTTON_SELECTOR);
+    const closeModalBtn = document.getElementById(MODAL_CLOSE_ID);
+    
+    if (!modal || !closeModalBtn) {
+      console.warn("Modal elements not found, modal functionality disabled");
+      return;
+    }
+    
+    if (openModalBtns.length === 0) {
+      console.warn("No modal trigger buttons found");
+    }
+    
+    const iframe = modal?.querySelector("iframe");
+    let lastActiveElement;
 
   const focusableElements =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -79,10 +90,13 @@ export function initModal() {
     }
   });
 
-  // Set appropriate ARIA attributes
-  modal?.setAttribute("role", "dialog");
-  modal?.setAttribute("aria-modal", "true");
-  if (iframe) {
-    iframe.setAttribute("tabindex", "0");
+    // Set appropriate ARIA attributes
+    modal?.setAttribute("role", "dialog");
+    modal?.setAttribute("aria-modal", "true");
+    if (iframe) {
+      iframe.setAttribute("tabindex", "0");
+    }
+  } catch (error) {
+    console.error("Modal initialization failed:", error);
   }
 }

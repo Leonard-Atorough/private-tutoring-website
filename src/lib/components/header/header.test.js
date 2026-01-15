@@ -56,9 +56,14 @@ describe("Navigation toggle", () => {
     expect(toggle.getAttribute("aria-expanded")).toBe("false");
   });
 
-  it("throws an error if the toggle button is missing", () => {
+  it("logs warning and returns early if the toggle button is missing", () => {
+    const consoleWarn = vi.spyOn(console, "warn").mockImplementation(() => {});
     document.getElementById("hamburger-button")?.remove();
-    expect(() => initHeader()).toThrow("Navigation toggle button not found");
+    expect(() => initHeader()).not.toThrow();
+    expect(consoleWarn).toHaveBeenCalledWith(
+      "Header elements not found, navigation functionality disabled"
+    );
+    consoleWarn.mockRestore();
   });
 });
 

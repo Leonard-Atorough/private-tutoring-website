@@ -7,14 +7,24 @@ function formHandler(stateManager) {
     }
 
     form.addEventListener("submit", async (e) => {
-      //disabled so that formsubmit.co can handle the form submission
-      //  e.preventDefault();
+      try {
+        //disabled so that formsubmit.co can handle the form submission
+        //  e.preventDefault();
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
 
-      //save a form submission token to local storage
-      stateManager.saveStateToLocalStorage("formSubmitted", true);
+        //save a form submission token to local storage
+        try {
+          stateManager.saveStateToLocalStorage("formSubmitted", true);
+        } catch (storageError) {
+          console.error("Failed to save submission state:", storageError);
+          // Form submission still proceeds
+        }
+      } catch (error) {
+        console.error("Form submission handler error:", error);
+        // Let the form submit naturally even if JS fails
+      }
     });
   }
   return { mountFormHandler };

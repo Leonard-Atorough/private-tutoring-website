@@ -3,19 +3,58 @@
 
 export default class Carousel {
   constructor(carouselElement, interval = 3000) {
-    this.carouselElement = carouselElement;
-    this.interval = interval;
-    this.currentIndex = 0;
-    this.items = carouselElement.querySelectorAll(".testimonial-card");
-    this.totalItems = this.items.length;
-    this.visibleItems = 1; // default, will be updated in readyCarousel
-    this.restartTimeout = null;
-    this.isCarouselVisible = false;
-    this.readyCarousel();
-    this.attachControls();
-    this.updateAriaForSlides();
-    this.setupVisibilityObserver();
-    this.startAutoAdvance();
+    try {
+      if (!carouselElement) {
+        throw new Error("Carousel element is required");
+      }
+      
+      this.carouselElement = carouselElement;
+      this.interval = interval;
+      this.currentIndex = 0;
+      this.items = carouselElement.querySelectorAll(".testimonial-card");
+      this.totalItems = this.items.length;
+      
+      if (this.totalItems === 0) {
+        console.warn("No carousel items found");
+        return;
+      }
+      
+      this.visibleItems = 1; // default, will be updated in readyCarousel
+      this.restartTimeout = null;
+      this.isCarouselVisible = false;
+      
+      try {
+        this.readyCarousel();
+      } catch (error) {
+        console.error("Error in readyCarousel:", error);
+      }
+      
+      try {
+        this.attachControls();
+      } catch (error) {
+        console.error("Error attaching controls:", error);
+      }
+      
+      try {
+        this.updateAriaForSlides();
+      } catch (error) {
+        console.error("Error updating ARIA:", error);
+      }
+      
+      try {
+        this.setupVisibilityObserver();
+      } catch (error) {
+        console.error("Error setting up visibility observer:", error);
+      }
+      
+      try {
+        this.startAutoAdvance();
+      } catch (error) {
+        console.error("Error starting auto-advance:", error);
+      }
+    } catch (error) {
+      console.error("Carousel initialization failed:", error);
+    }
   }
 
   // the ready carousel function takes the carousel element, determines how many cards are visible based on screen width and thus what each slide width is

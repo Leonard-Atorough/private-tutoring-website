@@ -4,9 +4,13 @@ const EXPIRY_HOURS = 24; //hours
 let state = {};
 
 export function saveStateToLocalStorage(key, value) {
-  state[key] = value;
-  const payload = JSON.stringify({ data: state, timestamp: Date.now() });
-  localStorage.setItem(STATE_KEY, payload);
+  try {
+    state[key] = value;
+    const payload = JSON.stringify({ data: state, timestamp: Date.now() });
+    localStorage.setItem(STATE_KEY, payload);
+  } catch (error) {
+    console.error("Error saving state to localStorage:", error);
+  }
 }
 
 export function fetchStoredState(key) {

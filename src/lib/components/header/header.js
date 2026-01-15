@@ -74,10 +74,19 @@ function attachResizeHandler() {
 }
 
 export function initHeader() {
-  nav = document.getElementById(NAVIGATION_MENU_ID);
-  button = document.getElementById(TOGGLE_BUTTON_ID);
-  
-  attachToggleHandler();
-  attachScrollHandler();
-  attachResizeHandler();
+  try {
+    nav = document.getElementById(NAVIGATION_MENU_ID);
+    button = document.getElementById(TOGGLE_BUTTON_ID);
+    
+    if (!nav || !button) {
+      console.warn("Header elements not found, navigation functionality disabled");
+      return;
+    }
+    
+    attachToggleHandler();
+    attachScrollHandler();
+    attachResizeHandler();
+  } catch (error) {
+    console.error("Header initialization failed:", error);
+  }
 }

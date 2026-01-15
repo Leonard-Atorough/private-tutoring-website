@@ -59,9 +59,13 @@ describe("Given a formStateManager", () => {
     });
 
     it("should throw an error if the form does not exist and log to console", () => {
-      console.warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() => persistFormState("non-existent-form")).toThrow("Form not found");
-      expect(console.warn).toHaveBeenCalledWith("Form with id non-existent-form not found");
+      expect(consoleError).toHaveBeenCalledWith(
+        "Failed to persist form state for non-existent-form:",
+        expect.any(Error)
+      );
+      consoleError.mockRestore();
     });
 
     it("should not persist state if the form has been submitted", () => {
@@ -93,9 +97,13 @@ describe("Given a formStateManager", () => {
     });
 
     it("throws an error if the form does not exist", () => {
-      console.warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() => persistFormState("non-existent-form")).toThrow("Form not found");
-      expect(console.warn).toHaveBeenCalledWith("Form with id non-existent-form not found");
+      expect(consoleError).toHaveBeenCalledWith(
+        "Failed to persist form state for non-existent-form:",
+        expect.any(Error)
+      );
+      consoleError.mockRestore();
     });
   });
 });
