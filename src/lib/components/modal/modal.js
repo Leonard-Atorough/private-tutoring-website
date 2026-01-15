@@ -7,16 +7,16 @@ export function initModal() {
     const modal = document.getElementById(MODAL_ID);
     const openModalBtns = document.querySelectorAll(MODAL_BUTTON_SELECTOR);
     const closeModalBtn = document.getElementById(MODAL_CLOSE_ID);
-    
+
     if (!modal || !closeModalBtn) {
       console.warn("Modal elements not found, modal functionality disabled");
       return;
     }
-    
+
     if (openModalBtns.length === 0) {
       console.warn("No modal trigger buttons found");
     }
-    
+
     const iframe = modal?.querySelector("iframe");
     let lastActiveElement;
 

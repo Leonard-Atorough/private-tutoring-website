@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const formManager = createFormStateManager(
         storeManager.saveStateToLocalStorage,
-        storeManager.fetchStoredState
+        storeManager.fetchStoredState,
       );
       formManager.persistFormState("contact-form");
     } catch (formStateError) {

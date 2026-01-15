@@ -63,7 +63,7 @@ describe("Given a formStateManager", () => {
       expect(() => persistFormState("non-existent-form")).toThrow("Form not found");
       expect(consoleError).toHaveBeenCalledWith(
         "Failed to persist form state for non-existent-form:",
-        expect.any(Error)
+        expect.any(Error),
       );
       consoleError.mockRestore();
     });
@@ -101,7 +101,7 @@ describe("Given a formStateManager", () => {
       expect(() => persistFormState("non-existent-form")).toThrow("Form not found");
       expect(consoleError).toHaveBeenCalledWith(
         "Failed to persist form state for non-existent-form:",
-        expect.any(Error)
+        expect.any(Error),
       );
       consoleError.mockRestore();
     });

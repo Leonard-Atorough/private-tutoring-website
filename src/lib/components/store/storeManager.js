@@ -14,7 +14,7 @@ export function saveStateToLocalStorage(key, value) {
 }
 
 export function fetchStoredState(key) {
-  let persisted = localStorage.getItem(STATE_KEY);
+  const persisted = localStorage.getItem(STATE_KEY);
   if (!persisted) return {};
   try {
     const { data, timestamp } = JSON.parse(persisted);

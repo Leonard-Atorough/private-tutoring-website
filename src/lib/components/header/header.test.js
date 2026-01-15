@@ -25,7 +25,6 @@ const buildDom = () => {
 };
 
 beforeAll(() => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   HTMLElement.prototype.scrollIntoView = function () {};
 });
 
@@ -61,7 +60,7 @@ describe("Navigation toggle", () => {
     document.getElementById("hamburger-button")?.remove();
     expect(() => initHeader()).not.toThrow();
     expect(consoleWarn).toHaveBeenCalledWith(
-      "Header elements not found, navigation functionality disabled"
+      "Header elements not found, navigation functionality disabled",
     );
     consoleWarn.mockRestore();
   });
@@ -74,7 +73,7 @@ describe("When a navigation link is clicked", () => {
   });
 
   it("should scroll to the target section", () => {
-    const link = document.querySelector(`a[href="#section-two"]`);
+    const link = document.querySelector("a[href=\"#section-two\"]");
 
     const target = document.getElementById("section-two");
     const scrollSpy = vi

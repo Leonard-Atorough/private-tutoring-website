@@ -15,7 +15,7 @@ describe("formHandler", () => {
     it("should throw an error if form is not found", () => {
       const nonExistentFormId = "non-existent-form";
       expect(() => handler.mountFormHandler(nonExistentFormId)).toThrow(
-        `Form with id ${nonExistentFormId} not found`
+        `Form with id ${nonExistentFormId} not found`,
       );
     });
 

@@ -6,7 +6,7 @@ function formHandler(stateManager) {
       throw new Error(`Form with id ${formId} not found`);
     }
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async () => {
       try {
         //disabled so that formsubmit.co can handle the form submission
         //  e.preventDefault();

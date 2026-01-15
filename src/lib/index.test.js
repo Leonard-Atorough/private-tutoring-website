@@ -3,7 +3,7 @@ import { describe, it } from "vitest";
 describe("Index Module", () => {
   it("should change opacity of body to 1 on load", () => {
     // Mock document and body
-    document.body.innerHTML = `<div id="app" style="opacity: 0.01;"></div>`;
+    document.body.innerHTML = '<div id="app" style="opacity: 0.01;"></div>';
     const appElement = document.getElementById("app");
 
     // Simulate DOMContentLoaded event
