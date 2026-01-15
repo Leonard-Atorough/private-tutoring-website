@@ -21,7 +21,7 @@ describe("Modal Component", () => {
       `;
       initModal();
       expect(consoleWarn).toHaveBeenCalledWith(
-        "Modal elements not found, modal functionality disabled"
+        "Modal elements not found, modal functionality disabled",
       );
       consoleWarn.mockRestore();
     });
