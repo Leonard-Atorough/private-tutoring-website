@@ -8,7 +8,7 @@ export function createMockStateManager() {
   });
 
   const fetchStoredState = vi.fn((key) => {
-    return store.get(key);
+    return store?.get(key);
   });
 
   return { saveStateToLocalStorage, fetchStoredState, store };
