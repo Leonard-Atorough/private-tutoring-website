@@ -5,7 +5,6 @@ let state = {};
 
 export function saveStateToLocalStorage(key, value) {
   state[key] = value;
-  console.log(value);
   const payload = JSON.stringify({ data: state, timestamp: Date.now() });
   localStorage.setItem(STATE_KEY, payload);
 }

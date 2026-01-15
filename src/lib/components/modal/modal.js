@@ -17,7 +17,7 @@ export function initModal() {
   }
 
   function trapFocus(e) {
-    if (!modal.classList.contains("-active")) console.error("Modal is not active");
+    if (!modal.classList.contains("-active")) return;
 
     const focusable = Array.from(getFocusableElements());
     const firstFocusable = focusable[0];
