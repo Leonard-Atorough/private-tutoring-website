@@ -74,12 +74,14 @@ This is a professional single-page application (SPA) built for Kaili Stacey, a P
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd private-tutoring-website
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -87,6 +89,7 @@ npm install
 ### Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -96,6 +99,7 @@ The site will be available at `http://localhost:3000`
 ### Building for Production
 
 Create an optimized production build:
+
 ```bash
 npm run build
 ```
@@ -105,6 +109,7 @@ The built files will be in the `dist/` directory.
 ### Preview Production Build
 
 Preview the production build locally:
+
 ```bash
 npm run preview
 ```
@@ -120,6 +125,7 @@ npm test
 ### Watch Mode
 
 Run tests in watch mode during development:
+
 ```bash
 npm run test:watch
 ```
@@ -127,6 +133,7 @@ npm run test:watch
 ### Code Coverage
 
 Generate and view test coverage report:
+
 ```bash
 npm run test:coverage
 ```
@@ -149,6 +156,7 @@ npm run dev:test
 ## 🎨 Features in Detail
 
 ### Interactive Carousel
+
 - Auto-advancing testimonial slider
 - Responsive layout (1, 2, or 3 cards visible based on screen size)
 - Pause on hover
@@ -157,6 +165,7 @@ npm run dev:test
 - Visibility-aware (only auto-advances when in viewport)
 
 ### Form State Management
+
 - Automatic form state persistence to localStorage
 - Debounced save (2-second idle time)
 - 24-hour expiry on saved data
@@ -164,6 +173,7 @@ npm run dev:test
 - Handles page refreshes gracefully
 
 ### Booking Modal
+
 - Google Calendar integration
 - Focus trap for accessibility
 - ESC key to close
@@ -171,6 +181,7 @@ npm run dev:test
 - Restores focus to trigger element on close
 
 ### Responsive Navigation
+
 - Hamburger menu for mobile (< 1024px)
 - Smooth scroll to sections
 - Auto-closes on scroll (mobile)
@@ -202,6 +213,7 @@ The site is automatically deployed to Netlify on push to the main branch.
 ### Manual Deployment
 
 1. Build the project:
+
 ```bash
 npm run build
 ```
@@ -211,6 +223,7 @@ npm run build
 ### Netlify Configuration
 
 The project is configured for automatic deployment:
+
 - Build command: `npm run build`
 - Publish directory: `dist`
 - Node version: 18+
@@ -218,24 +231,28 @@ The project is configured for automatic deployment:
 ## 🧩 Component Architecture
 
 ### Carousel Component
+
 - Self-contained with visibility observer
 - Configurable interval timing
 - Responsive slide width calculation
 - Intersection Observer for performance
 
 ### Form Handler
+
 - Dependency injection for state management
 - Event delegation for form submission
 - Integration with FormSubmit.co
 - Submission tracking via localStorage
 
 ### State Manager
+
 - Centralized localStorage operations
 - Time-based expiry mechanism
 - JSON serialization with error handling
 - State isolation per form
 
 ### Modal Manager
+
 - Focus management and trap
 - Keyboard event handling (ESC, Tab)
 - Body scroll lock
