@@ -36,7 +36,7 @@ vi.mock("./components/store/storeManager.js", () => ({
 describe("Index Module - Application Initialization", () => {
   let modules;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     // Clear all mocks before each test
     vi.clearAllMocks();
 
@@ -59,26 +59,23 @@ describe("Index Module - Application Initialization", () => {
     `;
 
     // Import modules fresh to get mocked versions
-    return import("./components/header/header.js").then((header) => {
-      return import("./components/modal/modal.js").then((modal) => {
-        return import("./components/carousel/carousel.js").then((carousel) => {
-          return import("./components/state/formStateManager.js").then((formState) => {
-            return import("./components/form/formHandler.js").then((form) => {
-              return import("./components/store/storeManager.js").then((store) => {
-                modules = {
-                  header,
-                  modal,
-                  carousel,
-                  formState,
-                  form,
-                  store,
-                };
-              });
-            });
-          });
-        });
-      });
-    });
+    const [header, modal, carousel, formState, form, store] = await Promise.all([
+      import("./components/header/header.js"),
+      import("./components/modal/modal.js"),
+      import("./components/carousel/carousel.js"),
+      import("./components/state/formStateManager.js"),
+      import("./components/form/formHandler.js"),
+      import("./components/store/storeManager.js"),
+    ]);
+
+    modules = {
+      header,
+      modal,
+      carousel,
+      formState,
+      form,
+      store,
+    };
   });
 
   afterEach(() => {
