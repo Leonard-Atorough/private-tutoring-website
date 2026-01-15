@@ -141,6 +141,7 @@ describe("Index Module - Application Initialization", () => {
     // Should be called for each carousel track (3 total now)
     const carouselTracks = document.querySelectorAll(".carousel-track");
     expect(carouselTracks.length).toBe(3);
+    expect(modules.carousel.default).toHaveBeenCalledTimes(3);
   });
 
   it("should handle header initialization errors gracefully", async () => {
