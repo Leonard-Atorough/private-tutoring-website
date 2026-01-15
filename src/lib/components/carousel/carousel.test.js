@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /** @vitest-environment jsdom */
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import Carousel from "./carousel";
