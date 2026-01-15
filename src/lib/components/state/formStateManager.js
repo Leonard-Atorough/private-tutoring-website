@@ -18,21 +18,32 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
   }
 
   function persistFormState(formId) {
-    const form = document.getElementById(formId);
-    if (!form) {
-      throw new Error("Form not found");
-    }
-    //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
-    const formSubmitted = fetchStoredState("formSubmitted");
-    if (formSubmitted) {
-      saveStateToLocalStorage("formSubmitted", false);
-      clearFormState(formId);
-    }
-    // we always want to load the persisted state when the form is created, even if it has been submitted.
-    const saved = fetchStoredState(formId);
-    if (saved) {
-      setFormData(form, saved);
-    }
+    try {
+      const form = document.getElementById(formId);
+      if (!form) {
+        throw new Error("Form not found");
+      }
+
+      //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
+      try {
+        const formSubmitted = fetchStoredState("formSubmitted");
+        if (formSubmitted) {
+          saveStateToLocalStorage("formSubmitted", false);
+          clearFormState(formId);
+        }
+      } catch (error) {
+        console.error("Error checking form submission state:", error);
+      }
+
+      // we always want to load the persisted state when the form is created, even if it has been submitted.
+      try {
+        const saved = fetchStoredState(formId);
+        if (saved) {
+          setFormData(form, saved);
+        }
+      } catch (error) {
+        console.error("Error restoring form state:", error);
+      }
 
     let idleTimer;
     const saveState = () => {
