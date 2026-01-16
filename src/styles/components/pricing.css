@@ -190,6 +190,6 @@
 
   .package-list {
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--space-md);
   }
 }
