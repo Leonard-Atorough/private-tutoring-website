@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>404 - Page Not Found | Kaili Stacey - Private Tutor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Page not found. Return to Kaili Stacey's tutoring website." />
+  <meta name="robots" content="noindex, follow" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/index.css" />
+  
+  <style>
+    /* 404 Page Specific Styles */
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--background);
+      padding: var(--space-lg);
+    }
+    
+    .error-container {
+      text-align: center;
+      max-width: 600px;
+      padding: var(--space-xl);
+      background: var(--background-50);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-elevation-medium);
+    }
+    
+    .error-code {
+      font-size: var(--font-size-10);
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: var(--space-md);
+      line-height: 1;
+      text-shadow: 2px 2px 0 var(--primary-100);
+    }
+    
+    .error-title {
+      font-size: var(--font-size-5);
+      font-weight: 700;
+      color: var(--text-900);
+      margin-bottom: var(--space-md);
+    }
+    
+    .error-message {
+      font-size: var(--font-size-2);
+      color: var(--text-700);
+      margin-bottom: var(--space-xl);
+      line-height: 1.6;
+    }
+    
+    .error-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .error-actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="error-page">
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-message">
+        Sorry, the page you're looking for doesn't exist or has been moved. 
+        Let's get you back on track with your learning journey!
+      </p>
+      <div class="error-actions">
+        <a href="/" class="button -primary">Return to Home</a>
+        <a href="/#contact" class="button -secondary">Contact Me</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
