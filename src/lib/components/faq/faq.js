@@ -27,37 +27,3 @@ export function initializeFAQ() {
     });
   });
 }
-
-/**
- * Render FAQ items from data
- * @param {Array} faqData - Array of FAQ objects
- * @param {string} containerId - ID of container element
- */
-export function renderFAQ(faqData, containerId = "faq-container") {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  const faqHTML = faqData
-    .map(
-      (faq, index) => `
-    <div class="faq-item" role="region" aria-labelledby="faq-question-${index}">
-      <button
-        class="faq-question"
-        id="faq-question-${index}"
-        aria-expanded="false"
-        aria-controls="faq-answer-${index}"
-      >
-        <span class="faq-question-text">${faq.question}</span>
-        <span class="faq-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="faq-answer" id="faq-answer-${index}" role="region" aria-labelledby="faq-question-${index}">
-        <p>${faq.answer}</p>
-      </div>
-    </div>
-  `,
-    )
-    .join("");
-
-  container.innerHTML = faqHTML;
-  initializeFAQ();
-}

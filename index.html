@@ -454,23 +454,158 @@
     <section class="section-container pricing-section" id="Pricing" aria-labelledby="pricing-title">
       <h2 class="title" id="pricing-title">PRICING</h2>
       <h3 class="subtitle">Clear, transparent pricing with no hidden fees</h3>
-      <div id="pricing-container" class="pricing-container">
-        <!-- Pricing cards will be rendered here by JavaScript -->
+      <div class="pricing-container">
+        <div class="pricing-card" role="article" aria-label="Middle School pricing tier">
+          <div class="pricing-card-header">
+            <h3 class="pricing-tier-name">Middle School</h3>
+            <p class="pricing-description">Perfect for students in years 7-10</p>
+            <div class="pricing-amount">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-price">45</span>
+            </div>
+            <p class="pricing-duration">per hour</p>
+          </div>
+          <ul class="pricing-features" role="list">
+            <li class="pricing-feature">Maths tutoring</li>
+            <li class="pricing-feature">General Science support</li>
+            <li class="pricing-feature">Homework help</li>
+            <li class="pricing-feature">Test preparation</li>
+            <li class="pricing-feature">Progress reports</li>
+          </ul>
+        </div>
+        <div class="pricing-card popular" role="article" aria-label="High School pricing tier">
+          <div class="pricing-card-header">
+            <h3 class="pricing-tier-name">High School</h3>
+            <p class="pricing-description">For years 11-12 students</p>
+            <div class="pricing-amount">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-price">55</span>
+            </div>
+            <p class="pricing-duration">per hour</p>
+          </div>
+          <ul class="pricing-features" role="list">
+            <li class="pricing-feature">SACE, HSC, QCAA, WACE & VCE</li>
+            <li class="pricing-feature">Maths, Physics & Chemistry</li>
+            <li class="pricing-feature">Exam preparation</li>
+            <li class="pricing-feature">Assignment support</li>
+            <li class="pricing-feature">Study strategies</li>
+            <li class="pricing-feature">Progress tracking</li>
+          </ul>
+        </div>
+        <div class="pricing-card" role="article" aria-label="University pricing tier">
+          <div class="pricing-card-header">
+            <h3 class="pricing-tier-name">University</h3>
+            <p class="pricing-description">University-level support</p>
+            <div class="pricing-amount">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-price">65</span>
+            </div>
+            <p class="pricing-duration">per hour</p>
+          </div>
+          <ul class="pricing-features" role="list">
+            <li class="pricing-feature">First & second year Chemistry</li>
+            <li class="pricing-feature">Bridging courses</li>
+            <li class="pricing-feature">Exam preparation</li>
+            <li class="pricing-feature">Laboratory report assistance</li>
+            <li class="pricing-feature">Complex problem solving</li>
+          </ul>
+        </div>
       </div>
-      <div id="pricing-packages" class="pricing-packages">
-        <!-- Package deals will be rendered here by JavaScript -->
+      <div class="pricing-packages">
+        <h3>Package Deals</h3>
+        <div class="package-list">
+          <div class="package-item">
+            <div class="package-name">4-Session Package</div>
+            <div class="package-discount">5% OFF</div>
+            <div class="package-description">Save 5% when you book 4 sessions</div>
+          </div>
+          <div class="package-item">
+            <div class="package-name">8-Session Package</div>
+            <div class="package-discount">10% OFF</div>
+            <div class="package-description">Save 10% when you book 8 sessions</div>
+          </div>
+        </div>
       </div>
-      <p id="pricing-note" class="pricing-note">
-        <!-- Note will be rendered here by JavaScript -->
-      </p>
+      <p class="pricing-note">First session is available at a discounted trial rate. Contact me for details!</p>
     </section>
 
     <!-- FAQ Section -->
     <section class="section-container faq-section" id="FAQ" aria-labelledby="faq-title">
       <h2 class="title" id="faq-title">FREQUENTLY ASKED QUESTIONS</h2>
       <h3 class="subtitle">Everything you need to know about tutoring sessions</h3>
-      <div id="faq-container" class="faq-container">
-        <!-- FAQ items will be rendered here by JavaScript -->
+      <div class="faq-container">
+        <div class="faq-item" role="region" aria-labelledby="faq-question-0">
+          <button class="faq-question" id="faq-question-0" aria-expanded="false" aria-controls="faq-answer-0">
+            <span class="faq-question-text">How long are tutoring sessions?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-0" role="region" aria-labelledby="faq-question-0">
+            <p>Standard tutoring sessions are 60 minutes. However, I offer flexible scheduling including 30-minute, 90-minute, or 2-hour sessions depending on your needs.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-1">
+          <button class="faq-question" id="faq-question-1" aria-expanded="false" aria-controls="faq-answer-1">
+            <span class="faq-question-text">What are your rates?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1">
+            <p>Rates vary depending on the level of study. Middle school tutoring starts at <strong>$45/hour</strong>, high school at <strong>$55/hour</strong>, and university level at <strong>$65/hour</strong>. Package deals are available for multiple sessions.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-2">
+          <button class="faq-question" id="faq-question-2" aria-expanded="false" aria-controls="faq-answer-2">
+            <span class="faq-question-text">Do you offer online tutoring?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2">
+            <p>Yes! All tutoring sessions are conducted online via Zoom or Google Meet, making it convenient for students anywhere in Australia.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-3">
+          <button class="faq-question" id="faq-question-3" aria-expanded="false" aria-controls="faq-answer-3">
+            <span class="faq-question-text">What if I need to reschedule a session?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3">
+            <p>I understand that life happens! Please provide at least 24 hours notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-4">
+          <button class="faq-question" id="faq-question-4" aria-expanded="false" aria-controls="faq-answer-4">
+            <span class="faq-question-text">How do I book a session?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4">
+            <p>You can book your first session using the <strong>'Book Your First Session'</strong> button on this page, which connects to my Google Calendar. Alternatively, contact me directly via email at <a style="color:inherit; text-decoration:underline;" href="mailto:kailistacey@gmail.com">kailistacey@gmail.com</a>.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-5">
+          <button class="faq-question" id="faq-question-5" aria-expanded="false" aria-controls="faq-answer-5">
+            <span class="faq-question-text">What materials do I need for tutoring sessions?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5">
+            <p>You'll need a computer or tablet with a stable internet connection, a microphone, and ideally a webcam. Having your course materials, textbooks, and any homework or assignments ready is also helpful.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-6">
+          <button class="faq-question" id="faq-question-6" aria-expanded="false" aria-controls="faq-answer-6">
+            <span class="faq-question-text">Do you provide study materials?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6">
+            <p>Yes! I provide supplementary study materials, practice problems, and resources tailored to your specific curriculum and learning needs.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="region" aria-labelledby="faq-question-7">
+          <button class="faq-question" id="faq-question-7" aria-expanded="false" aria-controls="faq-answer-7">
+            <span class="faq-question-text">Which curriculums do you teach?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-answer-7" role="region" aria-labelledby="faq-question-7">
+            <p>I specialize in Australian curriculums including SACE, HSC, QCAA, WACE, and VCE for high school students, as well as AUS8-10 for middle school students.</p>
+          </div>
+        </div>
       </div>
     </section>
 
