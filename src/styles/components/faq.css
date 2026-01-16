@@ -1,0 +1,106 @@
+/* FAQ Section Styles */
+.faq-section {
+  max-width: 100%;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevation-low);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.faq-item {
+  border: 2px solid var(--background-200);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevation-medium);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow-elevation-high);
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-sm);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: var(--font-size-2);
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--primary);
+}
+
+.faq-question-text {
+  flex: 1;
+}
+
+.faq-icon {
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+  color: var(--primary);
+  flex-shrink: 0;
+  padding-bottom: var(--space-xs);
+  margin-left: var(--space-sm);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease-out;
+  padding: 0 var(--space-lg);
+  font-weight: 400;
+  opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: var(--space-sm) var(--space-lg) var(--space-lg) var(--space-lg);
+  border-top: 2px solid var(--background-200);
+  line-height: 1.6;
+  margin: 0 var(--space-sm);
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: var(--space-md);
+  }
+
+  .faq-container {
+    padding: var(--space-sm);
+  }
+
+  .faq-question {
+    padding: var(--space-md);
+    font-size: var(--font-size-2);
+  }
+
+  .faq-answer {
+    padding: 0 var(--space-md);
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 0 var(--space-md) var(--space-md) var(--space-md);
+  }
+}

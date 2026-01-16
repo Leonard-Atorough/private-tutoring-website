@@ -1,0 +1,34 @@
+[
+  {
+    "question": "How long are tutoring sessions?",
+    "answer": "Standard tutoring sessions are 60 minutes. However, I offer flexible scheduling including 30-minute, 90-minute, or 2-hour sessions depending on your needs."
+  },
+  {
+    "question": "What are your rates?",
+    "answer": "Rates vary depending on the level of study. Middle school tutoring starts at <strong>$45/hour</strong>, high school at <strong>$55/hour</strong>, and university level at <strong>$65/hour</strong>. Package deals are available for multiple sessions."
+  },
+  {
+    "question": "Do you offer online tutoring?",
+    "answer": "Yes! All tutoring sessions are conducted online via Zoom or Google Meet, making it convenient for students anywhere in Australia."
+  },
+  {
+    "question": "What if I need to reschedule a session?",
+    "answer": "I understand that life happens! Please provide at least 24 hours notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee."
+  },
+  {
+    "question": "How do I book a session?",
+    "answer": "You can book your first session using the <strong>'Book Your First Session'</strong> button on this page, which connects to my Google Calendar. Alternatively, contact me directly via email at <a style=\"color:inherit; text-decoration:underline;\" href=\"mailto:kailistacey@gmail.com\">kailistacey@gmail.com</a>."
+  },
+  {
+    "question": "What materials do I need for tutoring sessions?",
+    "answer": "You'll need a computer or tablet with a stable internet connection, a microphone, and ideally a webcam. Having your course materials, textbooks, and any homework or assignments ready is also helpful."
+  },
+  {
+    "question": "Do you provide study materials?",
+    "answer": "Yes! I provide supplementary study materials, practice problems, and resources tailored to your specific curriculum and learning needs."
+  },
+  {
+    "question": "Which curriculums do you teach?",
+    "answer": "I specialize in Australian curriculums including SACE, HSC, QCAA, WACE, and VCE for high school students, as well as AUS8-10 for middle school students."
+  }
+]

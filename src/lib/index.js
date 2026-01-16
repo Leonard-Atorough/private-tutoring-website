@@ -4,6 +4,8 @@ import Carousel from "./components/carousel/carousel.js";
 import { createFormStateManager } from "./components/state/formStateManager.js";
 import { formHandler } from "./components/form/formHandler.js";
 import * as storeManager from "./components/store/storeManager.js";
+import { renderFAQ } from "./components/faq/faq.js";
+import { renderPricing } from "./components/pricing/pricing.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -48,6 +50,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       handler.mountFormHandler("contact-form");
     } catch (formHandlerError) {
       console.error("Error initializing form handler:", formHandlerError);
+    }
+
+    try {
+      const faqResponse = await fetch("/src/content/faq.json");
+      const faqData = await faqResponse.json();
+      renderFAQ(faqData, "faq-container");
+    } catch (faqError) {
+      console.error("Error loading FAQ:", faqError);
+    }
+
+    try {
+      const pricingResponse = await fetch("/src/content/pricing.json");
+      const pricingData = await pricingResponse.json();
+      renderPricing(pricingData, "pricing-container");
+    } catch (pricingError) {
+      console.error("Error loading pricing:", pricingError);
     }
   } catch (error) {
     console.error("Error initializing application:", error);

@@ -1,0 +1,63 @@
+{
+  "tiers": [
+    {
+      "id": "middle-school",
+      "name": "Middle School",
+      "price": 45,
+      "duration": "per hour",
+      "description": "Perfect for students in years 7-10",
+      "features": [
+        "Maths tutoring",
+        "General Science support",
+        "Homework help",
+        "Test preparation",
+        "Progress reports"
+      ],
+      "popular": false
+    },
+    {
+      "id": "high-school",
+      "name": "High School",
+      "price": 55,
+      "duration": "per hour",
+      "description": "For years 11-12 students",
+      "features": [
+        "SACE, HSC, QCAA, WACE & VCE",
+        "Maths, Physics & Chemistry",
+        "Exam preparation",
+        "Assignment support",
+        "Study strategies",
+        "Progress tracking"
+      ],
+      "popular": true
+    },
+    {
+      "id": "university",
+      "name": "University",
+      "price": 65,
+      "duration": "per hour",
+      "description": "University-level support",
+      "features": [
+        "First & second year Chemistry",
+        "Bridging courses",
+        "Exam preparation",
+        "Laboratory report assistance",
+        "Complex problem solving"
+      ],
+      "popular": false
+    }
+  ],
+  "packages": [
+    {
+      "name": "4-Session Package",
+      "discount": 5,
+      "description": "Save 5% when you book 4 sessions"
+    },
+    {
+      "name": "8-Session Package",
+      "discount": 10,
+      "description": "Save 10% when you book 8 sessions"
+    }
+  ],
+  "note": "First session is available at a discounted trial rate. Contact me for details!"
+}
