@@ -33,7 +33,6 @@ export function renderPricing(pricingData, containerId = "pricing-container") {
       <ul class="pricing-features" role="list">
         ${tier.features.map((feature) => `<li class="pricing-feature">${feature}</li>`).join("")}
       </ul>
-      </div>
     </div>
   `,
     )
