@@ -4,6 +4,7 @@ import Carousel from "./components/carousel/carousel.js";
 import { createFormStateManager } from "./components/state/formStateManager.js";
 import { formHandler } from "./components/form/formHandler.js";
 import * as storeManager from "./components/store/storeManager.js";
+import { initializeFAQ } from "./components/faq/faq.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -48,6 +49,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       handler.mountFormHandler("contact-form");
     } catch (formHandlerError) {
       console.error("Error initializing form handler:", formHandlerError);
+    }
+
+    try {
+      initializeFAQ();
+    } catch (faqError) {
+      console.error("Error initializing FAQ:", faqError);
     }
   } catch (error) {
     console.error("Error initializing application:", error);
