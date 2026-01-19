@@ -12,10 +12,10 @@
 }
 
 .pricing-card {
-  background: white;
+  background: var(--secondary-50);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  box-shadow: var(--shadow-elevation-medium);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: var(--shadow-elevation-low);
   transition: all 0.3s ease;
   position: relative;
   border: 2px solid transparent;
@@ -23,26 +23,12 @@
 
 .pricing-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-elevation-high);
+  box-shadow: var(--shadow-elevation-medium);
 }
 
 .pricing-card.popular {
-  border-color: var(--color-primary);
   translate: 0 -16px;
-}
-
-.pricing-card.popular::before {
-  content: "MOST POPULAR";
-  position: absolute;
-  top: var(--space-xs);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-primary);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  background-color: var(--primary-50);
 }
 
 .pricing-card-header {
@@ -51,15 +37,16 @@
 }
 
 .pricing-tier-name {
-  font-size: 1.5rem;
+  font-size: var(--font-size-3);
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--text);
   margin-bottom: var(--space-xs);
+  white-space: nowrap;
+  text-align: center;
 }
 
 .pricing-description {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
+  color: var(--text);
   margin-bottom: var(--space-md);
 }
 
@@ -73,30 +60,35 @@
 .pricing-currency {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--primary);
 }
 
 .pricing-price {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--primary);
   line-height: 1;
 }
 
 .pricing-duration {
-  color: var(--color-text-muted);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.pricing-session-minimum {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
   font-size: 0.9rem;
 }
 
 .pricing-features {
-  list-style: none;
-  padding: 0;
   margin-bottom: var(--space-lg);
 }
 
 .pricing-feature {
   padding: var(--space-sm) 0;
-  color: var(--color-text);
+  color: var(--text);
   display: flex;
   align-items: flex-start;
   gap: var(--space-sm);
@@ -104,7 +96,7 @@
 
 .pricing-feature::before {
   content: "✓";
-  color: var(--color-accent);
+  color: var(--accent);
   font-weight: 700;
   font-size: 1.2rem;
   flex-shrink: 0;
@@ -115,59 +107,9 @@
   text-align: center;
 }
 
-.pricing-packages {
-  max-width: 800px;
-  margin: 0 auto var(--space-lg) auto;
-  text-align: center;
-  padding: var(--space-lg);
-  background: linear-gradient(
-    135deg,
-    var(--color-secondary-light) 0%,
-    var(--color-primary-light) 100%
-  );
-  border-radius: 12px;
-}
-
-.pricing-packages h3 {
-  color: var(--color-primary);
-  margin-bottom: var(--space-md);
-  font-size: 1.5rem;
-}
-
-.package-list {
-  display: flex;
-  gap: var(--space-lg);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.package-item {
-  background: white;
-  padding: var(--space-md) var(--space-lg);
-  border-radius: 8px;
-  box-shadow: var(--shadow-elevation-medium);
-}
-
-.package-name {
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
-}
-
-.package-discount {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-accent);
-}
-
-.package-description {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
 .pricing-note {
   text-align: center;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
   font-style: italic;
   max-width: 600px;
   margin: 0 auto;
@@ -186,10 +128,5 @@
 
   .pricing-price {
     font-size: 2.5rem;
-  }
-
-  .package-list {
-    flex-direction: column;
-    gap: var(--space-md);
   }
 }

@@ -24,6 +24,7 @@ button {
 .button.-primary {
   background-color: var(--primary);
   color: var(--text-50);
+  
 
   &:hover,
   &:focus {
