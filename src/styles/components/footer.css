@@ -1,5 +1,5 @@
 .site-footer {
-  padding : var(--space-xl) var(--space-lg);
+  padding: var(--space-lg) var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -8,5 +8,27 @@
   background: var(--primary);
   color: var(--card-white);
   font-weight: 400;
-  font-size: var(--font-size-2);
+  font-size: var(--font-size-1);
+}
+
+.attributions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.attributions > .attribution {
+  margin: 0 var(--space-sm);
+  text-align: center;
+}
+
+.attributions > .attribution > a {
+  color: var(--card-white);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.attributions > .attribution > a:hover {
+  color: var(--accent-200);
 }
