@@ -51,7 +51,6 @@
   text-align: center;
   color: var(--primary);
   cursor: pointer;
-  cursor: pointer;
   box-shadow: none;
   transition: color 0.2s ease;
   &:hover,
