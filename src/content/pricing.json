@@ -1,42 +1,32 @@
 {
   "tiers": [
     {
-      "id": "middle-school",
-      "name": "Middle School",
-      "price": 45,
+      "id": "middle-high-school",
+      "name": "Middle / High School",
+      "price": 70,
       "duration": "per hour",
-      "description": "Perfect for students in years 7-10",
+      "description": "Perfect for students in years 7-12",
+      "sessionMinimum": "Minimum Block of 4 Sessions",
       "features": [
         "Maths tutoring",
         "General Science support",
         "Homework help",
         "Test preparation",
-        "Progress reports"
+        "SACE, HSC, QCAA, WACE & VCE",
+        "High School Maths, Physics & Chemistry",
+        "Exam preparation",
+        "Assignment support",
+        "Study strategies"
       ],
       "popular": false
     },
     {
-      "id": "high-school",
-      "name": "High School",
-      "price": 55,
-      "duration": "per hour",
-      "description": "For years 11-12 students",
-      "features": [
-        "SACE, HSC, QCAA, WACE & VCE",
-        "Maths, Physics & Chemistry",
-        "Exam preparation",
-        "Assignment support",
-        "Study strategies",
-        "Progress tracking"
-      ],
-      "popular": true
-    },
-    {
       "id": "university",
       "name": "University",
-      "price": 65,
+      "price": 80,
       "duration": "per hour",
       "description": "University-level support",
+      "sessionMinimum": "Minimum Block of 4 Sessions",
       "features": [
         "First & second year Chemistry",
         "Bridging courses",
@@ -44,19 +34,23 @@
         "Laboratory report assistance",
         "Complex problem solving"
       ],
-      "popular": false
-    }
-  ],
-  "packages": [
-    {
-      "name": "4-Session Package",
-      "discount": 5,
-      "description": "Save 5% when you book 4 sessions"
+      "popular": true
     },
     {
-      "name": "8-Session Package",
-      "discount": 10,
-      "description": "Save 10% when you book 8 sessions"
+      "id": "one-off",
+      "name": "One-Off Session",
+      "price": 100,
+      "duration": "per hour",
+      "description": "For individual sessions without a package",
+      "features": [
+        "Available for all subjects",
+        "Ideal for occasional help",
+        "Flexible scheduling",
+        "No long-term commitment",
+        "Homework assistance",
+        "Test preparation"
+      ],
+      "popular": false
     }
   ],
   "note": "First session is available at a discounted trial rate. Contact me for details!"

@@ -1,8 +1,34 @@
 .site-footer {
-  padding : var(--space-lg) 0;
+  padding: var(--space-lg) var(--space-lg);
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  gap: var(--space-md);
+  justify-content: center;
   align-items: center;
-  background: var(--text-50);
+  background: var(--primary);
+  color: var(--card-white);
   font-weight: 400;
+  font-size: var(--font-size-1);
+}
+
+.attributions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.attributions > .attribution {
+  margin: 0 var(--space-sm);
+  text-align: center;
+}
+
+.attributions > .attribution > a {
+  color: var(--card-white);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.attributions > .attribution > a:hover {
+  color: var(--accent-200);
 }

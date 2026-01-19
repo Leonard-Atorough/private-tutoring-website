@@ -29,7 +29,7 @@ body {
 
 #app {
   background: var(--background);
-  color: var(--text-950);
+  color: var(--text);
   position: relative;
   opacity: 0.01;
   transition: opacity 0.4s;

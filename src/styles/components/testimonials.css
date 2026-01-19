@@ -8,46 +8,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-lg);
   margin-bottom: var(--space-md);
-  background: var(--color-background);
+  background: var(--background-100);
 }
-
-.rating-display {
-  text-align: center;
-}
-
-.rating-number {
-  font-size: var(--font-size-6);
-  font-weight: 700;
-  color: var(--color-primary);
-  line-height: 1;
-}
-
-.rating-stars {
-  color: #ffc107;
-  font-size: var(--font-size-3);
-  margin-bottom: var(--space-xs);
-}
-
-.rating-label {
-  font-size: var(--font-size-1);
-}
-
 .review-count {
   text-align: center;
-  padding-left: var(--space-lg);
-  border-left: 2px solid #e0e0e0;
+  border-bottom: 4px solid var(--primary);
 }
 
 .review-count-number {
-  font-size: var(--font-size-4);
+  font-size: var(--font-size-5);
   font-weight: 700;
   margin-bottom: var(--space-xs);
+  color: var(--primary);
 }
 
 .review-count-label {
-  font-size: var(--font-size-1);
+  font-size: var(--font-size-2);
 }
 
 .testimonials-carousel {
@@ -62,6 +39,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+
   -webkit-overflow-scrolling: touch;
   /* hide scroll bar */
   scrollbar-width: none; /* Firefox */
@@ -72,8 +50,30 @@
 }
 
 .carousel-controls {
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  justify-content: space-between;
+  display: none;
+}
+
+.carousel-controls > .control {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 4px solid var(--primary);
+  color: var(--primary);
+  opacity: 0.6;
+  padding: var(--space-md);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-elevation-low);
+  transition: opacity 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.carousel-controls > .control:hover {
+  opacity: 1;
+  background-color: var(--primary-50);
+  box-shadow: var(--shadow-elevation-medium);
 }
 
 .testimonial-card {
@@ -83,41 +83,55 @@
 }
 
 .testimonial-card > .content {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: var(--space-md);
-  height: 300px;
-  overflow: hidden;
+  padding: var(--space-lg);
+  overflow-y: hidden;
+  text-overflow: ellipsis;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-elevation-low);
+  background-color: var(--card-white);
   color: var(--text);
-  background-color: var(--primary-50);
-  line-height: 2;
-  letter-spacing: normal;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  line-height: 1.9;
+  border: 2px solid var(--primary-100);
+
+  transition: all 0.2s ease;
 }
 
 .testimonial-card > .content:hover {
   transform: scale(1.02);
   box-shadow: var(--shadow-elevation-medium);
+  border-color: var(--primary);
+
 }
 
-.testimonial-card > .content > .text {
+.testimonial-card > .content > .testimonial {
   display: -webkit-box;
   -webkit-line-clamp: 10;
   line-clamp: 10;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
+  padding-bottom: var(--space-md);
+  text-align: center;
 }
 
 .testimonial-card > .content > .author {
+  width: 100%;
   font-weight: 600;
-  font-size: var(--font-size-1);
   text-align: center;
+  font-size: var(--font-size-1);
+}
+
+.testimonial-card > .content > .author-title {
+  width: 100%;
+  font-weight: 400;
+  text-align: center;
+  font-size: var(--font-size-0);
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
 }
 
 /* End of desktop section */
@@ -135,19 +149,28 @@
 }
 
 @media (max-width: 600px) {
-  .review-stats {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-
-  .review-count {
-    border-left: none;
-    border-top: 2px solid #e0e0e0;
-    padding-left: 0;
-    padding-top: var(--space-sm);
-  }
-
   .testimonial-card {
     flex: 0 0 100%;
+  }
+
+  .carousel-controls {
+    position: relative;
+    justify-content: center;
+  }
+  .carousel-controls > .control {
+    margin: 0 var(--space-sm);
+    opacity: 1;
+    border: 4px solid var(--primary);
+    background-color: transparent;
+  }
+
+  .carousel-controls > .control.-prev {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    width: 100%;
+  }
+
+  .carousel-controls > .control.-next {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    width: 100%;
   }
 }
