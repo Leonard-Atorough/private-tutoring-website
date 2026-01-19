@@ -13,6 +13,7 @@
   padding: var(--space-lg);
   margin: var(--space-lg) 0;
   box-shadow: var(--shadow-elevation-medium);
+  border: 2px solid var(--primary-200);
 
   > .contact {
     width: 100%;
@@ -38,26 +39,26 @@
       font-weight: 500;
       margin-bottom: var(--space-sm);
       padding-left: var(--space-sm);
+      color: var(--text);
     }
 
     > .field {
       width: 100%;
       padding: var(--space-md) var(--space-md);
-      border: 1px solid var(--text-200);
+      border: 2px solid var(--primary-200);
       border-radius: var(--radius-sm);
       font-size: var(--font-size-1);
       font-weight: 500;
       font-family: inherit;
       resize: vertical;
       background-color: transparent;
-      background-color: #fff;
+      background-color: var(--card-white);
       box-shadow: var(--shadow-elevation-low);
       transition: all 0.3s ease;
 
       &:focus {
         outline: none;
-
-        border: 1px solid var(--primary);
+        border: 2px solid var(--primary);
         box-shadow: var(--shadow-elevation-high);
       }
     }

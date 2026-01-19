@@ -6,7 +6,7 @@
   width: 0;
   height: 0;
   z-index: 100;
-  background: #0c0e0d88;
+  background: rgba(15, 46, 38, 0.85);
   overflow: auto;
   outline: none;
   transform: translate(-50%, -50%);
@@ -25,10 +25,11 @@
   transform: translate(-50%, -50%);
   max-width: 1200px;
   width: 100%;
-  background: #ffffff;
+  background: var(--card-white);
   padding: var(--space-sm);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-elevation-high);
+  border: 2px solid var(--primary);
 
   iframe:focus-visible {
     border-radius: var(--radius-md);
@@ -48,6 +49,8 @@
   padding: var(--space-sm);
   float: right;
   text-align: center;
+  color: var(--primary);
+  cursor: pointer;
   cursor: pointer;
   box-shadow: none;
   transition: color 0.2s ease;

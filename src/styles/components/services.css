@@ -21,7 +21,7 @@
   border-radius: var(--radius-md);
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   background: url("/src/assets/middle_school_study.jpg") center / cover no-repeat;
-  color: var(--background);
+  color: var(--card-white);
   transition: transform 0.3s ease;
 
   &:nth-child(2) {
@@ -76,7 +76,7 @@
     max-width: 35px;
     height: 35px;
     width: 100%;
-    background-color: var(--accent-100);
+    background-color: var(--accent-200);
     border-radius: var(--radius-full);
     align-self: center;
     transition: transform 0.3s ease;

@@ -23,13 +23,12 @@ button {
 }
 .button.-primary {
   background-color: var(--primary);
-  color: var(--text-50);
-  
+  color: var(--card-white);
 
   &:hover,
   &:focus {
-    background-color: var(--primary-200);
-    color: var(--text);
+    background-color: var(--primary-700);
+    color: var(--card-white);
   }
 }
 
@@ -40,18 +39,19 @@ button {
   &:hover,
   &:focus {
     background-color: var(--secondary-300);
+    color: var(--text);
   }
 }
 
 .button.-tertiary {
-  background-color: var(--background);
+  background-color: var(--card-white);
   border: 2px solid var(--accent);
   color: var(--text);
 
   &:hover,
   &:focus {
-    background-color: var(--accent-200);
-    border: 2px solid var(--accent-200);
+    background-color: var(--accent-50);
+    border: 2px solid var(--accent);
     color: var(--text);
   }
 }

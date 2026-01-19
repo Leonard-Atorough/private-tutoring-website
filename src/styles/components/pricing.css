@@ -12,23 +12,25 @@
 }
 
 .pricing-card {
-  background: var(--secondary-50);
+  background: var(--primary-50);
   border-radius: var(--radius-lg);
   padding: var(--space-xl) var(--space-lg);
   box-shadow: var(--shadow-elevation-low);
   transition: all 0.3s ease;
   position: relative;
-  border: 2px solid transparent;
+  border: 2px solid var(--primary-200);
 }
 
 .pricing-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-elevation-medium);
+  border-color: var(--primary);
 }
 
 .pricing-card.popular {
   translate: 0 -16px;
-  background-color: var(--primary-50);
+  background-color: var(--secondary-100);
+  border-color: var(--secondary);
 }
 
 .pricing-card-header {
