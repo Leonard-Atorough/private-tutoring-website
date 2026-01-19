@@ -5,15 +5,19 @@
   },
   {
     "question": "What are your rates?",
-    "answer": "Rates vary depending on the level of study. Middle school tutoring starts at <strong>$45/hour</strong>, high school at <strong>$55/hour</strong>, and university level at <strong>$65/hour</strong>. Package deals are available for multiple sessions."
+    "answer": "Rates vary depending on the level of study. Middle school and High school is <strong>$70/hour</strong>, University Level Tutoring is <strong>$80/hour</strong>, and I also offer One-Off Sessions at <strong>$100/hour</strong>."
+  },
+  {
+    "question": "What is the minimum number of sessions that can be booked?",
+    "answer": "The minimum number of sessions that can be booked is <strong>4 sessions</strong>. Unless otherwise requested, sessions are considered continous on a rolling basis afterwards."
   },
   {
     "question": "Do you offer online tutoring?",
-    "answer": "Yes! All tutoring sessions are conducted online via Zoom or Google Meet, making it convenient for students anywhere in Australia."
+    "answer": "Yes! All tutoring sessions are conducted online via <strong>Google Meet</strong>, making it convenient for students anywhere in Australia."
   },
   {
     "question": "What if I need to reschedule a session?",
-    "answer": "I understand that life happens! Please provide at least 24 hours notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee."
+    "answer": "I understand that life happens! Please provide at least <strong>24 hours</strong> notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee."
   },
   {
     "question": "How do I book a session?",

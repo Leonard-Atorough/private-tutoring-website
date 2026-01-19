@@ -4,22 +4,26 @@
     {
       "id": "t-1",
       "author": "A Satisfied Parent",
-      "text": "Person is an inspiring tutor for my daughter Chiara. She is always able to provide help and guidance when needed. Chiara has improved her confidence and grades since starting lessons with Person."
+      "authorTitle": "Mother of Chiara",
+      "text": "Kaili is an inspiring tutor for my daughter Chiara. She is always able to provide help and guidance when needed. Chiara has improved her confidence and grades since starting lessons with Kaili."
     },
     {
       "id": "t-2",
       "author": "A Happy Student",
-      "text": "Person is an amazing tutor! She has helped me improve my understanding of complex math concepts and boosted my confidence in the subject. Her personalized approach to teaching has made a significant difference in my academic performance."
+      "authorTitle": "Student",
+      "text": "Kaili is an amazing tutor! She has helped me improve my understanding of complex math concepts and boosted my confidence in the subject. Her personalized approach to teaching has made a significant difference in my academic performance."
     },
     {
       "id": "t-3",
       "author": "Another Satisfied Student",
-      "text": "I highly recommend Person as a tutor. She is patient, knowledgeable, and always willing to go the extra mile to help her students succeed. Thanks to her guidance, I was able to achieve my academic goals and improve my grades."
+      "authorTitle": "Student",
+      "text": "I highly recommend Kaili as a tutor. She is patient, knowledgeable, and always willing to go the extra mile to help her students succeed. Thanks to her guidance, I was able to achieve my academic goals and improve my grades."
     },
     {
       "id": "t-4",
       "author": "Yet Another Happy Student",
-      "text": "Person is a fantastic tutor who truly cares about her students' success. She has a talent for explaining complex concepts in a way that is easy to understand, and her enthusiasm for teaching is contagious. I am grateful for the support and guidance she has provided me throughout my academic journey."
+      "authorTitle": "Student",
+      "text": "Kaili is a fantastic tutor who truly cares about her students' success. She has a talent for explaining complex concepts in a way that is easy to understand, and her enthusiasm for teaching is contagious. I am grateful for the support and guidance she has provided me throughout my academic journey."
     }
   ]
 }
