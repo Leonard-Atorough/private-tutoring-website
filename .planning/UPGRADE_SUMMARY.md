@@ -43,8 +43,8 @@ I've transformed your tutoring website into a highly competitive platform that s
 ### 3. **Trust Badges & Credentials**
 📍 Location: After Services section
 - PhD Qualification badge
-- 1900+ hours tutored statistic
-- 8+ years experience
+- 2000+ hours tutored statistic
+- 3+ years experience
 - Australian Curriculums certification (SACE, HSC, QCAA, WACE, VCE)
 - 100% Online guarantee
 - Professional design with icons
