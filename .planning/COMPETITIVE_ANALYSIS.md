@@ -27,8 +27,8 @@
 - **What Wix offers**: Badge widgets (paid)
 - **What we added**:
   - PhD qualification badge
-  - 1900+ hours tutored counter
-  - 8+ years experience display
+  - 2000+ hours tutored counter
+  - 3+ years experience display
   - Australian curriculum certifications
   - 100% online guarantee
   - All custom-designed and authentic
@@ -179,7 +179,7 @@
 This custom website offers:
 
 1. **PhD-level expertise** clearly displayed
-2. **1900+ hours** of proven experience
+2. **2000+ hours** of proven experience
 3. **Transparent pricing** - no hidden fees
 4. **Flexible packages** - budget-friendly options
 5. **Australian curriculum specialist** - SACE, HSC, VCE, etc.

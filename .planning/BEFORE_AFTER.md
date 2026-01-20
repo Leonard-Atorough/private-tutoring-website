@@ -78,8 +78,8 @@ Your tutoring website has been upgraded from a basic online presence to a **conv
 ### 3. **Trust Badges Section**
 **What it includes:**
 - 🎓 PhD Qualified (Nanochemistry)
-- 📊 1900+ Hours Tutored
-- 📅 8+ Years Experience
+- 📊 2000+ Hours Tutored
+- 📅 3+ Years Experience
 - ✓ Australian Curriculums (SACE, HSC, VCE, etc.)
 - 💯 100% Online
 
@@ -141,7 +141,7 @@ Your tutoring website has been upgraded from a basic online presence to a **conv
 ### AFTER
 ```html
 <title>Kaili Stacey - Expert Math & Science Tutor | PhD Qualified | Online Tutoring Australia</title>
-<meta name="description" content="Expert online math and science tutoring by PhD-qualified Kaili Stacey. 1900+ hours experience teaching SACE, HSC, VCE students. Personalized 1-on-1 sessions from $45/hr. Book your free trial!">
+<meta name="description" content="Expert online math and science tutoring by PhD-qualified Kaili Stacey. 2000+ hours experience teaching SACE, HSC, VCE students. Personalized 1-on-1 sessions from $45/hr. Book your free trial!">
 <meta name="keywords" content="private tutor Australia, online math tutor, SACE tutor, HSC tutor, VCE tutor, affordable tutoring...">
 ```
 
@@ -151,7 +151,7 @@ Your tutoring website has been upgraded from a basic online presence to a **conv
 3. ✅ Specific curriculum keywords: "SACE, HSC, VCE"
 4. ✅ Pricing mentioned: "from $45/hr"
 5. ✅ Call-to-action: "Book your free trial"
-6. ✅ Credibility: "1900+ hours experience"
+6. ✅ Credibility: "2000+ hours experience"
 
 ### New Structured Data (JSON-LD)
 
@@ -275,7 +275,7 @@ Your tutoring website has been upgraded from a basic online presence to a **conv
 
 ### Credibility (Professional Appearance)
 - PhD credentials prominent
-- Real stats (1900+ hours, 8+ years)
+- Real stats (2000+ hours, 3+ years)
 - 5-star rating display
 - Australian curriculum expertise
 - Professional design = Serious business
@@ -343,7 +343,7 @@ Your tutoring website has been upgraded from a basic online presence to a **conv
 ### Against Other Tutors
 **You Stand Out With:**
 - ✅ PhD qualification (clearly shown)
-- ✅ 1900+ hours experience (proven)
+- ✅ 2000+ hours experience (proven)
 - ✅ 5-star rating (social proof)
 - ✅ Transparent pricing (trustworthy)
 - ✅ Professional website (serious business)
