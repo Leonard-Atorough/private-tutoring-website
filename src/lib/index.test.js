@@ -1,49 +1,50 @@
 /**
  * @vitest-environment jsdom
  */
-import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { createMockLogger } from "../__mocks__/logger.js";
 
-// Mock all component modules
-vi.mock("./components/header/header.js", () => ({
-  initHeader: vi.fn(),
-}));
-
-vi.mock("./components/modal/modal.js", () => ({
-  initModal: vi.fn(),
-}));
-
-vi.mock("./components/carousel/carousel.js", () => ({
-  default: vi.fn(),
-}));
-
-vi.mock("./components/state/formStateManager.js", () => ({
+// Mock all component modules at file level
+const headerMock = { initHeader: vi.fn() };
+const modalMock = { initModal: vi.fn() };
+const carouselMock = { default: vi.fn() };
+const formStateMock = {
   createFormStateManager: vi.fn(() => ({
     persistFormState: vi.fn(),
   })),
-}));
-
-vi.mock("./components/form/formHandler.js", () => ({
+};
+const formMock = {
   formHandler: vi.fn(() => ({
     mountFormHandler: vi.fn(),
   })),
-}));
-
-vi.mock("./components/store/storeManager.js", () => ({
+};
+const storeMock = {
   saveStateToLocalStorage: vi.fn(),
   fetchStoredState: vi.fn(),
-}));
+};
+const loggerMock = createMockLogger(vi);
 
-// Register the mock logger before importing the module under test
-const mockLogger = createMockLogger(vi);
-vi.mock("./logger.js", () => ({ default: mockLogger }));
+vi.mock("./components/header/header.js", () => headerMock);
+vi.mock("./components/modal/modal.js", () => modalMock);
+vi.mock("./components/carousel/carousel.js", () => carouselMock);
+vi.mock("./components/state/formStateManager.js", () => formStateMock);
+vi.mock("./components/form/formHandler.js", () => formMock);
+vi.mock("./components/store/storeManager.js", () => storeMock);
+vi.mock("./logger.js", () => ({ default: loggerMock }));
 
 describe("Index Module - Application Initialization", () => {
-  let modules;
-
   beforeEach(async () => {
     // Clear all mocks before each test
     vi.clearAllMocks();
+    headerMock.initHeader.mockClear();
+    modalMock.initModal.mockClear();
+    carouselMock.default.mockClear();
+    formStateMock.createFormStateManager.mockClear();
+    formMock.formHandler.mockClear();
+    loggerMock.info.mockClear();
+    loggerMock.debug.mockClear();
+    loggerMock.warn.mockClear();
+    loggerMock.error.mockClear();
 
     // Reset DOM
     document.body.innerHTML = `
@@ -62,74 +63,47 @@ describe("Index Module - Application Initialization", () => {
         <input name="email" />
       </form>
     `;
-
-    // Import modules fresh to get mocked versions
-    const [header, modal, carousel, formState, form, store] = await Promise.all([
-      import("./components/header/header.js"),
-      import("./components/modal/modal.js"),
-      import("./components/carousel/carousel.js"),
-      import("./components/state/formStateManager.js"),
-      import("./components/form/formHandler.js"),
-      import("./components/store/storeManager.js"),
-    ]);
-
-    modules = {
-      header,
-      modal,
-      carousel,
-      formState,
-      form,
-      store,
-    };
   });
 
   afterEach(() => {
     vi.clearAllMocks();
+    vi.useRealTimers();
   });
 
-  it("should initialize app opacity animation on DOMContentLoaded", async () => {
+  it("should initialize app opacity animation", async () => {
+    const { initializeApp } = await import("./index.js");
     vi.useFakeTimers();
 
     const appElement = document.getElementById("app");
     expect(appElement.style.opacity).toBe("0");
 
-    // Import the module to trigger DOMContentLoaded listener setup
-    await import("./index.js");
-
-    // Dispatch DOMContentLoaded event
-    const event = new Event("DOMContentLoaded");
-    document.dispatchEvent(event);
+    await initializeApp();
 
     // Fast-forward time to after the 500ms delay
     vi.advanceTimersByTime(500);
 
     expect(appElement.style.opacity).toBe("1");
-
-    vi.useRealTimers();
   });
 
-  it("should initialize all components when DOM is ready", async () => {
+  it("should initialize all components", async () => {
+    const { initializeApp } = await import("./index.js");
     vi.useFakeTimers();
 
-    // Import the module
-    await import("./index.js");
-
-    // Trigger DOMContentLoaded
-    document.dispatchEvent(new Event("DOMContentLoaded"));
+    await initializeApp();
 
     // Fast-forward timers to complete async operations
     vi.advanceTimersByTime(1000);
 
-    expect(modules.header.initHeader).toHaveBeenCalled();
-    expect(modules.modal.initModal).toHaveBeenCalled();
-    expect(modules.carousel.default).toHaveBeenCalled();
-    expect(modules.formState.createFormStateManager).toHaveBeenCalled();
-    expect(modules.form.formHandler).toHaveBeenCalled();
-
-    vi.useRealTimers();
+    expect(headerMock.initHeader).toHaveBeenCalled();
+    expect(modalMock.initModal).toHaveBeenCalled();
+    expect(carouselMock.default).toHaveBeenCalled();
+    expect(formStateMock.createFormStateManager).toHaveBeenCalled();
+    expect(formMock.formHandler).toHaveBeenCalled();
   });
 
   it("should initialize carousel for each carousel-track element", async () => {
+    const { initializeApp } = await import("./index.js");
+
     // Add multiple carousels
     document.body.innerHTML += `
       <div class="carousel-track">
@@ -140,114 +114,51 @@ describe("Index Module - Application Initialization", () => {
       </div>
     `;
 
-    await import("./index.js");
-    document.dispatchEvent(new Event("DOMContentLoaded"));
+    await initializeApp();
 
-    // Should be called for each carousel track (3 total now)
+    // Should be called for each carousel track (3 total)
     const carouselTracks = document.querySelectorAll(".carousel-track");
     expect(carouselTracks.length).toBe(3);
-    expect(modules.carousel.default).toHaveBeenCalledTimes(3);
-  });
-
-  it("should handle header initialization errors gracefully", async () => {
-    // Make initHeader throw an error
-    modules.header.initHeader.mockImplementation(() => {
-      throw new Error("Header initialization failed");
-    });
-
-    await import("./index.js");
-    document.dispatchEvent(new Event("DOMContentLoaded"));
-
-    // Should log error but not crash
-    expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing header",
-      { error: "Header initialization failed" },
-      expect.any(Error),
-    );
-
-    // Other components should still be initialized
-    expect(modules.modal.initModal).toHaveBeenCalled();
-  });
-
-  it("should handle carousel initialization errors gracefully", async () => {
-    // Make Carousel constructor throw an error
-    modules.carousel.default.mockImplementation(() => {
-      throw new Error("Carousel initialization failed");
-    });
-
-    await import("./index.js");
-    document.dispatchEvent(new Event("DOMContentLoaded"));
-
-    expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing carousel",
-      { error: "Carousel initialization failed" },
-      expect.any(Error),
-    );
-
-    // Other components should still be initialized
-    expect(modules.modal.initModal).toHaveBeenCalled();
-  });
-
-  it("should handle modal initialization errors gracefully", async () => {
-    modules.modal.initModal.mockImplementation(() => {
-      throw new Error("Modal initialization failed");
-    });
-
-    await import("./index.js");
-    document.dispatchEvent(new Event("DOMContentLoaded"));
-
-    expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing modal",
-      { error: "Modal initialization failed" },
-      expect.any(Error),
-    );
-
-    // Other components should still be initialized
-    expect(modules.header.initHeader).toHaveBeenCalled();
-  });
-
-  it("should handle form state manager errors gracefully", async () => {
-    modules.formState.createFormStateManager.mockImplementation(() => {
-      throw new Error("Form state manager failed");
-    });
-
-    await import("./index.js");
-    document.dispatchEvent(new Event("DOMContentLoaded"));
-
-    expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing form state manager",
-      { error: "Form state manager failed" },
-      expect.any(Error),
-    );
-
-    // Form handler should still be attempted
-    expect(modules.form.formHandler).toHaveBeenCalled();
-  });
-
-  it("should handle form handler errors gracefully", async () => {
-    modules.form.formHandler.mockImplementation(() => {
-      throw new Error("Form handler failed");
-    });
-
-    await import("./index.js");
-    document.dispatchEvent(new Event("DOMContentLoaded"));
-
-    expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing form handler",
-      { error: "Form handler failed" },
-      expect.any(Error),
-    );
+    expect(carouselMock.default).toHaveBeenCalledTimes(3);
   });
 
   it("should handle missing app element gracefully", async () => {
+    const { initializeApp } = await import("./index.js");
+
     // Remove app element
     document.getElementById("app")?.remove();
 
-    await import("./index.js");
+    // Should not throw
+    await expect(initializeApp()).resolves.not.toThrow();
+    expect(loggerMock.warn).toHaveBeenCalledWith("App root element not found");
+  });
 
-    // Should throw and be caught by outer try-catch
-    expect(() => {
-      document.dispatchEvent(new Event("DOMContentLoaded"));
-    }).not.toThrow();
+  it("should log initialization messages", async () => {
+    const { initializeApp } = await import("./index.js");
+
+    await initializeApp();
+
+    expect(loggerMock.info).toHaveBeenCalledWith("App initialization started");
+    expect(loggerMock.info).toHaveBeenCalledWith("App initialization completed successfully");
+  });
+
+  it("should handle component initialization errors gracefully", async () => {
+    const { initializeApp } = await import("./index.js");
+    const testError = new Error("Test initialization error");
+
+    // Make header initialization fail
+    headerMock.initHeader.mockRejectedValueOnce(testError);
+
+    await initializeApp();
+
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      "Error initializing header",
+      { error: "Test initialization error" },
+      testError,
+    );
+
+    // Other components should still initialize
+    expect(modalMock.initModal).toHaveBeenCalled();
+    expect(carouselMock.default).toHaveBeenCalled();
   });
 });

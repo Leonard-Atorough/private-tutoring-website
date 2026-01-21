@@ -5,11 +5,12 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { createMockStateManager } from "../../../__mocks__/mockStateManager.js";
 import { createMockLogger } from "../../../__mocks__/logger.js";
 
-// Register the mock logger before importing the module under test
-const mockLogger = createMockLogger(vi);
-vi.mock("../../logger.js", () => ({ default: mockLogger }));
+vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
 
 import { formHandler } from "./formHandler.js";
+import logger from "../../logger.js";
+
+const mockLogger = vi.mocked(logger);
 
 describe("formHandler", () => {
   let mockStateManager;

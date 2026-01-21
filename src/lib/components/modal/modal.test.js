@@ -5,11 +5,12 @@
 import { describe, beforeEach, it, expect, vi } from "vitest";
 import { createMockLogger } from "../../../__mocks__/logger.js";
 
-// Register the mock logger before importing the module under test
-const mockLogger = createMockLogger(vi);
-vi.mock("../../logger.js", () => ({ default: mockLogger }));
+vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
 
 import { initModal } from "./modal";
+import logger from "../../logger.js";
+
+const mockLogger = vi.mocked(logger);
 
 describe("Modal Component", () => {
   describe("Initialization", () => {
