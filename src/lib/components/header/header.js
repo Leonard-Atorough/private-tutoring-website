@@ -1,3 +1,5 @@
+import logger from "../../logger.js";
+
 const TOGGLE_BUTTON_ID = "hamburger-button";
 const NAVIGATION_MENU_ID = "navigation-menu";
 const HAMBURGER_VIEW_WIDTH = 1024;
@@ -74,19 +76,15 @@ function attachResizeHandler() {
 }
 
 export function initHeader() {
-  try {
-    nav = document.getElementById(NAVIGATION_MENU_ID);
-    button = document.getElementById(TOGGLE_BUTTON_ID);
+  nav = document.getElementById(NAVIGATION_MENU_ID);
+  button = document.getElementById(TOGGLE_BUTTON_ID);
 
-    if (!nav || !button) {
-      console.warn("Header elements not found, navigation functionality disabled");
-      return;
-    }
-
-    attachToggleHandler();
-    attachScrollHandler();
-    attachResizeHandler();
-  } catch (error) {
-    console.error("Header initialization failed:", error);
+  if (!nav || !button) {
+    throw new Error("Header initialization failed: Navigation menu or toggle button not found");
   }
+
+  attachToggleHandler();
+  attachScrollHandler();
+  attachResizeHandler();
+  logger.info("Header initialized successfully");
 }

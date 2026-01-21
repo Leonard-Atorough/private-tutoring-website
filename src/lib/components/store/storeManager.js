@@ -1,3 +1,5 @@
+import logger from "../../logger.js";
+
 const STATE_KEY = "appState";
 const EXPIRY_HOURS = 24; //hours
 
@@ -9,7 +11,7 @@ export function saveStateToLocalStorage(key, value) {
     const payload = JSON.stringify({ data: state, timestamp: Date.now() });
     localStorage.setItem(STATE_KEY, payload);
   } catch (error) {
-    console.error("Error saving state to localStorage:", error);
+    logger.error("Error saving state to localStorage", { key, errorMessage: error.message }, error);
   }
 }
 
@@ -24,7 +26,8 @@ export function fetchStoredState(key) {
     }
     state = data;
     return data[key] || null;
-  } catch {
+  } catch (error) {
+    logger.error("Error fetching state from localStorage", { key, errorMessage: error.message }, error);
     return null;
   }
 }

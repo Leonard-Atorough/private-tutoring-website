@@ -1,5 +1,12 @@
+import { logger } from "@sentry/browser";
+
 export function initializeFAQ() {
   const faqItems = document.querySelectorAll(".faq-item");
+
+  if (faqItems.length === 0) {
+    logger.warn("No FAQ items found");
+    return;
+  }
 
   faqItems.forEach((item) => {
     const question = item.querySelector(".faq-question");

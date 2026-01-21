@@ -28,8 +28,10 @@ function createStructuredLog(level, message, context = {}) {
  * @param {string} level - Log level
  * @param {string} message - Log message
  * @param {object} data - Additional context data
+ * @param {Error} errorObj - Optional Error object for stack trace. If provided, it will be sent to Sentry.
+ * @returns {object} Structured log object
  */
-function log(level, message, data = {}) {
+function log(level, message, data = {}, errorObj = null) {
   const structuredLog = createStructuredLog(level, message, data);
   if (import.meta.env.VITE_ENVIRONMENT === "development") {
     console[level === "warn" ? "warn" : level === "error" ? "error" : "log"](structuredLog);
@@ -37,7 +39,11 @@ function log(level, message, data = {}) {
 
   // Send to Sentry
   if (level === LOG_LEVELS.ERROR) {
-    Sentry.captureMessage(message, "error");
+    if (errorObj) {
+      Sentry.captureException(errorObj);
+    } else {
+      Sentry.captureMessage(message, "error");
+    }
     Sentry.addBreadcrumb({
       level: "error",
       message,
@@ -72,7 +78,7 @@ const logger = {
   debug: (message, data = {}) => log(LOG_LEVELS.DEBUG, message, data),
   info: (message, data = {}) => log(LOG_LEVELS.INFO, message, data),
   warn: (message, data = {}) => log(LOG_LEVELS.WARN, message, data),
-  error: (message, data = {}) => log(LOG_LEVELS.ERROR, message, data),
+  error: (message, data = {}, errorObj = null) => log(LOG_LEVELS.ERROR, message, data, errorObj),
 };
 
 export default logger;

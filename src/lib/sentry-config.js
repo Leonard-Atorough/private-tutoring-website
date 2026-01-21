@@ -35,5 +35,6 @@ export default function initSentry() {
     console.log("Sentry initialized successfully");
   } catch (error) {
     console.error("Failed to initialize Sentry:", error);
+    Sentry.captureException(error);
   }
 }
