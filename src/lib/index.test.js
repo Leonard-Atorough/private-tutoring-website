@@ -159,7 +159,11 @@ describe("Index Module - Application Initialization", () => {
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     // Should log error but not crash
-    expect(mockLogger.error).toHaveBeenCalledWith("Error initializing header:", expect.any(Error));
+    expect(mockLogger.error).toHaveBeenCalledWith(
+      "Error initializing header",
+      { error: "Header initialization failed" },
+      expect.any(Error),
+    );
 
     // Other components should still be initialized
     expect(modules.modal.initModal).toHaveBeenCalled();
@@ -175,7 +179,8 @@ describe("Index Module - Application Initialization", () => {
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing carousel:",
+      "Error initializing carousel",
+      { error: "Carousel initialization failed" },
       expect.any(Error),
     );
 
@@ -191,7 +196,11 @@ describe("Index Module - Application Initialization", () => {
     await import("./index.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
-    expect(mockLogger.error).toHaveBeenCalledWith("Error initializing modal:", expect.any(Error));
+    expect(mockLogger.error).toHaveBeenCalledWith(
+      "Error initializing modal",
+      { error: "Modal initialization failed" },
+      expect.any(Error),
+    );
 
     // Other components should still be initialized
     expect(modules.header.initHeader).toHaveBeenCalled();
@@ -206,7 +215,8 @@ describe("Index Module - Application Initialization", () => {
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing form state manager:",
+      "Error initializing form state manager",
+      { error: "Form state manager failed" },
       expect.any(Error),
     );
 
@@ -223,7 +233,8 @@ describe("Index Module - Application Initialization", () => {
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     expect(mockLogger.error).toHaveBeenCalledWith(
-      "Error initializing form handler:",
+      "Error initializing form handler",
+      { error: "Form handler failed" },
       expect.any(Error),
     );
   });
