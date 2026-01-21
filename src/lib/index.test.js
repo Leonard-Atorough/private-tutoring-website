@@ -2,6 +2,7 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
+import { createMockLogger } from "../__mocks__/logger.js";
 
 // Mock all component modules
 vi.mock("./components/header/header.js", () => ({
@@ -32,6 +33,10 @@ vi.mock("./components/store/storeManager.js", () => ({
   saveStateToLocalStorage: vi.fn(),
   fetchStoredState: vi.fn(),
 }));
+
+// Register the mock logger before importing the module under test
+const mockLogger = createMockLogger(vi);
+vi.mock("./logger.js", () => ({ default: mockLogger }));
 
 describe("Index Module - Application Initialization", () => {
   let modules;
@@ -145,8 +150,6 @@ describe("Index Module - Application Initialization", () => {
   });
 
   it("should handle header initialization errors gracefully", async () => {
-    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
     // Make initHeader throw an error
     modules.header.initHeader.mockImplementation(() => {
       throw new Error("Header initialization failed");
@@ -156,20 +159,13 @@ describe("Index Module - Application Initialization", () => {
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     // Should log error but not crash
-    expect(consoleError).toHaveBeenCalledWith(
-      "Error initializing header:",
-      expect.any(Error),
-    );
+    expect(mockLogger.error).toHaveBeenCalledWith("Error initializing header:", expect.any(Error));
 
     // Other components should still be initialized
     expect(modules.modal.initModal).toHaveBeenCalled();
-
-    consoleError.mockRestore();
   });
 
   it("should handle carousel initialization errors gracefully", async () => {
-    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
     // Make Carousel constructor throw an error
     modules.carousel.default.mockImplementation(() => {
       throw new Error("Carousel initialization failed");
@@ -178,20 +174,16 @@ describe("Index Module - Application Initialization", () => {
     await import("./index.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
-    expect(consoleError).toHaveBeenCalledWith(
+    expect(mockLogger.error).toHaveBeenCalledWith(
       "Error initializing carousel:",
       expect.any(Error),
     );
 
     // Other components should still be initialized
     expect(modules.modal.initModal).toHaveBeenCalled();
-
-    consoleError.mockRestore();
   });
 
   it("should handle modal initialization errors gracefully", async () => {
-    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
     modules.modal.initModal.mockImplementation(() => {
       throw new Error("Modal initialization failed");
     });
@@ -199,20 +191,13 @@ describe("Index Module - Application Initialization", () => {
     await import("./index.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
-    expect(consoleError).toHaveBeenCalledWith(
-      "Error initializing modal:",
-      expect.any(Error),
-    );
+    expect(mockLogger.error).toHaveBeenCalledWith("Error initializing modal:", expect.any(Error));
 
     // Other components should still be initialized
     expect(modules.header.initHeader).toHaveBeenCalled();
-
-    consoleError.mockRestore();
   });
 
   it("should handle form state manager errors gracefully", async () => {
-    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
     modules.formState.createFormStateManager.mockImplementation(() => {
       throw new Error("Form state manager failed");
     });
@@ -220,20 +205,16 @@ describe("Index Module - Application Initialization", () => {
     await import("./index.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
-    expect(consoleError).toHaveBeenCalledWith(
+    expect(mockLogger.error).toHaveBeenCalledWith(
       "Error initializing form state manager:",
       expect.any(Error),
     );
 
     // Form handler should still be attempted
     expect(modules.form.formHandler).toHaveBeenCalled();
-
-    consoleError.mockRestore();
   });
 
   it("should handle form handler errors gracefully", async () => {
-    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
     modules.form.formHandler.mockImplementation(() => {
       throw new Error("Form handler failed");
     });
@@ -241,17 +222,13 @@ describe("Index Module - Application Initialization", () => {
     await import("./index.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
-    expect(consoleError).toHaveBeenCalledWith(
+    expect(mockLogger.error).toHaveBeenCalledWith(
       "Error initializing form handler:",
       expect.any(Error),
     );
-
-    consoleError.mockRestore();
   });
 
   it("should handle missing app element gracefully", async () => {
-    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
     // Remove app element
     document.getElementById("app")?.remove();
 
@@ -261,7 +238,5 @@ describe("Index Module - Application Initialization", () => {
     expect(() => {
       document.dispatchEvent(new Event("DOMContentLoaded"));
     }).not.toThrow();
-
-    consoleError.mockRestore();
   });
 });
