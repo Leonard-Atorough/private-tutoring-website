@@ -1,4 +1,6 @@
-// firstly, we want to write a function to save form state
+import logger from "../../logger.js";
+import * as Sentry from "@sentry/browser";
+
 function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
   function getFormData(formId) {
     try {
@@ -8,7 +10,7 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
 
       return data;
     } catch (error) {
-      console.error("Error getting form data:", error);
+      logger.error("Error getting form data", { formId, errorMessage: error.message }, error);
       return {};
     }
   }
@@ -22,74 +24,71 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
             field.value = value;
           }
         } catch (fieldError) {
-          console.error(`Error setting field ${key}:`, fieldError);
+          logger.error("Error setting form field", {
+            field: key,
+            errorMessage: fieldError.message,
+          });
         }
       }
     } catch (error) {
-      console.error("Error setting form data:", error);
+      logger.error("Error setting form data", { errorMessage: error.message }, error);
     }
   }
 
   function persistFormState(formId) {
-    try {
-      const form = document.getElementById(formId);
-      if (!form) {
-        throw new Error("Form not found");
-      }
+    const form = document.getElementById(formId);
+    if (!form) throw new Error("Form not found");
 
-      //only load persisted state if form has not been submitted. we also want to set persisted state to false if it has been submitted.
+    const safe = (fn, { message = "Non-fatal error", capture = false, context = {} } = {}) => {
       try {
+        return fn();
+      } catch (err) {
+        logger.error(message, { formId, ...context, errorMessage: err.message });
+        if (capture) Sentry.captureException(err);
+        return undefined;
+      }
+    };
+
+    safe(
+      () => {
         const formSubmitted = fetchStoredState("formSubmitted");
         if (formSubmitted) {
           saveStateToLocalStorage("formSubmitted", false);
           clearFormState(formId);
         }
-      } catch (error) {
-        console.error("Error checking form submission state:", error);
-      }
+      },
+      { message: "Error checking form submission state", capture: true },
+    );
 
-      // we always want to load the persisted state when the form is created, even if it has been submitted.
-      try {
+    safe(
+      () => {
         const saved = fetchStoredState(formId);
-        if (saved) {
-          setFormData(form, saved);
-        }
-      } catch (error) {
-        console.error("Error restoring form state:", error);
+        if (saved) setFormData(form, saved);
+      },
+      { message: "Error restoring form state", capture: true },
+    );
+
+    let idleTimer;
+    const saveState = () => {
+      try {
+        saveStateToLocalStorage(formId, getFormData(formId));
+      } catch (err) {
+        logger.error("Error saving form state", { formId, errorMessage: err.message });
       }
+    };
 
-      let idleTimer;
-      const saveState = () => {
-        try {
-          saveStateToLocalStorage(formId, getFormData(formId));
-        } catch (error) {
-          console.error("Error saving form state:", error);
-        }
-      };
+    const debounceSaveState = () => {
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(saveState, 2000);
+    };
 
-      const debounceSaveState = () => {
-        try {
-          if (idleTimer) clearTimeout(idleTimer);
-          idleTimer = setTimeout(saveState, 2000);
-        } catch (error) {
-          console.error("Error debouncing save:", error);
-        }
-      };
+    form.addEventListener("input", debounceSaveState);
 
-      form.addEventListener("input", debounceSaveState);
+    form.addEventListener("submit", () => {
+      if (idleTimer) clearTimeout(idleTimer);
+    });
 
-      form.addEventListener("submit", () => {
-        try {
-          if (idleTimer) clearTimeout(idleTimer);
-        } catch (error) {
-          console.error("Error clearing idle timer:", error);
-        }
-      });
-      window.addEventListener("beforeunload", saveState);
-    } catch (error) {
-      console.error(`Failed to persist form state for ${formId}:`, error);
-      throw error;
-    }
+    window.addEventListener("beforeunload", saveState);
   }
 
   function clearFormState(formId) {

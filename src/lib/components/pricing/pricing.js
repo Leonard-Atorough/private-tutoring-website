@@ -1,11 +1,3 @@
-/**
- * Pricing Component - Attachment of event listeners only
- * HTML is now static. This file maintains the booking button functionality.
- */
-
-/**
- * Attach event listeners to booking buttons
- */
 export function attachBookingButtons() {
   const bookButtons = document.querySelectorAll(".pricing-card .book-btn");
   bookButtons.forEach((button) => {

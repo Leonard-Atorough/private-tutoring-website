@@ -28,7 +28,6 @@
 }
 
 .pricing-card.popular {
-  translate: 0 -16px;
   background-color: var(--secondary-100);
   border-color: var(--secondary);
 }
