@@ -44,20 +44,8 @@ function log(level, message, data = {}, errorObj = null) {
     } else {
       Sentry.captureMessage(message, "error");
     }
-    Sentry.addBreadcrumb({
-      level: "error",
-      message,
-      data: structuredLog,
-      category: data.category || "app",
-    });
   } else if (level === LOG_LEVELS.WARN) {
     Sentry.captureMessage(message, "warning");
-    Sentry.addBreadcrumb({
-      level: "warning",
-      message,
-      data: structuredLog,
-      category: data.category || "app",
-    });
   } else {
     // Info and debug as breadcrumbs only
     Sentry.addBreadcrumb({

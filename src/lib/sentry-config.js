@@ -12,8 +12,6 @@ export default function initSentry() {
     return;
   }
 
-  console.log("Initializing Sentry");
-
   try {
     Sentry.init({
       dsn,
@@ -31,8 +29,6 @@ export default function initSentry() {
 
       enableLogs: true,
     });
-
-    console.log("Sentry initialized successfully");
   } catch (error) {
     console.error("Failed to initialize Sentry:", error);
     Sentry.captureException(error);
