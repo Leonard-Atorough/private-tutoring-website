@@ -1,7 +1,9 @@
 /**
- * Minimal structured JSON logger
- * Outputs logs as JSON for consistent parsing and analysis
+ * Minimal structured JSON logger with Sentry integration
+ * Outputs logs as JSON and sends to Sentry
  */
+
+import * as Sentry from "@sentry/browser";
 
 const LOG_LEVELS = {
   DEBUG: "debug",
@@ -35,6 +37,34 @@ function createStructuredLog(level, message, context = {}) {
 function log(level, message, data = {}) {
   const structuredLog = createStructuredLog(level, message, data);
   console[level === "warn" ? "warn" : level === "error" ? "error" : "log"](structuredLog);
+
+  // Send to Sentry
+  if (level === LOG_LEVELS.ERROR) {
+    Sentry.captureMessage(message, "error");
+    Sentry.addBreadcrumb({
+      level: "error",
+      message,
+      data: structuredLog,
+      category: data.category || "app",
+    });
+  } else if (level === LOG_LEVELS.WARN) {
+    Sentry.captureMessage(message, "warning");
+    Sentry.addBreadcrumb({
+      level: "warning",
+      message,
+      data: structuredLog,
+      category: data.category || "app",
+    });
+  } else {
+    // Info and debug as breadcrumbs only
+    Sentry.addBreadcrumb({
+      level,
+      message,
+      data: structuredLog,
+      category: data.category || "app",
+    });
+  }
+
   return structuredLog;
 }
 
