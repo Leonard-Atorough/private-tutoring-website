@@ -36,4 +36,10 @@ jobs:
         run: npm run test:ci
 
       - name: Build project
+        env:
+          VITE_ENVIRONMENT: ${{vars.VITE_ENVIRONMENT}}
+          VITE_APP_VERSION: ${{vars.VITE_APP_VERSION}}
+
+          VITE_SENTRY_DSN: ${{secrets.VITE_SENTRY_DSN}}
+          SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
         run: npm run build
