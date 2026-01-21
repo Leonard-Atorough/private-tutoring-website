@@ -5,6 +5,10 @@ import { createFormStateManager } from "./components/state/formStateManager.js";
 import { formHandler } from "./components/form/formHandler.js";
 import * as storeManager from "./components/store/storeManager.js";
 import { initializeFAQ } from "./components/faq/faq.js";
+import logger from "./logger.js";
+import { initSentry } from "./sentry-config.js";
+
+initSentry();
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -16,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       initHeader();
     } catch (headerError) {
-      console.error("Error initializing header:", headerError);
+      logger.error("Error initializing header", { error: headerError.message });
     }
 
     try {
@@ -25,13 +29,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         new Carousel(carousel);
       });
     } catch (carouselError) {
-      console.error("Error initializing carousel:", carouselError);
+      logger.error("Error initializing carousel", { error: carouselError.message });
     }
 
     try {
       initModal();
     } catch (modalError) {
-      console.error("Error initializing modal:", modalError);
+      logger.error("Error initializing modal", { error: modalError.message });
     }
 
     try {
@@ -41,22 +45,24 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
       formManager.persistFormState("contact-form");
     } catch (formStateError) {
-      console.error("Error initializing form state manager:", formStateError);
+      logger.error("Error initializing form state manager", {
+        error: formStateError.message,
+      });
     }
 
     try {
       const handler = formHandler(storeManager);
       handler.mountFormHandler("contact-form");
     } catch (formHandlerError) {
-      console.error("Error initializing form handler:", formHandlerError);
+      logger.error("Error initializing form handler", { error: formHandlerError.message });
     }
 
     try {
       initializeFAQ();
     } catch (faqError) {
-      console.error("Error initializing FAQ:", faqError);
+      logger.error("Error initializing FAQ", { error: faqError.message });
     }
   } catch (error) {
-    console.error("Error initializing application:", error);
+    logger.error("Error initializing application", { error: error.message });
   }
 });
