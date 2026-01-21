@@ -2,8 +2,14 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { formHandler } from "./formHandler.js";
 import { createMockStateManager } from "../../../__mocks__/mockStateManager.js";
+import { createMockLogger } from "../../../__mocks__/logger.js";
+
+// Register the mock logger before importing the module under test
+const mockLogger = createMockLogger(vi);
+vi.mock("../../logger.js", () => ({ default: mockLogger }));
+
+import { formHandler } from "./formHandler.js";
 
 describe("formHandler", () => {
   let mockStateManager;
@@ -84,8 +90,6 @@ describe("formHandler", () => {
     });
 
     it("should handle storage errors gracefully without preventing submission", async () => {
-      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
       // Make saveStateToLocalStorage throw an error
       mockStateManager.saveStateToLocalStorage.mockImplementation(() => {
         throw new Error("Storage quota exceeded");
@@ -101,12 +105,11 @@ describe("formHandler", () => {
 
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      expect(consoleError).toHaveBeenCalledWith(
-        "Failed to save submission state:",
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        "Form submission handler error",
+        { formId: "contact-form", errorMessage: "Storage quota exceeded" },
         expect.any(Error),
       );
-
-      consoleError.mockRestore();
     });
 
     it("should allow form submission even when handler encounters errors", async () => {
