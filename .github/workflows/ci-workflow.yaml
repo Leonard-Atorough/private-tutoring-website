@@ -37,9 +37,9 @@ jobs:
 
       - name: Build project
         env:
-          VITE_ENVIRONMENT: ${{vars.VITE_ENVIRONMENT}}
-          VITE_APP_VERSION: ${{vars.VITE_APP_VERSION}}
+          VITE_ENVIRONMENT: ${{ vars.VITE_ENVIRONMENT || 'development' }}
+          VITE_APP_VERSION: ${{ vars.VITE_APP_VERSION || github.sha }}
 
-          VITE_SENTRY_DSN: ${{secrets.VITE_SENTRY_DSN}}
-          SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN || '' }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN || '' }}
         run: npm run build
