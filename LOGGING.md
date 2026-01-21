@@ -1,6 +1,6 @@
-# Production Logging with Structured JSON
+# Logging Strategy
 
-This project uses a **minimal structured JSON logging system** that provides consistent log formatting without external dependencies.
+This project uses a **structured JSON logging system integrated with Sentry** for error tracking, performance monitoring, and session replay.
 
 ## Overview
 
@@ -15,7 +15,7 @@ Every log entry is output as JSON with a standardized format:
 }
 ```
 
-This allows logs to be easily parsed and analyzed by log aggregation services or your own infrastructure.
+Logs are output to the console and automatically forwarded to Sentry for error tracking and monitoring.
 
 ## Usage
 
@@ -164,44 +164,44 @@ Optional configuration in `.env`:
 VITE_APP_VERSION=1.0.0
 ```
 
-## Zero Dependencies
+## Sentry Integration
 
-This logging system has **zero external dependencies** - it's pure JavaScript. When you're ready to scale logging infrastructure:
+Sentry is integrated for comprehensive error tracking and monitoring:
 
-1. Logs are already in JSON format for easy parsing
-2. You can add a logging service (Sentry, Datadog, etc.) without changing your code
-3. Or implement a custom log shipper to your backend
+### Error Tracking
 
-## Example: Sending Logs to a Backend
+- **Error logs** (`logger.error()`) are captured as messages in Sentry
+- **Warnings** (`logger.warn()`) are captured as warning-level messages
+- **Info & Debug** logs are recorded as breadcrumbs for context
 
-When ready, you can easily add a function to ship logs to your server:
+### Breadcrumb Recording
 
-```javascript
-const logger = {
-  info: (message, data = {}) => {
-    const log = createStructuredLog("info", message, data);
-    console.log(log);
-    // Optionally send to your backend
-    // fetch('/api/logs', { method: 'POST', body: JSON.stringify(log) });
-  },
-  // ... other methods
-};
+All log levels automatically create breadcrumbs in Sentry, providing useful context for investigating errors. Breadcrumbs include:
+
+- The log message
+- The structured log data
+- A category (defaulting to "app")
+- The log level
+
+### Performance Monitoring
+
+- **Transactions are sampled at 20%** to monitor application performance without overwhelming the system
+- Tracks slow requests, rendering delays, and other performance metrics
+
+### Session Replay
+
+- **10% of normal sessions** are recorded for replay
+- **100% of error sessions** are recorded for detailed debugging
+- Allows playback of user interactions leading up to errors
+
+## Configuration
+
+Sentry is configured in [src/lib/sentry-config.js](src/lib/sentry-config.js) with the following environment variables:
+
+```bash
+VITE_SENTRY_DSN=<your-sentry-dsn>
+VITE_ENVIRONMENT=production  # or development, staging, etc.
+VITE_APP_VERSION=1.0.0       # Current application version
 ```
 
-## Future: Easy Migration to Sentry/Datadog
-
-If you want to add error tracking and session replay later, you can extend the logger without changing your code:
-
-```javascript
-import * as Sentry from "@sentry/browser";
-
-// Just wrap the existing logger
-const loggerWithSentry = {
-  error: (message, data = {}) => {
-    const log = createStructuredLog("error", message, data);
-    console.error(log);
-    Sentry.captureException(new Error(message), { extra: data });
-  },
-  // ...
-};
-```
+If `VITE_SENTRY_DSN` is not set, Sentry will not initialize and the application will continue to work with console logging only.
