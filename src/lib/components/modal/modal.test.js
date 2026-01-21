@@ -38,7 +38,9 @@ describe("Modal Component", () => {
         </div>
       `;
       initModal();
-      expect(mockLogger.warn).toHaveBeenCalledWith("No modal trigger buttons found");
+      expect(mockLogger.warn).toHaveBeenCalledWith("No modal trigger buttons found", {
+        selector: ".book-btn",
+      });
     });
   });
 

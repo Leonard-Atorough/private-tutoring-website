@@ -1,8 +1,15 @@
 /**
  * @vitest-environment jsdom
  */
-// import { describe, expect, vi } from "vitest";
+import { vi } from "vitest";
+import { createMockLogger } from "../../../__mocks__/logger.js";
+
+vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
+
 import { initHeader } from "./header.js";
+import logger from "../../logger.js";
+
+const mockLogger = vi.mocked(logger);
 
 const buildDom = () => {
   document.body.innerHTML = `
@@ -56,13 +63,11 @@ describe("Navigation toggle", () => {
   });
 
   it("logs warning and returns early if the toggle button is missing", () => {
-    const consoleWarn = vi.spyOn(console, "warn").mockImplementation(() => {});
     document.getElementById("hamburger-button")?.remove();
     expect(() => initHeader()).not.toThrow();
-    expect(consoleWarn).toHaveBeenCalledWith(
+    expect(mockLogger.warn).toHaveBeenCalledWith(
       "Header elements not found, navigation functionality disabled",
     );
-    consoleWarn.mockRestore();
   });
 });
 

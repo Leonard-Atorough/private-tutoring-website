@@ -68,7 +68,6 @@ function attachResizeHandler() {
       toggleNavMenu(true); // force close
       setNavMenuAccessibilityAttributes();
     } else {
-      // remove accessibility attributes when not in mobile view
       nav.removeAttribute("aria-hidden");
       button.removeAttribute("aria-expanded");
     }
@@ -80,7 +79,8 @@ export function initHeader() {
   button = document.getElementById(TOGGLE_BUTTON_ID);
 
   if (!nav || !button) {
-    throw new Error("Header initialization failed: Navigation menu or toggle button not found");
+    logger.warn("Header elements not found, navigation functionality disabled");
+    return;
   }
 
   attachToggleHandler();

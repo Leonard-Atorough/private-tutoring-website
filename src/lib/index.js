@@ -20,7 +20,6 @@ async function safeInit(name, initFunc) {
 }
 
 export async function initializeApp() {
-  // Guard for non-browser environments
   if (typeof document === "undefined") {
     logger.debug("Skipping app initialization: not in browser environment");
     return;

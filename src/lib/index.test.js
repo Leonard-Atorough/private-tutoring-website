@@ -4,7 +4,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { createMockLogger } from "../__mocks__/logger.js";
 
-// Mock all component modules at file level
 const headerMock = { initHeader: vi.fn() };
 const modalMock = { initModal: vi.fn() };
 const carouselMock = { default: vi.fn() };
@@ -34,7 +33,6 @@ vi.mock("./logger.js", () => ({ default: loggerMock }));
 
 describe("Index Module - Application Initialization", () => {
   beforeEach(async () => {
-    // Clear all mocks before each test
     vi.clearAllMocks();
     headerMock.initHeader.mockClear();
     modalMock.initModal.mockClear();
@@ -46,7 +44,6 @@ describe("Index Module - Application Initialization", () => {
     loggerMock.warn.mockClear();
     loggerMock.error.mockClear();
 
-    // Reset DOM
     document.body.innerHTML = `
       <div id="app" style="opacity: 0;"></div>
       <div id="hamburger-button"></div>
@@ -104,7 +101,6 @@ describe("Index Module - Application Initialization", () => {
   it("should initialize carousel for each carousel-track element", async () => {
     const { initializeApp } = await import("./index.js");
 
-    // Add multiple carousels
     document.body.innerHTML += `
       <div class="carousel-track">
         <div class="testimonial-card">Card A</div>
@@ -125,7 +121,6 @@ describe("Index Module - Application Initialization", () => {
   it("should handle missing app element gracefully", async () => {
     const { initializeApp } = await import("./index.js");
 
-    // Remove app element
     document.getElementById("app")?.remove();
 
     // Should not throw
