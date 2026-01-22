@@ -23,6 +23,7 @@ const storeMock = {
 };
 const faqMock = { initializeFAQ: vi.fn() };
 const loggerMock = createMockLogger(vi);
+const sentryConfigMock = { default: vi.fn() };
 
 vi.mock("./components/header/header.js", () => headerMock);
 vi.mock("./components/modal/modal.js", () => modalMock);
@@ -32,6 +33,7 @@ vi.mock("./components/form/formHandler.js", () => formMock);
 vi.mock("./components/store/storeManager.js", () => storeMock);
 vi.mock("./components/faq/faq.js", () => faqMock);
 vi.mock("./logger.js", () => ({ default: loggerMock }));
+vi.mock("./sentry-config.js", () => sentryConfigMock);
 
 describe("Index Module - Application Initialization", () => {
   beforeEach(async () => {
