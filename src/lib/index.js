@@ -73,6 +73,7 @@ export async function initializeApp() {
 // Auto-initialize app when DOM is ready
 if (typeof document !== "undefined") {
   if (document.readyState === "loading") {
+    logger.debug("Waiting for DOMContentLoaded to initialize app");
     document.addEventListener("DOMContentLoaded", () => {
       initializeApp();
     });

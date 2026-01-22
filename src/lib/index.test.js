@@ -155,5 +155,33 @@ describe("Index Module - Application Initialization", () => {
     // Other components should still initialize
     expect(modalMock.initModal).toHaveBeenCalled();
     expect(carouselMock.default).toHaveBeenCalled();
+    expect(formStateMock.createFormStateManager).toHaveBeenCalled();
+    expect(formMock.formHandler).toHaveBeenCalled();
+    expect(loggerMock.info).toHaveBeenCalledWith("App initialization completed successfully");
+  });
+
+  it("should skip initialization in non-browser environments", async () => {
+    const { initializeApp } = await import("./index.js");
+    const originalDocument = global.document;
+    // Simulate non-browser environment
+    // @ts-ignore
+    delete global.document;
+    await initializeApp();
+
+    expect(loggerMock.debug).toHaveBeenCalledWith(
+      "Skipping app initialization: not in browser environment",
+    );
+    // Restore original document
+    global.document = originalDocument;
+  });
+
+  it("should initialize form state manager with correct storage functions", async () => {
+    const { initializeApp } = await import("./index.js");
+
+    await initializeApp();
+    expect(formStateMock.createFormStateManager).toHaveBeenCalledWith(
+      storeMock.saveStateToLocalStorage,
+      storeMock.fetchStoredState,
+    );
   });
 });
