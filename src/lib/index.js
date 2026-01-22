@@ -70,5 +70,13 @@ export async function initializeApp() {
   }
 }
 
-// Auto-initialize app when DOM is ready (module loads after DOM parse in production)
-initializeApp();
+// Auto-initialize app when DOM is ready
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      initializeApp();
+    });
+  } else {
+    initializeApp();
+  }
+}
