@@ -21,6 +21,7 @@ const storeMock = {
   saveStateToLocalStorage: vi.fn(),
   fetchStoredState: vi.fn(),
 };
+const faqMock = { initializeFAQ: vi.fn() };
 const loggerMock = createMockLogger(vi);
 
 vi.mock("./components/header/header.js", () => headerMock);
@@ -29,6 +30,7 @@ vi.mock("./components/carousel/carousel.js", () => carouselMock);
 vi.mock("./components/state/formStateManager.js", () => formStateMock);
 vi.mock("./components/form/formHandler.js", () => formMock);
 vi.mock("./components/store/storeManager.js", () => storeMock);
+vi.mock("./components/faq/faq.js", () => faqMock);
 vi.mock("./logger.js", () => ({ default: loggerMock }));
 
 describe("Index Module - Application Initialization", () => {
@@ -39,6 +41,7 @@ describe("Index Module - Application Initialization", () => {
     carouselMock.default.mockClear();
     formStateMock.createFormStateManager.mockClear();
     formMock.formHandler.mockClear();
+    faqMock.initializeFAQ.mockClear();
     loggerMock.info.mockClear();
     loggerMock.debug.mockClear();
     loggerMock.warn.mockClear();
@@ -96,6 +99,7 @@ describe("Index Module - Application Initialization", () => {
     expect(carouselMock.default).toHaveBeenCalled();
     expect(formStateMock.createFormStateManager).toHaveBeenCalled();
     expect(formMock.formHandler).toHaveBeenCalled();
+    expect(faqMock.initializeFAQ).toHaveBeenCalled();
   });
 
   it("should initialize carousel for each carousel-track element", async () => {
