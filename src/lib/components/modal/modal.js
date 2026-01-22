@@ -62,7 +62,7 @@ export function initModal() {
       // Focus the close button not the iframe initially
       if (iframe) {
         setTimeout(() => {
-          closeModalBtn.focus();
+          closeModalBtn?.focus();
         }, 300);
       }
     }, 100);
