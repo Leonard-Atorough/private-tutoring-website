@@ -2,8 +2,15 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { formHandler } from "./formHandler.js";
 import { createMockStateManager } from "../../../__mocks__/mockStateManager.js";
+import { createMockLogger } from "../../../__mocks__/logger.js";
+
+vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
+
+import { formHandler } from "./formHandler.js";
+import logger from "../../logger.js";
+
+const mockLogger = vi.mocked(logger);
 
 describe("formHandler", () => {
   let mockStateManager;
@@ -71,12 +78,10 @@ describe("formHandler", () => {
       const form = document.getElementById("contact-form");
       const submitEvent = new Event("submit", { bubbles: true, cancelable: true });
 
-      // Should not throw when form is submitted
       expect(() => form.dispatchEvent(submitEvent)).not.toThrow();
 
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      // Verify state was saved to localStorage
       expect(mockStateManager.saveStateToLocalStorage).toHaveBeenCalledWith(
         "formSubmitted",
         true,
@@ -84,9 +89,6 @@ describe("formHandler", () => {
     });
 
     it("should handle storage errors gracefully without preventing submission", async () => {
-      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
-
-      // Make saveStateToLocalStorage throw an error
       mockStateManager.saveStateToLocalStorage.mockImplementation(() => {
         throw new Error("Storage quota exceeded");
       });
@@ -101,21 +103,17 @@ describe("formHandler", () => {
 
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      expect(consoleError).toHaveBeenCalledWith(
-        "Failed to save submission state:",
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        "Form submission handler error",
+        { formId: "contact-form", errorMessage: "Storage quota exceeded" },
         expect.any(Error),
       );
-
-      consoleError.mockRestore();
     });
 
     it("should allow form submission even when handler encounters errors", async () => {
-      // This test verifies that form submission proceeds naturally
-      // even if the JavaScript handler fails
       const form = document.getElementById("contact-form");
       let submitAllowed = true;
 
-      // Mock addEventListener to verify submission isn't prevented
       const originalAddEventListener = form.addEventListener;
       form.addEventListener = function(eventType, handler) {
         if (eventType === "submit") {
@@ -142,7 +140,6 @@ describe("formHandler", () => {
     });
 
     it("should process form data with multiple field types", async () => {
-      // Reset the mock before this test
       mockStateManager.saveStateToLocalStorage.mockClear();
 
       document.body.innerHTML = `
@@ -158,7 +155,6 @@ describe("formHandler", () => {
         </form>
       `;
 
-      // Create a fresh handler for this test
       const freshHandler = formHandler(mockStateManager);
       freshHandler.mountFormHandler("complex-form");
 
@@ -177,12 +173,9 @@ describe("formHandler", () => {
       const form = document.getElementById("contact-form");
       const addEventListenerSpy = vi.spyOn(form, "addEventListener");
 
-      // Mount handler twice
       handler.mountFormHandler("contact-form");
       handler.mountFormHandler("contact-form");
 
-      // addEventListener should be called twice (once per mount)
-      // but the form should handle this correctly
       expect(addEventListenerSpy).toHaveBeenCalledTimes(2);
 
       addEventListenerSpy.mockRestore();

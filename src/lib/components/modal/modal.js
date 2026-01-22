@@ -9,12 +9,17 @@ export function initModal() {
   const openModalBtns = document.querySelectorAll(MODAL_BUTTON_SELECTOR);
   const closeModalBtn = document.getElementById(MODAL_CLOSE_ID);
 
-  if (!modal || !closeModalBtn) {
-    throw new Error("Modal elements not found, modal functionality disabled");
+  if (!modal) {
+    logger.warn("Modal elements not found, modal functionality disabled");
+    return;
   }
 
   if (openModalBtns.length === 0) {
     logger.warn("No modal trigger buttons found", { selector: MODAL_BUTTON_SELECTOR });
+  }
+
+  if (!closeModalBtn) {
+    logger.warn("No modal close button found", { id: MODAL_CLOSE_ID });
   }
 
   const iframe = modal?.querySelector("iframe");
@@ -57,7 +62,7 @@ export function initModal() {
       // Focus the close button not the iframe initially
       if (iframe) {
         setTimeout(() => {
-          closeModalBtn.focus();
+          closeModalBtn?.focus();
         }, 300);
       }
     }, 100);

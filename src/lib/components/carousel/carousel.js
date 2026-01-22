@@ -34,7 +34,6 @@ export default class Carousel {
     this.carouselElement.addEventListener("mouseleave", () => this.startAutoAdvance());
   }
 
-  // Setup Intersection Observer to track when carousel is visible
   setupVisibilityObserver() {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -60,15 +59,13 @@ export default class Carousel {
       this.visibleItems = 1;
     }
 
-    // Ensure currentIndex is within new bounds and update aria/scroll
     const maxIndex = Math.max(0, this.totalItems - this.visibleItems);
     if (this.currentIndex > maxIndex) this.currentIndex = maxIndex;
-    // Jump to the clamped index without animation to avoid visual jump on resize
     this.carouselElement.scrollTo({ left: this.currentIndex * this.slideWidth });
     this.updateAriaForSlides();
   }
   startAutoAdvance() {
-    if (this.intervalId) return; // already running
+    if (this.intervalId) return;
     this.intervalId = setInterval(() => this.advanceSlide(), this.interval);
   }
   advanceSlide() {
@@ -76,7 +73,6 @@ export default class Carousel {
     this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1);
     this.goTo(this.currentIndex);
   }
-  // stop the carousel when the user hovers over it
   stopAutoAdvance() {
     clearInterval(this.intervalId);
     this.intervalId = null;
@@ -112,7 +108,6 @@ export default class Carousel {
   }
 
   userInteracted() {
-    // stop the auto-advance and restart after a delay (similar to hover behaviour)
     this.stopAutoAdvance();
     this.restartTimeout = setTimeout(() => {
       this.startAutoAdvance();

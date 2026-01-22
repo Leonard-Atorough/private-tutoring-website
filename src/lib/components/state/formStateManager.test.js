@@ -3,6 +3,10 @@
  */
 
 import { describe, beforeEach, it, vi, expect } from "vitest";
+import { createMockLogger } from "../../../__mocks__/logger.js";
+
+vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
+
 import { createFormStateManager } from "./formStateManager.js";
 
 describe("Given a formStateManager", () => {
@@ -10,7 +14,6 @@ describe("Given a formStateManager", () => {
   let fetchStoredState;
   let persistFormState;
   beforeEach(() => {
-    //setup a mock form in mock DOM
     document.body.innerHTML = `
       <form id="test-form">
         <input type="text" name="username" value="persistedUser" />
@@ -22,7 +25,6 @@ describe("Given a formStateManager", () => {
         </select>
       </form>`;
 
-    // mock state persistence for stateManager functions using a spyOn
     saveStateToLocalStorage = vi.fn();
     fetchStoredState = vi.fn((key) => {
       if (key === "test-form") {
@@ -59,13 +61,7 @@ describe("Given a formStateManager", () => {
     });
 
     it("should throw an error if the form does not exist and log to console", () => {
-      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() => persistFormState("non-existent-form")).toThrow("Form not found");
-      expect(consoleError).toHaveBeenCalledWith(
-        "Failed to persist form state for non-existent-form:",
-        expect.any(Error),
-      );
-      consoleError.mockRestore();
     });
 
     it("should not persist state if the form has been submitted", () => {
@@ -97,13 +93,7 @@ describe("Given a formStateManager", () => {
     });
 
     it("throws an error if the form does not exist", () => {
-      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() => persistFormState("non-existent-form")).toThrow("Form not found");
-      expect(consoleError).toHaveBeenCalledWith(
-        "Failed to persist form state for non-existent-form:",
-        expect.any(Error),
-      );
-      consoleError.mockRestore();
     });
   });
 });

@@ -3,7 +3,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import Carousel from "./carousel";
 
-// Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
   constructor(callback) {
     this.callback = callback;
@@ -14,8 +13,6 @@ global.IntersectionObserver = class IntersectionObserver {
     this.callback([{ isIntersecting }]);
   }
 };
-
-// testing the carousel requires mock dom elements and simulating time for the auto-advance feature
 
 beforeEach(() => {
   document.body.innerHTML = `
@@ -39,7 +36,6 @@ beforeEach(() => {
 describe("Carousel Component", () => {
   describe("On large screens (>=1024px)", () => {
     beforeEach(() => {
-      // use a value greater than 1024 to trigger the "large" breakpoint in the implementation
       Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
     });
     it("should initialize correctly", () => {

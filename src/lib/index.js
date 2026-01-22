@@ -10,19 +10,30 @@ import initSentry from "./sentry-config.js";
 
 initSentry();
 
-document.addEventListener("DOMContentLoaded", async () => {
-  async function safeInit(name, initFunc) {
-    try {
-      logger.debug(`Initializing ${name}`);
-      await initFunc();
-    } catch (error) {
-      logger.error(`Error initializing ${name}`, { error: error.message }, error);
-    }
+async function safeInit(name, initFunc) {
+  try {
+    logger.debug(`Initializing ${name}`);
+    await initFunc();
+  } catch (error) {
+    logger.error(`Error initializing ${name}`, { error: error.message }, error);
   }
+}
+
+export async function initializeApp() {
+  if (typeof document === "undefined") {
+    logger.debug("Skipping app initialization: not in browser environment");
+    return;
+  }
+
   try {
     logger.info("App initialization started");
 
     const body = document.getElementById("app");
+    if (!body) {
+      logger.warn("App root element not found");
+      return;
+    }
+
     setTimeout(() => {
       body.style.opacity = 1;
     }, 500);
@@ -57,4 +68,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     logger.error("Error initializing application", { error: error.message }, error);
   }
-});
+}
+
+// Auto-initialize app when DOM is ready
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    logger.debug("Waiting for DOMContentLoaded to initialize app");
+    document.addEventListener("DOMContentLoaded", () => {
+      initializeApp();
+    });
+  } else {
+    initializeApp();
+  }
+}

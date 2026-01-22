@@ -3,7 +3,14 @@
  * @vitest-environment jsdom
  */
 import { describe, beforeEach, it, expect, vi } from "vitest";
+import { createMockLogger } from "../../../__mocks__/logger.js";
+
+vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
+
 import { initModal } from "./modal";
+import logger from "../../logger.js";
+
+const mockLogger = vi.mocked(logger);
 
 describe("Modal Component", () => {
   describe("Initialization", () => {
@@ -15,27 +22,28 @@ describe("Modal Component", () => {
     });
 
     it("should warn if no close button found", () => {
-      const consoleWarn = vi.spyOn(console, "warn").mockImplementation(() => {});
       document.body.innerHTML = `
-        <div id="booking-modal" class="modal"></div>
+        <button id="bookBtn" class="book-btn">Open Modal</button>
+        <div id="booking-modal" class="modal">
+            <iframe src="about:blank"></iframe>
+        </div>
       `;
       initModal();
-      expect(consoleWarn).toHaveBeenCalledWith(
-        "Modal elements not found, modal functionality disabled",
-      );
-      consoleWarn.mockRestore();
+      expect(mockLogger.warn).toHaveBeenCalledWith("No modal close button found", {
+        id: "modal-close",
+      });
     });
 
     it("should warn if no trigger buttons found", () => {
-      const consoleWarn = vi.spyOn(console, "warn").mockImplementation(() => {});
       document.body.innerHTML = `
         <div id="booking-modal" class="modal">
           <button id="modal-close">Close</button>
         </div>
       `;
       initModal();
-      expect(consoleWarn).toHaveBeenCalledWith("No modal trigger buttons found");
-      consoleWarn.mockRestore();
+      expect(mockLogger.warn).toHaveBeenCalledWith("No modal trigger buttons found", {
+        selector: ".book-btn",
+      });
     });
   });
 
