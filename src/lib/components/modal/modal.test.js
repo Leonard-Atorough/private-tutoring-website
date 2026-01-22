@@ -27,7 +27,7 @@ describe("Modal Component", () => {
       `;
       initModal();
       expect(mockLogger.warn).toHaveBeenCalledWith(
-        "Modal elements not found, modal functionality disabled",
+        "No modal close button found",
       );
     });
 
