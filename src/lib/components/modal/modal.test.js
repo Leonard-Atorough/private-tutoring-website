@@ -23,12 +23,15 @@ describe("Modal Component", () => {
 
     it("should warn if no close button found", () => {
       document.body.innerHTML = `
-        <div id="booking-modal" class="modal"></div>
+        <button id="bookBtn" class="book-btn">Open Modal</button>
+        <div id="booking-modal" class="modal">
+            <iframe src="about:blank"></iframe>
+        </div>
       `;
       initModal();
-      expect(mockLogger.warn).toHaveBeenCalledWith(
-        "No modal close button found",
-      );
+      expect(mockLogger.warn).toHaveBeenCalledWith("No modal close button found", {
+        id: "modal-close",
+      });
     });
 
     it("should warn if no trigger buttons found", () => {
