@@ -348,7 +348,7 @@ jobs:
       - uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://deploy-preview-${{ github.event.number }}--kailistacey.com
+            https://deploy-preview-${{ github.event.number }}--kailistacey.netlify.app
           uploadArtifacts: true
 ```
 
