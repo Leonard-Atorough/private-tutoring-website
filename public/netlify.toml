@@ -1,7 +1,8 @@
 [[redirects]]
-  from = "https://kailistutoring.netlify.app/*"
+  from = "/*"
   to = "https://kailistacey.com/:splat"
   status = 301
+  conditions = {Host = ["kailistutoring.netlify.app"]}
 
 [[redirects]]
   from = "/*"
