@@ -1,11 +1,12 @@
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
-
   from = "https://kailistutoring.netlify.app/*"
   to = "https://kailistacey.com/:splat"
   status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
 
 [[plugins]]
   package = "@netlify/plugin-sitemap"
