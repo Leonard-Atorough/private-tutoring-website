@@ -19,7 +19,7 @@
 
 ### Hosting & Infrastructure
 - **Platform**: Netlify
-- **Domain**: kailistutoring.netlify.app
+- **Domain**: kailistacey.com
 - **Analytics**: Plausible.io
 - **SEO**: Google Search Console, structured data (JSON-LD)
 
@@ -348,7 +348,7 @@ jobs:
       - uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://deploy-preview-${{ github.event.number }}--kailistutoring.netlify.app
+            https://deploy-preview-${{ github.event.number }}--kailistacey.com
           uploadArtifacts: true
 ```
 
