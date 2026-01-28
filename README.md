@@ -4,7 +4,7 @@ A modern, responsive landing page for a private tutoring business specializing i
 
 ## 🌐 Live Site
 
-[https://kailistutoring.netlify.app/](https://kailistutoring.netlify.app/)
+[https://kailistacey.com/](https://kailistacey.com/)
 
 ## 📋 Overview
 
@@ -273,7 +273,7 @@ This is a private project for Kaili Stacey's tutoring business. For inquiries or
 
 ## 📧 Contact
 
-For business inquiries, please visit [kailistutoring.netlify.app](https://kailistutoring.netlify.app/) or email kailistacey@gmail.com
+For business inquiries, please visit [kailistacey.com](https://kailistacey.com/) or email kailistacey@gmail.com
 
 ---
 
