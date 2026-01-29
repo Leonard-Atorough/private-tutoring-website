@@ -30,3 +30,6 @@ coverage/*
 # Environment variables
 .env
 .env.local
+
+# Planning files
+.planning
