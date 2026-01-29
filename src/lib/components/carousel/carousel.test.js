@@ -148,10 +148,9 @@ describe("Carousel Component", () => {
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
       const nextBtn = document.querySelector(".carousel-next");
-      const maxIndex = Math.max(0, carouselInstance.totalItems - carouselInstance.visibleItems);
 
-      // Navigate to the last slide
-      carouselInstance.currentIndex = maxIndex;
+      // Navigate to the last item
+      carouselInstance.currentIndex = carouselInstance.totalItems - 1;
 
       // Click next to wrap around
       nextBtn.click();
@@ -163,7 +162,6 @@ describe("Carousel Component", () => {
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
       const prevBtn = document.querySelector(".carousel-prev");
-      const maxIndex = Math.max(0, carouselInstance.totalItems - carouselInstance.visibleItems);
 
       // Start at index 0
       carouselInstance.currentIndex = 0;
@@ -171,7 +169,7 @@ describe("Carousel Component", () => {
       // Click prev to wrap to end
       prevBtn.click();
 
-      expect(carouselInstance.currentIndex).toBe(maxIndex);
+      expect(carouselInstance.currentIndex).toBe(carouselInstance.totalItems - 1);
     });
   });
 
@@ -294,7 +292,7 @@ describe("Carousel Component", () => {
       // Navigate forward
       carouselInstance.next();
 
-      // Cards 1-3 should now be visible (index 1, 2, 3)
+      // Now at index 1, cards 1-3 should be visible (visibleItems = 3)
       expect(cards[0].getAttribute("aria-hidden")).toBe("true");
       expect(cards[1].getAttribute("aria-hidden")).toBe("false");
       expect(cards[2].getAttribute("aria-hidden")).toBe("false");
@@ -346,21 +344,20 @@ describe("Carousel Component", () => {
       expect(carouselInstance.visibleItems).toBe(1);
     });
 
-    it("should clamp currentIndex when resizing reduces visible items", () => {
+    it("should maintain currentIndex when resizing", () => {
       Object.defineProperty(window, "innerWidth", { value: 1200, writable: true, configurable: true });
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
 
-      // Navigate to last possible position for 3 visible items
-      carouselInstance.currentIndex = 2; // Max index for 3 visible items is 2 (5 - 3 = 2)
+      // Navigate to position 2
+      carouselInstance.currentIndex = 2;
 
       // Resize to show only 1 item at a time
       Object.defineProperty(window, "innerWidth", { value: 500, writable: true, configurable: true });
       window.dispatchEvent(new Event("resize"));
 
-      // Max index for 1 visible item is 4 (5 - 1 = 4)
-      // Current index should remain valid
-      expect(carouselInstance.currentIndex).toBeLessThanOrEqual(4);
+      // Current index should remain the same (no clamping in new design)
+      expect(carouselInstance.currentIndex).toBe(2);
     });
   });
 
