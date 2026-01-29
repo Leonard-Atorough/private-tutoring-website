@@ -4,7 +4,7 @@ function formHandler(stateManager) {
   function mountFormHandler(formId) {
     const form = document.getElementById(formId);
     if (!form) {
-      logger.warn("Form not found", { formId });
+      logger.error(`Form with id ${formId} not found`, { formId }, new Error("Form not found"));
       return;
     }
 

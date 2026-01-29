@@ -24,6 +24,7 @@ describe("formHandler", () => {
   describe("mountFormHandler", () => {
     it("should log an error if form is not found", () => {
       const nonExistentFormId = "non-existent-form";
+      handler.mountFormHandler(nonExistentFormId);
       expect(mockLogger.error).toHaveBeenCalledWith(
         `Form with id ${nonExistentFormId} not found`,
         { formId: nonExistentFormId },
