@@ -1,9 +1,13 @@
 import logger from "../../logger.js";
 
 function formHandler(stateManager) {
+  const missingFormError = new Set();
+
   function mountFormHandler(formId) {
     const form = document.getElementById(formId);
     if (!form) {
+      if (missingFormError.has(formId)) return;
+      missingFormError.add(formId);
       logger.error(`Form with id ${formId} not found`, { formId }, new Error("Form not found"));
       return;
     }

@@ -19,6 +19,7 @@ describe("formHandler", () => {
   beforeEach(() => {
     mockStateManager = createMockStateManager();
     handler = formHandler(mockStateManager);
+    mockLogger.error.mockClear();
   });
 
   describe("mountFormHandler", () => {
@@ -30,6 +31,12 @@ describe("formHandler", () => {
         { formId: nonExistentFormId },
         expect.any(Error),
       );
+    });
+    it("should not log duplicate error for missing form on multiple mounts", () => {
+      const nonExistentFormId = "non-existent-form-duplicate";
+      handler.mountFormHandler(nonExistentFormId);
+      handler.mountFormHandler(nonExistentFormId);
+      expect(mockLogger.error).toHaveBeenCalledTimes(1);
     });
 
     it("should attach submit event listener to the form", () => {
