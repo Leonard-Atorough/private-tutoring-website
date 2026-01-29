@@ -19,14 +19,24 @@ describe("formHandler", () => {
   beforeEach(() => {
     mockStateManager = createMockStateManager();
     handler = formHandler(mockStateManager);
+    mockLogger.error.mockClear();
   });
 
   describe("mountFormHandler", () => {
-    it("should throw an error if form is not found", () => {
+    it("should log an error if form is not found", () => {
       const nonExistentFormId = "non-existent-form";
-      expect(() => handler.mountFormHandler(nonExistentFormId)).toThrow(
+      handler.mountFormHandler(nonExistentFormId);
+      expect(mockLogger.error).toHaveBeenCalledWith(
         `Form with id ${nonExistentFormId} not found`,
+        { formId: nonExistentFormId },
+        expect.any(Error),
       );
+    });
+    it("should not log duplicate error for missing form on multiple mounts", () => {
+      const nonExistentFormId = "non-existent-form-duplicate";
+      handler.mountFormHandler(nonExistentFormId);
+      handler.mountFormHandler(nonExistentFormId);
+      expect(mockLogger.error).toHaveBeenCalledTimes(1);
     });
 
     it("should attach submit event listener to the form", () => {
@@ -82,10 +92,7 @@ describe("formHandler", () => {
 
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      expect(mockStateManager.saveStateToLocalStorage).toHaveBeenCalledWith(
-        "formSubmitted",
-        true,
-      );
+      expect(mockStateManager.saveStateToLocalStorage).toHaveBeenCalledWith("formSubmitted", true);
     });
 
     it("should handle storage errors gracefully without preventing submission", async () => {
@@ -115,10 +122,10 @@ describe("formHandler", () => {
       let submitAllowed = true;
 
       const originalAddEventListener = form.addEventListener;
-      form.addEventListener = function(eventType, handler) {
+      form.addEventListener = function (eventType, handler) {
         if (eventType === "submit") {
           // Wrap the handler to check if it prevents default
-          const wrappedHandler = function(event) {
+          const wrappedHandler = function (event) {
             handler.call(this, event);
             submitAllowed = !event.defaultPrevented;
           };

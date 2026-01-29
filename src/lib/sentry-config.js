@@ -28,7 +28,33 @@ export default function initSentry() {
       replaysOnErrorSampleRate: 1.0,
 
       enableLogs: true,
+
+      beforeSend(event) {
+        if (event.exception) {
+          event.tags = event.tags || {};
+          event.tags.source = "beforeSend";
+          event.tags.page = window.location.pathname;
+          event.contexts = {
+            ...event.contexts,
+            page: {
+              url: window.location.href,
+              title: document.title,
+              userAgent: navigator.userAgent,
+              timestamp: new Date().toISOString(),
+            },
+          };
+        }
+        return event;
+      },
     });
+    Sentry.setTag("service", "tutoring-website");
+    Sentry.setTag("region", "australia");
+    Sentry.setTag("domain", "kailistacey.com");
+
+    if (import.meta.env.VITE_ENVIRONMENT === "production") {
+      Sentry.setTag("sentry_environment", "production");
+      Sentry.setTag("deployment", "netlify-prod");
+    }
   } catch (error) {
     console.error("Failed to initialize Sentry:", error);
     Sentry.captureException(error);

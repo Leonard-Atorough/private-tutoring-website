@@ -1,11 +1,15 @@
 import logger from "../../logger.js";
 
-// we need to also clear the cache to prevent it reinserting data iinto the form. lets use dependency injection.
 function formHandler(stateManager) {
+  const missingFormError = new Set();
+
   function mountFormHandler(formId) {
     const form = document.getElementById(formId);
     if (!form) {
-      throw new Error(`Form with id ${formId} not found`);
+      if (missingFormError.has(formId)) return;
+      missingFormError.add(formId);
+      logger.error(`Form with id ${formId} not found`, { formId }, new Error("Form not found"));
+      return;
     }
 
     form.addEventListener("submit", async () => {
