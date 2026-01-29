@@ -1,3 +1,5 @@
+import { logger } from "@sentry/browser";
+
 export default class Carousel {
   constructor(carouselElement, interval = 3000) {
     if (!carouselElement) {
@@ -11,7 +13,7 @@ export default class Carousel {
     this.totalItems = this.items.length;
 
     if (this.totalItems === 0) {
-      console.warn("No carousel items found");
+      logger.warn("Carousel initialized with no items", { carouselElement });
       return;
     }
 
