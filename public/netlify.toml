@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/"
+  to = "https://kailistacey.com/"
+  status = 301
+  conditions = {Host = ["kailistutoring.netlify.app"]}
+
+[[redirects]]
   from = "/*"
   to = "https://kailistacey.com/:splat"
   status = 301
@@ -7,7 +13,7 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 404
+  status = 200
 
 [[plugins]]
   package = "@netlify/plugin-sitemap"
