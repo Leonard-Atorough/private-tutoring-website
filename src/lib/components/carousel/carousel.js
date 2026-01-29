@@ -61,8 +61,6 @@ export default class Carousel {
       this.visibleItems = 1;
     }
 
-    const maxIndex = Math.max(0, this.totalItems - this.visibleItems);
-    if (this.currentIndex > maxIndex) this.currentIndex = maxIndex;
     this.carouselElement.scrollTo({ left: this.currentIndex * this.slideWidth });
     this.updateAriaForSlides();
   }
@@ -70,11 +68,12 @@ export default class Carousel {
     if (this.intervalId) return;
     this.intervalId = setInterval(() => this.advanceSlide(), this.interval);
   }
+
   advanceSlide() {
-    const maxIndex = Math.max(0, this.totalItems - this.visibleItems);
-    this.currentIndex = (this.currentIndex + 1) % (maxIndex + 1);
+    this.currentIndex = (this.currentIndex + 1) % this.totalItems;
     this.goTo(this.currentIndex);
   }
+
   stopAutoAdvance() {
     clearInterval(this.intervalId);
     this.intervalId = null;
@@ -118,8 +117,7 @@ export default class Carousel {
   }
 
   goTo(index) {
-    const maxIndex = Math.max(0, this.totalItems - this.visibleItems);
-    this.currentIndex = Math.min(Math.max(0, index), maxIndex);
+    this.currentIndex = index % this.totalItems;
     this.carouselElement.scrollTo({
       left: this.currentIndex * this.slideWidth,
       behavior: "smooth",
@@ -149,13 +147,11 @@ export default class Carousel {
   }
 
   next() {
-    const maxIndex = Math.max(0, this.totalItems - this.visibleItems);
-    this.goTo(this.currentIndex + 1 > maxIndex ? 0 : this.currentIndex + 1);
+    this.goTo(this.currentIndex + 1);
   }
 
   prev() {
-    const maxIndex = Math.max(0, this.totalItems - this.visibleItems);
-    this.goTo(this.currentIndex - 1 < 0 ? maxIndex : this.currentIndex - 1);
+    this.goTo(this.currentIndex - 1 < 0 ? this.totalItems - 1 : this.currentIndex - 1);
   }
 
   updateAriaForSlides() {

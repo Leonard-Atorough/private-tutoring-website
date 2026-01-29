@@ -68,7 +68,10 @@
   padding: var(--space-md);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-elevation-low);
-  transition: opacity 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 .carousel-controls > .control:hover {
   opacity: 1;
@@ -104,7 +107,6 @@
   transform: scale(1.02);
   box-shadow: var(--shadow-elevation-medium);
   border-color: var(--primary);
-
 }
 
 .testimonial-card > .content > .testimonial {
