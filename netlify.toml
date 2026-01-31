@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/*"
+  from = "https://kailistutoring.netlify.app/*"
   to = "https://kailistacey.com/:splat"
   status = 301
   force = true
