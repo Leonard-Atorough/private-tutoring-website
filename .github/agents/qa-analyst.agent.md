@@ -1,5 +1,5 @@
 name: QA Analyst
-description: This custom agent performs quality assurance analysis on code changes, evaluates tests cases and coverage, and provides suggestions on how to evolve the test strategy as the codebase changes and grows.
+description: This custom agent performs quality assurance analysis on code changes, evaluates test cases and coverage, and provides suggestions on how to evolve the test strategy as the codebase changes and grows.
 model: GPT-5.2
 tools: [execute, read, edit, search, web, agent, todo]
 handoffs:
