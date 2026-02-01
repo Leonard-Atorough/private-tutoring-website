@@ -85,8 +85,10 @@ export default class Carousel {
 
   attachControls() {
     // controls are expected to be siblings of the track inside the carousel container
-    this.prevBtn = this.carouselElement.querySelector(".control.-prev");
-    this.nextBtn = this.carouselElement.querySelector(".control.-next");
+    // Search from the parent carousel container instead of the track element
+    const container = this.carouselElement.parentElement;
+    this.prevBtn = container.querySelector(".control.-prev");
+    this.nextBtn = container.querySelector(".control.-next");
 
     if (this.prevBtn) {
       // apply existing button styles if not already present
