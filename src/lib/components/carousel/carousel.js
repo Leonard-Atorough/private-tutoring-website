@@ -85,13 +85,13 @@ export default class Carousel {
 
   attachControls() {
     // controls are expected to be siblings of the track inside the carousel container
-    const container = this.carouselElement.parentElement || document;
-    this.prevBtn = container.querySelector(".carousel-prev");
-    this.nextBtn = container.querySelector(".carousel-next");
+    this.prevBtn = document.querySelector(".control.-prev");
+    this.nextBtn = document.querySelector(".control.-next");
+
+    console.log("Found carousel controls", { prevBtn: this.prevBtn, nextBtn: this.nextBtn });
 
     if (this.prevBtn) {
       // apply existing button styles if not already present
-      this.prevBtn.classList.add("button", "-secondary");
       this.prevBtn.addEventListener("click", (e) => {
         e.preventDefault();
         this.userInteracted();
@@ -99,13 +99,14 @@ export default class Carousel {
       });
     }
     if (this.nextBtn) {
-      this.nextBtn.classList.add("button", "-secondary");
       this.nextBtn.addEventListener("click", (e) => {
         e.preventDefault();
         this.userInteracted();
         this.next();
       });
     }
+
+    console.log("Carousel controls attached", { prevBtn: this.prevBtn, nextBtn: this.nextBtn });
   }
 
   userInteracted() {
