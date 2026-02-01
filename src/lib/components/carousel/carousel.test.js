@@ -97,7 +97,7 @@ describe("Carousel Component", () => {
     beforeEach(() => {
       document.body.innerHTML = `
         <div class="carousel-container">
-          <button class="carousel-prev">Previous</button>
+          <button class="control -prev">Previous</button>
           <div class="carousel-track" style="width: 600px; overflow: hidden;">
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
@@ -105,7 +105,7 @@ describe("Carousel Component", () => {
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
           </div>
-          <button class="carousel-next">Next</button>
+          <button class="control -next">Next</button>
         </div>
       `;
       const carousel = document.querySelector(".carousel-track");
@@ -120,7 +120,7 @@ describe("Carousel Component", () => {
     it("should navigate to next slide when next button is clicked", () => {
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
-      const nextBtn = document.querySelector(".carousel-next");
+      const nextBtn = document.querySelector(".control.-next");
       const initialIndex = carouselInstance.currentIndex;
 
       nextBtn.click();
@@ -131,8 +131,8 @@ describe("Carousel Component", () => {
     it("should navigate to previous slide when prev button is clicked", () => {
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
-      const nextBtn = document.querySelector(".carousel-next");
-      const prevBtn = document.querySelector(".carousel-prev");
+      const nextBtn = document.querySelector(".control.-next");
+      const prevBtn = document.querySelector(".control.-prev");
 
       // Move forward first
       nextBtn.click();
@@ -147,7 +147,7 @@ describe("Carousel Component", () => {
     it("should wrap to start when next is clicked at the end", () => {
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
-      const nextBtn = document.querySelector(".carousel-next");
+      const nextBtn = document.querySelector(".control.-next");
 
       // Navigate to the last item
       carouselInstance.currentIndex = carouselInstance.totalItems - 1;
@@ -161,7 +161,7 @@ describe("Carousel Component", () => {
     it("should wrap to end when prev is clicked at the start", () => {
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
-      const prevBtn = document.querySelector(".carousel-prev");
+      const prevBtn = document.querySelector(".control.-prev");
 
       // Start at index 0
       carouselInstance.currentIndex = 0;
@@ -177,7 +177,7 @@ describe("Carousel Component", () => {
     beforeEach(() => {
       document.body.innerHTML = `
         <div class="carousel-container">
-          <button class="carousel-prev">Previous</button>
+          <button class="control -prev">Previous</button>
           <div class="carousel-track" style="width: 600px; overflow: hidden;">
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 1</div>
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 2</div>
@@ -185,7 +185,7 @@ describe("Carousel Component", () => {
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 4</div>
             <div class="testimonial-card" style="width: 200px; display: inline-block;">Testimonial 5</div>
           </div>
-          <button class="carousel-next">Next</button>
+          <button class="control -next">Next</button>
         </div>
       `;
       const carousel = document.querySelector(".carousel-track");
@@ -201,7 +201,7 @@ describe("Carousel Component", () => {
       vi.useFakeTimers();
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel, 1000);
-      const nextBtn = document.querySelector(".carousel-next");
+      const nextBtn = document.querySelector(".control.-next");
       const initialScrollLeft = carousel.scrollLeft;
 
       // Click button to trigger user interaction
@@ -212,7 +212,7 @@ describe("Carousel Component", () => {
       const scrollAfterPause = carousel.scrollLeft;
 
       // Should restart after 5 second delay
-      vi.advanceTimersByTime(3000); // Total 5 seconds
+      vi.advanceTimersByTime(3100); // Advance to past 5 second mark (5000 + 100ms buffer)
       vi.advanceTimersByTime(1000); // One more interval
 
       expect(carousel.scrollLeft).toBeGreaterThan(scrollAfterPause);
@@ -331,21 +331,33 @@ describe("Carousel Component", () => {
     });
 
     it("should update visible items when window is resized", () => {
-      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true, configurable: true });
+      Object.defineProperty(window, "innerWidth", {
+        value: 1200,
+        writable: true,
+        configurable: true,
+      });
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
 
       expect(carouselInstance.visibleItems).toBe(3);
 
       // Simulate resize to mobile
-      Object.defineProperty(window, "innerWidth", { value: 500, writable: true, configurable: true });
+      Object.defineProperty(window, "innerWidth", {
+        value: 500,
+        writable: true,
+        configurable: true,
+      });
       window.dispatchEvent(new Event("resize"));
 
       expect(carouselInstance.visibleItems).toBe(1);
     });
 
     it("should maintain currentIndex when resizing", () => {
-      Object.defineProperty(window, "innerWidth", { value: 1200, writable: true, configurable: true });
+      Object.defineProperty(window, "innerWidth", {
+        value: 1200,
+        writable: true,
+        configurable: true,
+      });
       const carousel = document.querySelector(".carousel-track");
       const carouselInstance = new Carousel(carousel);
 
@@ -353,7 +365,11 @@ describe("Carousel Component", () => {
       carouselInstance.currentIndex = 2;
 
       // Resize to show only 1 item at a time
-      Object.defineProperty(window, "innerWidth", { value: 500, writable: true, configurable: true });
+      Object.defineProperty(window, "innerWidth", {
+        value: 500,
+        writable: true,
+        configurable: true,
+      });
       window.dispatchEvent(new Event("resize"));
 
       // Current index should remain the same (no clamping in new design)

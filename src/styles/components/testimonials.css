@@ -50,10 +50,10 @@
 }
 
 .carousel-controls {
-  position: absolute;
   top: 60%;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+  gap: var(--space-lg);
   display: none;
 }
 
@@ -87,9 +87,11 @@
 
 .testimonial-card > .content {
   height: 100%;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: var(--space-lg);
   overflow-y: hidden;
   text-overflow: ellipsis;
@@ -124,10 +126,10 @@
   width: 100%;
   font-weight: 600;
   text-align: center;
-  font-size: var(--font-size-1);
+  font-size: var(--font-size-3);
 }
 
-.testimonial-card > .content > .author-title {
+.testimonial-card > .content > .title {
   width: 100%;
   font-weight: 400;
   text-align: center;
@@ -156,8 +158,32 @@
   }
 
   .carousel-controls {
-    position: relative;
-    justify-content: center;
+    display: flex;
+  }
+  .carousel-controls > .control {
+    margin: 0 var(--space-sm);
+    opacity: 1;
+    border: 4px solid var(--primary);
+    background-color: transparent;
+  }
+
+  .carousel-controls > .control.-prev {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    width: 100%;
+  }
+
+  .carousel-controls > .control.-next {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    width: 100%;
+  }
+}
+
+/* End of mobile section */
+
+/* Tablet screen styling */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .carousel-controls {
+    display: flex;
   }
   .carousel-controls > .control {
     margin: 0 var(--space-sm);

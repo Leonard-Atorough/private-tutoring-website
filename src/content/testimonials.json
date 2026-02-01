@@ -3,27 +3,21 @@
   "testimonials": [
     {
       "id": "t-1",
-      "author": "A Satisfied Parent",
-      "author-title": "Mother of Chiara",
+      "author": "Eugenia",
+      "title": "Parent",
       "text": "Kaili is an inspiring tutor for my daughter Chiara. She is always able to provide help and guidance when needed. Chiara has improved her confidence and grades since starting lessons with Kaili."
     },
     {
       "id": "t-2",
-      "author": "A Happy Student",
-      "author-title": "Student",
-      "text": "Kaili is an amazing tutor! She has helped me improve my understanding of complex math concepts and boosted my confidence in the subject. Her personalized approach to teaching has made a significant difference in my academic performance."
+      "author": "Troy",
+      "title": "Parent",
+      "text": "Lotte really struggled grasping and keeping pace with her Maths class, since she started tutoring with Kaili her grades have improved, her confidence has grown and she is fully engaged in her own progression. Kaili's feedback and support for Lotte has been invaluable."
     },
     {
       "id": "t-3",
-      "author": "Another Satisfied Student",
-      "author-title": "Student",
-      "text": "I highly recommend Kaili as a tutor. She is patient, knowledgeable, and always willing to go the extra mile to help her students succeed. Thanks to her guidance, I was able to achieve my academic goals and improve my grades."
-    },
-    {
-      "id": "t-4",
-      "author": "Yet Another Happy Student",
-      "author-title": "Student",
-      "text": "Kaili is a fantastic tutor who truly cares about her students' success. She has a talent for explaining complex concepts in a way that is easy to understand, and her enthusiasm for teaching is contagious. I am grateful for the support and guidance she has provided me throughout my academic journey."
+      "author": "Jules",
+      "title": "Parent",
+      "text": "Kaili tutors my twins in IB physics and chemistry. She has been very helpful and is very caring. They both feel very comfortable with her and their marks have improved."
     }
   ]
 }
