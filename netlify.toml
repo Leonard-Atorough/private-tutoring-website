@@ -1,8 +1,8 @@
 [[redirects]]
-  from = "/*"
+  from = "https://kailistutoring.netlify.app/*"
   to = "https://kailistacey.com/:splat"
   status = 301
-  conditions = {Host = ["kailistutoring.netlify.app"]}
+  force = true
 
 [[redirects]]
   from = "/*"
@@ -11,12 +11,8 @@
 
 [[plugins]]
   package = "@netlify/plugin-sitemap"
-
   [plugins.inputs]
   buildDir = "dist"
+  changeFreq = "monthly"
+  priority = 1.0
   
-  [plugins.inputs.changeFrequencies]
-  "/" = "monthly"
-  
-  [plugins.inputs.priorities]
-  "/" = 1.0
