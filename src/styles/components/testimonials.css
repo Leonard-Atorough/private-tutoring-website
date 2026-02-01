@@ -193,7 +193,7 @@
   }
 
   .carousel-controls > .control.-prev {
-  border-radius: var(--radius-md) 0 0 var(--radius-md);
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
     width: 100%;
   }
 
