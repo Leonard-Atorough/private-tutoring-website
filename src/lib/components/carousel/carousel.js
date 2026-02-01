@@ -88,8 +88,6 @@ export default class Carousel {
     this.prevBtn = document.querySelector(".control.-prev");
     this.nextBtn = document.querySelector(".control.-next");
 
-    console.log("Found carousel controls", { prevBtn: this.prevBtn, nextBtn: this.nextBtn });
-
     if (this.prevBtn) {
       // apply existing button styles if not already present
       this.prevBtn.addEventListener("click", (e) => {
@@ -105,8 +103,6 @@ export default class Carousel {
         this.next();
       });
     }
-
-    console.log("Carousel controls attached", { prevBtn: this.prevBtn, nextBtn: this.nextBtn });
   }
 
   userInteracted() {
