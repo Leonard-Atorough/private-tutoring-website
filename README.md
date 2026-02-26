@@ -20,7 +20,7 @@ This is a professional single-page application (SPA) built for Kaili Stacey, a P
 - **Review Stats** - 5-star rating and student count display for social proof
 - **Strategic CTAs** - Multiple call-to-action placements throughout the page to boost conversions
 - **Booking Integration** - Embedded Google Calendar appointments for easy session scheduling
-- **Contact Form** - FormSubmit.co integration with spam protection and form state persistence
+- **Contact Form** - Netlify Forms integration with spam protection and form state persistence
 - **SEO Optimized** - Comprehensive meta tags, enhanced structured data (JSON-LD), and sitemap
 - **Accessibility** - ARIA labels, keyboard navigation, and semantic HTML throughout
 - **Performance** - WebP images, lazy loading, and optimized asset delivery
@@ -34,7 +34,7 @@ This is a professional single-page application (SPA) built for Kaili Stacey, a P
 - **Styling**: Pure CSS with modular architecture
 - **Deployment**: Netlify
 - **Analytics**: Plausible (privacy-focused)
-- **Form Handling**: FormSubmit.co
+- **Form Handling**: Netlify Forms
 
 ## 📁 Project Structure
 
@@ -196,7 +196,7 @@ npm run dev:test
 
 - CORS headers configured (COOP, COEP)
 - Form honeypot field for spam prevention
-- Hashed FormSubmit.co endpoint
+- Netlify Forms with built-in spam protection
 - No exposed API keys or credentials
 - Input validation on contact form
 
@@ -246,7 +246,7 @@ The project is configured for automatic deployment:
 
 - Dependency injection for state management
 - Event delegation for form submission
-- Integration with FormSubmit.co
+- Integration with Netlify Forms API
 - Submission tracking via localStorage
 
 ### State Manager
