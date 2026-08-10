@@ -1,6 +1,6 @@
 import { initHeader } from "./components/header/header.js";
 import { initModal } from "./components/modal/modal.js";
-import Carousel from "./components/carousel/carousel.js";
+import SwiperCarousel from "./components/carousel/swiper-carousel.js";
 import { createFormStateManager } from "./components/state/formStateManager.js";
 import { formHandler } from "./components/form/formHandler.js";
 import * as storeManager from "./components/store/storeManager.js";
@@ -42,11 +42,8 @@ export async function initializeApp() {
 
     await safeInit("modal", initModal);
 
-    await safeInit("carousel", () => {
-      const carousels = document.querySelectorAll(".carousel-track");
-      carousels.forEach((carousel) => {
-        new Carousel(carousel);
-      });
+    await safeInit("swiper carousel", () => {
+      SwiperCarousel.initAll(".testimonials-carousel");
     });
 
     await safeInit("form state manager", () => {
