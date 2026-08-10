@@ -6,7 +6,14 @@ import { createMockLogger } from "../__mocks__/logger.js";
 
 const headerMock = { initHeader: vi.fn() };
 const modalMock = { initModal: vi.fn() };
-const carouselMock = { default: vi.fn() };
+const swiperCarouselMock = {
+  default: {
+    initAll: vi.fn((selector, interval) => {
+      const containers = document.querySelectorAll(selector);
+      return Array.from(containers).map(container => ({ container, interval }));
+    }),
+  },
+};
 const formStateMock = {
   createFormStateManager: vi.fn(() => ({
     persistFormState: vi.fn(),
@@ -27,20 +34,24 @@ const sentryConfigMock = { default: vi.fn() };
 
 vi.mock("./components/header/header.js", () => headerMock);
 vi.mock("./components/modal/modal.js", () => modalMock);
-vi.mock("./components/carousel/carousel.js", () => carouselMock);
+vi.mock("./components/carousel/swiper-carousel.js", () => swiperCarouselMock);
 vi.mock("./components/state/formStateManager.js", () => formStateMock);
 vi.mock("./components/form/formHandler.js", () => formMock);
 vi.mock("./components/store/storeManager.js", () => storeMock);
 vi.mock("./components/faq/faq.js", () => faqMock);
 vi.mock("./logger.js", () => ({ default: loggerMock }));
 vi.mock("./sentry-config.js", () => sentryConfigMock);
+// Mock Swiper CSS imports
+vi.mock("swiper/css", () => ({}));
+vi.mock("swiper/css/navigation", () => ({}));
+vi.mock("swiper/css/autoplay", () => ({}));
+vi.mock("swiper/css/a11y", () => ({}));
 
 describe("Index Module - Application Initialization", () => {
   beforeEach(async () => {
     vi.clearAllMocks();
     headerMock.initHeader.mockClear();
     modalMock.initModal.mockClear();
-    carouselMock.default.mockClear();
     formStateMock.createFormStateManager.mockClear();
     formMock.formHandler.mockClear();
     faqMock.initializeFAQ.mockClear();
@@ -98,30 +109,30 @@ describe("Index Module - Application Initialization", () => {
 
     expect(headerMock.initHeader).toHaveBeenCalled();
     expect(modalMock.initModal).toHaveBeenCalled();
-    expect(carouselMock.default).toHaveBeenCalled();
+    expect(swiperCarouselMock.default.initAll).toHaveBeenCalled();
     expect(formStateMock.createFormStateManager).toHaveBeenCalled();
     expect(formMock.formHandler).toHaveBeenCalled();
     expect(faqMock.initializeFAQ).toHaveBeenCalled();
   });
 
-  it("should initialize carousel for each carousel-track element", async () => {
+  it("should initialize swiper carousel for testimonials-carousel elements", async () => {
     const { initializeApp } = await import("./index.js");
 
     document.body.innerHTML += `
-      <div class="carousel-track">
-        <div class="testimonial-card">Card A</div>
+      <div class="testimonials-carousel">
+        <div class="swiper"><div class="swiper-wrapper"></div></div>
       </div>
-      <div class="carousel-track">
-        <div class="testimonial-card">Card B</div>
+      <div class="testimonials-carousel">
+        <div class="swiper"><div class="swiper-wrapper"></div></div>
       </div>
     `;
 
     await initializeApp();
 
-    // Should be called for each carousel track (3 total)
-    const carouselTracks = document.querySelectorAll(".carousel-track");
-    expect(carouselTracks.length).toBe(3);
-    expect(carouselMock.default).toHaveBeenCalledTimes(3);
+    // Should be called for testimonials-carousel elements
+    const carouselContainers = document.querySelectorAll(".testimonials-carousel");
+    expect(carouselContainers.length).toBe(2);
+    expect(swiperCarouselMock.default.initAll).toHaveBeenCalledWith(".testimonials-carousel", 3000);
   });
 
   it("should handle missing app element gracefully", async () => {
@@ -160,7 +171,7 @@ describe("Index Module - Application Initialization", () => {
 
     // Other components should still initialize
     expect(modalMock.initModal).toHaveBeenCalled();
-    expect(carouselMock.default).toHaveBeenCalled();
+    expect(swiperCarouselMock.default.initAll).toHaveBeenCalled();
     expect(formStateMock.createFormStateManager).toHaveBeenCalled();
     expect(formMock.formHandler).toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledWith("App initialization completed successfully");

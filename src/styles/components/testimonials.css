@@ -34,33 +34,38 @@
   overflow: hidden;
 }
 
-.carousel-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-
-  -webkit-overflow-scrolling: touch;
-  /* hide scroll bar */
-  scrollbar-width: none; /* Firefox */
-}
-
-.carousel-track::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
-}
-
-.carousel-controls {
-  top: 60%;
+/* Swiper container */
+.swiper {
   width: 100%;
-  justify-content: center;
-  gap: var(--space-lg);
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+  transition-timing-function: ease-in-out;
+}
+
+/* Hide scrollbar for Swiper */
+.swiper::-webkit-scrollbar {
   display: none;
 }
 
-.carousel-controls > .control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.swiper-scrollbar {
+  display: none !important;
+}
+
+/* Navigation buttons - now handled by Swiper but styled to match existing design */
+.swiper-button-prev,
+.swiper-button-next {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
   background: transparent;
   border: 4px solid var(--primary);
   color: var(--primary);
@@ -73,16 +78,40 @@
     box-shadow 0.2s ease,
     background-color 0.2s ease;
 }
-.carousel-controls > .control:hover {
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
   opacity: 1;
   background-color: var(--primary-50);
   box-shadow: var(--shadow-elevation-medium);
 }
 
+.swiper-button-prev {
+  left: auto;
+  right: calc(50% + var(--space-lg));
+}
+
+.swiper-button-next {
+  right: auto;
+  left: calc(50% + var(--space-lg));
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev img,
+.swiper-button-next img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
 .testimonial-card {
-  scroll-snap-align: start;
   padding: var(--space-md) var(--space-sm);
-  flex: 0 0 calc(100% / 3); /* 3 cards per view */
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .testimonial-card > .content {
@@ -146,35 +175,33 @@
   .testimonials-section {
     padding: var(--space-md);
   }
-
-  .testimonial-card {
-    flex: 0 0 50%;
-  }
 }
 
 @media (max-width: 600px) {
-  .testimonial-card {
-    flex: 0 0 100%;
-  }
-
-  .carousel-controls {
+  /* Show navigation buttons on mobile */
+  .swiper-button-prev,
+  .swiper-button-next {
     display: flex;
-  }
-  .carousel-controls > .control {
+    align-items: center;
+    justify-content: center;
     margin: 0 var(--space-sm);
     opacity: 1;
     border: 4px solid var(--primary);
     background-color: transparent;
   }
 
-  .carousel-controls > .control.-prev {
+  .swiper-button-prev {
+    left: 0;
+    right: auto;
     border-radius: var(--radius-md) 0 0 var(--radius-md);
-    width: 100%;
+    width: 48%;
   }
 
-  .carousel-controls > .control.-next {
+  .swiper-button-next {
+    right: 0;
+    left: auto;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    width: 100%;
+    width: 48%;
   }
 }
 
@@ -182,23 +209,29 @@
 
 /* Tablet screen styling */
 @media (min-width: 601px) and (max-width: 1024px) {
-  .carousel-controls {
+  /* Show navigation buttons on tablet */
+  .swiper-button-prev,
+  .swiper-button-next {
     display: flex;
-  }
-  .carousel-controls > .control {
+    align-items: center;
+    justify-content: center;
     margin: 0 var(--space-sm);
     opacity: 1;
     border: 4px solid var(--primary);
     background-color: transparent;
   }
 
-  .carousel-controls > .control.-prev {
+  .swiper-button-prev {
+    left: 0;
+    right: auto;
     border-radius: var(--radius-md) 0 0 var(--radius-md);
-    width: 100%;
+    width: 48%;
   }
 
-  .carousel-controls > .control.-next {
+  .swiper-button-next {
+    right: 0;
+    left: auto;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    width: 100%;
+    width: 48%;
   }
 }
