@@ -20,6 +20,10 @@
     "answer": "I understand that life happens! Please provide at least <strong>24 hours</strong> notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee."
   },
   {
+    "question": "What is your cancellation policy and what are the fees?",
+    "answer": "Cancellations made with <strong>24 hours or more notice</strong> are free with no penalty. For late cancellations: <strong>Less than 24 hours but greater than 12 hours notice:</strong> 50% of lesson fee(s) will be charged. <strong>Less than 12 hours notice:</strong> 100% of lesson fee(s) will be charged. Please provide as much notice as possible so I can offer the session to other students."
+  },
+  {
     "question": "How do I book a session?",
     "answer": "You can book your first session using the <strong>'Book Your First Session'</strong> button on this page, which connects to my Google Calendar. Alternatively, contact me directly via email at <a style=\"color:inherit; text-decoration:underline;\" href=\"mailto:kailistacey@gmail.com\">kailistacey@gmail.com</a>."
   },
