@@ -1,11 +1,10 @@
 import Swiper from "swiper";
-import { Autoplay, Navigation, Keyboard, A11y } from "swiper/modules";
+import { Autoplay, Pagination, Keyboard, A11y } from "swiper/modules";
 import { logger } from "@sentry/browser";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
+import "swiper/css/pagination";
 import "swiper/css/a11y";
 
 export default class SwiperCarousel {
@@ -32,21 +31,9 @@ export default class SwiperCarousel {
         return;
       }
 
-      // Swiper configuration - use default navigation elements
+      // Swiper configuration with pagination
       const config = {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        modules: [Autoplay, Navigation, Keyboard, A11y],
-        autoplay: {
-          delay: this.interval,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
+        modules: [Autoplay, Pagination, Keyboard, A11y],
         keyboard: {
           enabled: true,
           onlyInViewport: true,
@@ -55,29 +42,46 @@ export default class SwiperCarousel {
           enabled: true,
           prevSlideMessage: "Previous testimonial",
           nextSlideMessage: "Next testimonial",
+          paginationBulletMessage: "Go to testimonial {{index}}",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: false,
         },
         breakpoints: {
-          // Mobile: single slide with edge peek for swipe indication
+          // Mobile: Simple 1 card with peek edges, no autoplay, no loop
           0: {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            slidesOffsetBefore: 32,
-            slidesOffsetAfter: 32,
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+            centeredSlides: true,
+            loop: false,
           },
+          // Tablet: 2 cards with autoplay and loop
           600: {
             slidesPerView: 2,
-            spaceBetween: 16,
-            slidesOffsetBefore: 0,
-            slidesOffsetAfter: 0,
+            spaceBetween: 24,
+            centeredSlides: false,
+            loop: true,
+            autoplay: {
+              delay: this.interval,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            },
           },
+          // Desktop: 3 cards with autoplay and loop
           1024: {
             slidesPerView: 3,
-            spaceBetween: 24,
-            slidesOffsetBefore: 0,
-            slidesOffsetAfter: 0,
+            spaceBetween: 32,
+            centeredSlides: false,
+            loop: true,
+            autoplay: {
+              delay: this.interval,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            },
           },
         },
-        // Prevent focus stealing
         preventClicks: false,
         preventClicksPropagation: false,
       };
@@ -91,8 +95,7 @@ export default class SwiperCarousel {
       // Log successful initialization
       logger.debug("Swiper carousel initialized", {
         container: this.container,
-        slidesPerView: config.slidesPerView,
-        autoplayDelay: config.autoplay.delay,
+        autoplayDelay: this.interval,
       });
     } catch (error) {
       logger.error("Error initializing Swiper carousel", { error: error.message }, error);
@@ -109,10 +112,10 @@ export default class SwiperCarousel {
         entries.forEach((entry) => {
           this.isVisible = entry.isIntersecting;
 
-          if (this.swiperInstance) {
-            if (this.isVisible) {
+          if (this.swiperInstance && this.swiperInstance.autoplay) {
+            if (this.isVisible && this.swiperInstance.autoplay.running === false) {
               this.swiperInstance.autoplay.start();
-            } else {
+            } else if (!this.isVisible && this.swiperInstance.autoplay.running === true) {
               this.swiperInstance.autoplay.stop();
             }
           }
@@ -141,7 +144,7 @@ export default class SwiperCarousel {
   }
 
   // Static method to initialize all carousels on the page
-  static initAll(selector = ".testimonials-carousel", interval = 3000) {
+  static initAll(selector = ".testimonials-carousel", interval = 5000) {
     const containers = document.querySelectorAll(selector);
     const instances = [];
 
