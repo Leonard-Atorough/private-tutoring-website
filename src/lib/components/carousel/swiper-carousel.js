@@ -57,13 +57,24 @@ export default class SwiperCarousel {
           nextSlideMessage: "Next testimonial",
         },
         breakpoints: {
+          // Mobile: single slide with edge peek for swipe indication
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            slidesOffsetBefore: 32,
+            slidesOffsetAfter: 32,
+          },
           600: {
             slidesPerView: 2,
             spaceBetween: 16,
+            slidesOffsetBefore: 0,
+            slidesOffsetAfter: 0,
           },
           1024: {
             slidesPerView: 3,
             spaceBetween: 24,
+            slidesOffsetBefore: 0,
+            slidesOffsetAfter: 0,
           },
         },
         // Prevent focus stealing
@@ -83,7 +94,6 @@ export default class SwiperCarousel {
         slidesPerView: config.slidesPerView,
         autoplayDelay: config.autoplay.delay,
       });
-
     } catch (error) {
       logger.error("Error initializing Swiper carousel", { error: error.message }, error);
     }

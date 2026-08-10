@@ -160,7 +160,7 @@
   }
   
   .swiper {
-    padding-bottom: 50px;
+    padding-bottom: 0;
   }
   
   .testimonial-card > .content {
@@ -172,14 +172,9 @@
     font-size: var(--font-size-0);
   }
   
+  /* Hide navigation buttons on mobile - use swipe gestures */
   .swiper-button-prev,
   .swiper-button-next {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 16px !important;
+    display: none !important;
   }
 }
