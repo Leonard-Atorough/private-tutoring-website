@@ -132,7 +132,7 @@ describe("Index Module - Application Initialization", () => {
     // Should be called for testimonials-carousel elements
     const carouselContainers = document.querySelectorAll(".testimonials-carousel");
     expect(carouselContainers.length).toBe(2);
-    expect(swiperCarouselMock.default.initAll).toHaveBeenCalledWith(".testimonials-carousel", 3000);
+    expect(swiperCarouselMock.default.initAll).toHaveBeenCalledWith(".testimonials-carousel");
   });
 
   it("should handle missing app element gracefully", async () => {

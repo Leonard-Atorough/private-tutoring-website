@@ -43,7 +43,7 @@ export async function initializeApp() {
     await safeInit("modal", initModal);
 
     await safeInit("swiper carousel", () => {
-      SwiperCarousel.initAll(".testimonials-carousel", 3000);
+      SwiperCarousel.initAll(".testimonials-carousel");
     });
 
     await safeInit("form state manager", () => {

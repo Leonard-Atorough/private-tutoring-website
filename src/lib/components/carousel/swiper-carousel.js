@@ -9,7 +9,7 @@ import "swiper/css/autoplay";
 import "swiper/css/a11y";
 
 export default class SwiperCarousel {
-  constructor(container, interval = 3000) {
+  constructor(container, interval = 5000) {
     if (!container) {
       throw new Error("Carousel container is required");
     }
@@ -32,11 +32,7 @@ export default class SwiperCarousel {
         return;
       }
 
-      // Configure navigation elements
-      const prevBtn = this.container.querySelector(".swiper-button-prev, .control.-prev");
-      const nextBtn = this.container.querySelector(".swiper-button-next, .control.-next");
-
-      // Swiper configuration
+      // Swiper configuration - use default navigation elements
       const config = {
         slidesPerView: 1,
         spaceBetween: 20,
@@ -48,8 +44,8 @@ export default class SwiperCarousel {
           pauseOnMouseEnter: true,
         },
         navigation: {
-          nextEl: nextBtn || ".swiper-button-next",
-          prevEl: prevBtn || ".swiper-button-prev",
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
         keyboard: {
           enabled: true,
