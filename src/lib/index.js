@@ -7,11 +7,6 @@ import * as storeManager from "./components/store/storeManager.js";
 import { initializeFAQ } from "./components/faq/faq.js";
 import logger from "./logger.js";
 import initSentry from "./sentry-config.js";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
-import "swiper/css/a11y";
 
 initSentry();
 

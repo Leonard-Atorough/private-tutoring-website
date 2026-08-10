@@ -1,8 +1,12 @@
-import { Swiper, Autoplay, Navigation, Keyboard, A11y } from "swiper";
+import Swiper from "swiper";
+import { Autoplay, Navigation, Keyboard, A11y } from "swiper/modules";
 import { logger } from "@sentry/browser";
 
-// Register required modules
-Swiper.use([Autoplay, Navigation, Keyboard, A11y]);
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import "swiper/css/a11y";
 
 export default class SwiperCarousel {
   constructor(container, interval = 3000) {
@@ -37,6 +41,7 @@ export default class SwiperCarousel {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
+        modules: [Autoplay, Navigation, Keyboard, A11y],
         autoplay: {
           delay: this.interval,
           disableOnInteraction: false,
