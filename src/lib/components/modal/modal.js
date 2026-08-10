@@ -1,4 +1,5 @@
 import logger from "../../logger.js";
+import { openBookingModal, closeBookingModal } from "./modalUtils.js";
 
 const MODAL_ID = "booking-modal";
 const MODAL_BUTTON_SELECTOR = ".book-btn";
@@ -23,7 +24,6 @@ export function initModal() {
   }
 
   const iframe = modal?.querySelector("iframe");
-  let lastActiveElement;
 
   const focusableElements =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -52,42 +52,20 @@ export function initModal() {
     }
   }
 
-  function openModal() {
-    lastActiveElement = document.activeElement;
-    setTimeout(() => {
-      modal.classList.add("-active");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-
-      // Focus the close button not the iframe initially
-      if (iframe) {
-        setTimeout(() => {
-          closeModalBtn?.focus();
-        }, 300);
-      }
-    }, 100);
-  }
-
-  function closeModal() {
-    modal.classList.remove("-active");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    // Return focus to the element that opened the modal
-    if (lastActiveElement) {
-      lastActiveElement.focus();
-    }
-  }
-
-  Array.from(openModalBtns).forEach((e) => e.addEventListener("click", openModal));
-  closeModalBtn?.addEventListener("click", closeModal);
+  Array.from(openModalBtns).forEach((e) => e.addEventListener("click", () => {
+    // Focus close button after opening if iframe exists
+    const focusTarget = iframe ? closeModalBtn : undefined;
+    openBookingModal(focusTarget);
+  }));
+  closeModalBtn?.addEventListener("click", closeBookingModal);
 
   modal?.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
+    if (e.target === modal) closeBookingModal();
   });
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal.classList.contains("-active")) {
-      closeModal();
+      closeBookingModal();
     }
     if (e.key === "Tab" && modal.classList.contains("-active")) {
       trapFocus(e);
