@@ -1,4 +1,5 @@
-[
+{
+  "faqs": [
   {
     "question": "How long are tutoring sessions?",
     "answer": "Standard tutoring sessions are 60 minutes. However, I offer flexible scheduling including 30-minute, 90-minute, or 2-hour sessions depending on your needs."
@@ -39,4 +40,5 @@
     "question": "Which curriculums do you teach?",
     "answer": "I specialize in Australian curriculums including SACE, HSC, QCAA, WACE, and VCE for high school students, as well as AUS8-10 for middle school students."
   }
-]
+  ]
+}

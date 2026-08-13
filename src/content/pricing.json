@@ -42,6 +42,7 @@
       "price": 100,
       "duration": "per hour",
       "description": "For individual sessions without a package",
+      "sessionMinimum": "Flexible scheduling.",
       "features": [
         "Available for all subjects",
         "Ideal for occasional help",
