@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import logger from "../../logger.js";
 
 const MODAL_ID = "booking-modal";
@@ -10,7 +11,6 @@ export function openBookingModal() {
   try {
     const modal = document.getElementById(MODAL_ID);
 
-    // eslint-disable-next-line no-undef
     if (!modal || !(modal instanceof HTMLDialogElement)) {
       logger.warn("Modal dialog element not found", { id: MODAL_ID });
       return;
