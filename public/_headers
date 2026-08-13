@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' *.sentry.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' *.sentry.io; font-src 'self'; frame-src https://calendar.google.com; object-src 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' *.sentry.io app.netlify.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' *.sentry.io app.netlify.com; font-src 'self'; frame-src https://calendar.google.com; object-src 'none';
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   X-XSS-Protection: 1; mode=block
