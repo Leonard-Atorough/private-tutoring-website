@@ -4,71 +4,20 @@ import faqData from "../content/faq.json";
 const faqs = faqData.faqs;
 ---
 
-<ul class="faq-container">
+<div class="faq-container">
   {
     faqs.map((item) => (
-      <li class="faq-item" role="region">
-        <button class="faq-question" type="button" aria-expanded="false">
+      <details class="faq-item">
+        <summary class="faq-question">
           <span class="faq-question-text">{item.question}</span>
           <span class="faq-icon" aria-hidden="true">
             +
           </span>
-        </button>
+        </summary>
         <div class="faq-answer">
           <p set:html={item.answer} />
         </div>
-      </li>
+      </details>
     ))
   }
-</ul>
-
-<script>
-  const initializeFAQ = () => {
-    const faqItems = document.querySelectorAll(".faq-item");
-
-    if (faqItems.length === 0) {
-      return;
-    }
-
-    faqItems.forEach((item) => {
-      const question = item.querySelector(".faq-question");
-
-      if (!question || !(question instanceof HTMLButtonElement)) {
-        return;
-      }
-
-      const toggleFAQ = () => {
-        const isActive = item.classList.contains("active");
-
-        faqItems.forEach((otherItem) => {
-          if (otherItem !== item) {
-            otherItem.classList.remove("active");
-            const otherQuestion = otherItem.querySelector(".faq-question");
-            if (otherQuestion) {
-              otherQuestion.setAttribute("aria-expanded", "false");
-            }
-          }
-        });
-
-        item.classList.toggle("active", !isActive);
-        const isNowActive = item.classList.contains("active");
-        question.setAttribute("aria-expanded", String(isNowActive));
-      };
-
-      question.addEventListener("click", toggleFAQ);
-
-      question.addEventListener("keydown", (event: KeyboardEvent) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          toggleFAQ();
-        }
-      });
-    });
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeFAQ);
-  } else {
-    initializeFAQ();
-  }
-</script>
+</div>
