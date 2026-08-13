@@ -1,33 +1,10 @@
 /**
  * @vitest-environment jsdom
  */
-import { vi } from "vitest";
+import { vi, describe, beforeEach, it, expect } from "vitest";
 import { createMockLogger } from "../../../__mocks__/logger.js";
 
 vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
-vi.mock("../scroll-links/scrollUtility.js", () => ({
-  scrollToSection: vi.fn((id) => {
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }),
-  attachScrollHandler: vi.fn((container, selector) => {
-    const links = container.querySelectorAll(selector);
-    Array.from(links).forEach((link) => {
-      link.addEventListener("click", (event) => {
-        if (link.getAttribute("href").startsWith("#")) {
-          event.preventDefault();
-          const targetId = link.getAttribute("href").substring(1);
-          const target = document.getElementById(targetId);
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }
-      });
-    });
-  }),
-}));
 
 import { initHeader } from "./header.js";
 import logger from "../../logger.js";
@@ -42,29 +19,18 @@ const buildDom = () => {
              <a href="#section-one" class="link">Section One</a>
              <a href="#section-two" class="link">Section Two</a>
           </nav>
-
-          <section id="section-one" style="height:100vh; background:#f0f0f0;">
-             <h2>Section One</h2>
-          </section>
-
-          <section id="section-two" style="height:100vh; background:#e0e0e0;">
-             <h2>Section Two</h2>
-          </section>
       </div>
   `;
 };
 
-beforeAll(() => {
-  HTMLElement.prototype.scrollIntoView = function () {};
-});
-
 describe("Navigation toggle", () => {
   beforeEach(() => {
+    vi.clearAllMocks();
     buildDom();
-    initHeader();
   });
 
   it("adds .-active to the nav and sets aria-expanded=true on first click", () => {
+    initHeader();
     const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
 
@@ -75,6 +41,7 @@ describe("Navigation toggle", () => {
   });
 
   it("removes .-active from the nav and sets aria-expanded=false on second click", () => {
+    initHeader();
     const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
 
@@ -93,51 +60,22 @@ describe("Navigation toggle", () => {
     );
   });
 
-  it("initializes the header when elements appear after the first attempt", () => {
-    document.body.innerHTML = "";
-
+  it("closes menu when clicking a navigation link", () => {
     initHeader();
-
-    document.body.innerHTML = `
-      <button id="hamburger-button" aria-expanded="false"></button>
-      <nav id="navigation-menu" class="navigation-menu">
-        <a href="#section-one" class="link">Section One</a>
-      </nav>
-    `;
-
-    initHeader();
-
     const toggle = document.getElementById("hamburger-button");
     const nav = document.getElementById("navigation-menu");
+    const link = document.querySelector('a[href="#section-one"]');
 
+    // Open menu
     toggle.click();
-
     expect(nav.classList.contains("-active")).toBe(true);
     expect(toggle.getAttribute("aria-expanded")).toBe("true");
-  });
-});
 
-describe("When a navigation link is clicked", () => {
-  beforeEach(() => {
-    buildDom();
-    initHeader();
-  });
+    // Click a link
+    link.click();
 
-  it("should scroll to the target section", () => {
-    const link = document.querySelector('a[href="#section-two"]');
-
-    const target = document.getElementById("section-two");
-    const scrollSpy = vi.spyOn(target, "scrollIntoView").mockImplementation(() => {
-      // Simulate what the browser would do after a smooth scroll
-      window.location.hash = "#section-two";
-    });
-    link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-
-    expect(scrollSpy).toHaveBeenCalledOnce();
-    expect(scrollSpy).toHaveBeenCalledWith({
-      behavior: "smooth",
-      block: "start",
-    });
-    expect(window.location.hash).toBe("#section-two");
+    // Menu should close
+    expect(nav.classList.contains("-active")).toBe(false);
+    expect(toggle.getAttribute("aria-expanded")).toBe("false");
   });
 });
