@@ -1,0 +1,82 @@
+---
+import  testimonialData from "../content/testimonials.json";
+
+const testimonials = testimonialData.testimonials;
+---
+
+<div class="testimonials-carousel">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {
+        testimonials.map((testimonial) => (
+          <article class="swiper-slide testimonial-card">
+            <blockquote class="content">
+              <p class="testimonial">{testimonial.quote}</p>
+              <cite class="author">{testimonial.author}</cite>
+              <p class="title">{testimonial.title}</p>
+            </blockquote>
+          </article>
+        ))
+      }
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { Autoplay, Pagination, Keyboard, A11y } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import "swiper/css/a11y";
+
+  const carousel = document.querySelector<HTMLElement>(".testimonials-carousel .swiper");
+
+  if (carousel) {
+    new Swiper(carousel, {
+      modules: [Autoplay, Pagination, Keyboard, A11y],
+      slidesPerView: 1.15,
+      spaceBetween: 16,
+      centeredSlides: true,
+      loop: false,
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
+      a11y: {
+        enabled: true,
+        prevSlideMessage: "Previous testimonial",
+        nextSlideMessage: "Next testimonial",
+        paginationBulletMessage: "Go to testimonial {{index}}",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        600: {
+          slidesPerView: 2,
+          spaceBetween: 24,
+          centeredSlides: false,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
+          centeredSlides: false,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+        },
+      },
+    });
+  }
+</script>

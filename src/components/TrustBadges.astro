@@ -1,0 +1,18 @@
+---
+import trustBadgesData from "../content/trust-badges.json";
+
+const trustBadges = trustBadgesData.badges;
+---
+
+<section class="trust-badges-section" aria-label="Trust indicators">
+  <div class="trust-badges-container">
+    {
+      trustBadges.map((badge) => (
+        <article class="trust-badge" aria-label={badge.title}>
+          <span class="icon" aria-hidden="true">{badge.icon}</span>
+          <span class="title">{badge.title}</span>
+        </article>
+      ))
+    }
+  </div>
+</section>
