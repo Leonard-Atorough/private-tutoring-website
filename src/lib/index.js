@@ -1,6 +1,5 @@
 import { initHeader } from "./components/header/header.js";
 import { initModal } from "./components/modal/modal.js";
-import { initScrollLinks } from "./components/scroll-links/scrollLinks.js";
 import SwiperCarousel from "./components/carousel/swiper-carousel.js";
 import { createFormStateManager } from "./components/state/formStateManager.js";
 import { formHandler } from "./components/form/formHandler.js";
@@ -36,8 +35,6 @@ export async function initializeApp() {
     }, 500);
 
     await safeInit("header", initHeader);
-
-    await safeInit("scroll links", initScrollLinks);
 
     await safeInit("modal", initModal);
 

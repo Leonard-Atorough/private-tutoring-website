@@ -88,7 +88,7 @@
   }
 
   .navigation-menu.-active {
-    max-height: 850px; /* Adjust based on number of menu items */
+    max-height: 850px;
     box-shadow: var(--shadow-elevation-high);
     border: 1px solid var(--primary-100);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
@@ -125,19 +125,20 @@
     transition: all 0.3s ease;
   }
 
-  .hamburger-button.-active > .bar:nth-child(1) {
+  /* Animate hamburger based on aria-expanded attribute */
+  .hamburger-button[aria-expanded="true"] > .bar:nth-child(1) {
     transform: rotate(45deg) translate(8px, 9px);
   }
 
-  .hamburger-button.-active > .bar:nth-child(2) {
+  .hamburger-button[aria-expanded="true"] > .bar:nth-child(2) {
     opacity: 0;
   }
 
-  .hamburger-button.-active > .bar:nth-child(3) {
+  .hamburger-button[aria-expanded="true"] > .bar:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
   }
 
-  .hamburger-button.-active > .bar {
+  .hamburger-button > .bar {
     transition: all 0.3s ease;
   }
 }
