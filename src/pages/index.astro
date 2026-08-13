@@ -11,13 +11,22 @@ import FAQ from "../components/FAQ.astro";
 import ContactForm from "../components/ContactForm.astro";
 import BookingModal from "../components/BookingModal.astro";
 import aboutData from "../content/about.json";
+import faqData from "../content/faq.json";
+import pricingData from "../content/pricing.json";
+import { buildSiteStructuredData } from "../lib/structured-data.js";
 
 const about = aboutData;
+const structuredData = buildSiteStructuredData({
+  pricingTiers: pricingData.tiers,
+  faqItems: faqData.faqs,
+  includeFaq: true,
+});
 ---
 
 <Layout
   title="Kaili Stacey | Expert Math & Science Tutor"
   description="Expert online math and science tutoring by PhD-qualified Kaili Stacey."
+  structuredData={structuredData}
 >
   <Header />
 

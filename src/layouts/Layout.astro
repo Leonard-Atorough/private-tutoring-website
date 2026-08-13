@@ -1,102 +1,19 @@
 ---
 import "../styles/index.css";
-import pricingData from "../content/pricing.json";
-import faqData from "../content/faq.json";
 
 interface Props {
   title?: string;
   description?: string;
   robots?: string;
+  structuredData?: Record<string, unknown>;
 }
 
 const {
   title = "Kaili Stacey Tutoring",
   description = "Expert online math and science tutoring for students across Australia.",
   robots = "index, follow",
+  structuredData,
 } = Astro.props as Props;
-
-const minPrice = Math.min(...pricingData.tiers.map((tier) => tier.price));
-const maxPrice = Math.max(...pricingData.tiers.map((tier) => tier.price));
-
-const stripHtml = (value: string) =>
-  value
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "OnlineBusiness",
-      "@id": "https://kailistacey.com/#Services",
-      name: "Kaili Stacey Tutoring",
-      url: "https://kailistacey.com",
-      description:
-        "Personalized, online, 1-on-1 math and science tutoring for secondary and university students.",
-      priceRange: `$${minPrice}-$${maxPrice}`,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: "4",
-      },
-      provider: {
-        "@type": "Person",
-        "@id": "https://kailistacey.com/#About",
-        name: "Kaili Stacey",
-        jobTitle: "Private Tutor",
-        description: "PhD holder in Nanochemistry with over 8 years of teaching experience",
-        hasCredential: {
-          "@type": "EducationalOccupationalCredential",
-          credentialCategory: "PhD",
-          name: "Doctor of Philosophy in Nanochemistry",
-        },
-      },
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Tutoring Services",
-        itemListElement: pricingData.tiers.map((tier) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: tier.name,
-            description: tier.description,
-          },
-          price: String(tier.price),
-          priceCurrency: "AUD",
-          areaServed: { "@type": "Country", name: "Australia" },
-        })),
-      },
-      image: "https://kailistacey.com/assets/profile_picture-B-qzfGwM.webp",
-      areaServed: {
-        "@type": "Country",
-        name: "Australia",
-      },
-    },
-    {
-      "@type": "ContactPoint",
-      telephone: "+1-555-555-5555",
-      contactType: "Customer Service",
-      areaServed: {
-        "@type": "Country",
-        name: "Australia",
-      },
-      availableLanguage: ["English"],
-      email: "kailistacey@gmail.com",
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: faqData.faqs.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: stripHtml(item.answer),
-        },
-      })),
-    },
-  ],
-};
 ---
 
 <!doctype html>
@@ -114,6 +31,7 @@ const structuredData = {
     />
     <meta name="author" content="Kaili Stacey" />
     <meta name="google-site-verification" content="zoGu981NRXPvS0cZxa-EUNL1nyHOJ8hCki0SVm10n1w" />
+    
     <meta
       property="og:title"
       content="Kaili Stacey - Expert Math & Science Tutor | PhD Qualified"
@@ -127,17 +45,7 @@ const structuredData = {
     <meta property="og:image" content="https://kailistacey.com/og-image.jpg" />
     <meta property="og:locale" content="en_AU" />
     <meta property="og:site_name" content="Kaili's Tutoring" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Kaili Stacey - Expert Math & Science Tutor | PhD Qualified"
-    />
-    <meta
-      name="twitter:description"
-      content="Expert online tutoring by PhD-qualified tutor. 2000+ hours experience teaching SACE, HSC, VCE students. Book your first lesson today!"
-    />
-    <meta name="twitter:image" content="https://kailistacey.com/twitter-card.jpg" />
-    <meta name="theme-color" content="#0b1020" />
+
     <title>{title}</title>
     <link rel="canonical" href="https://kailistacey.com/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -145,7 +53,11 @@ const structuredData = {
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
   </head>
   <body id="app">
     <slot />
