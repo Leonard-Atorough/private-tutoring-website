@@ -22,7 +22,7 @@ button {
   }
 }
 .button.-primary {
-  background-color: var(--primary);
+  background-color: var(--primary-800);
   color: var(--card-white);
 
   &:hover,
