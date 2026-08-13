@@ -76,17 +76,18 @@ export function buildSiteStructuredData(
         name: "Australia",
       },
     },
-    {
-      "@type": "ContactPoint",
-      telephone: "+1-555-555-5555",
-      contactType: "Customer Service",
-      areaServed: {
-        "@type": "Country",
-        name: "Australia",
-      },
-      availableLanguage: ["English"],
-      email: "kailistacey@gmail.com",
-    },
+    // Uncomment the following block if you want to include contact information in the structured data
+    // {
+    //   "@type": "ContactPoint",
+    //   telephone: "+1-555-555-5555",
+    //   contactType: "Customer Service",
+    //   areaServed: {
+    //     "@type": "Country",
+    //     name: "Australia",
+    //   },
+    //   availableLanguage: ["English"],
+    //   email: "kailistacey@gmail.com",
+    // },
   ];
 
   if (includeFaq && faqItems.length) {
