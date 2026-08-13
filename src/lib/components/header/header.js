@@ -1,5 +1,5 @@
 import logger from "../../logger.js";
-import { scrollToSection, attachScrollHandler as attachScrollHandlerUtil } from "../scroll-links/scrollUtility.js";
+import { attachScrollHandler as attachScrollHandlerUtil } from "../scroll-links/scrollUtility.js";
 
 const TOGGLE_BUTTON_ID = "hamburger-button";
 const NAVIGATION_MENU_ID = "navigation-menu";
