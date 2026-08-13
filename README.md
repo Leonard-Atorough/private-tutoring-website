@@ -8,7 +8,7 @@ A modern, responsive landing page for a private tutoring business specializing i
 
 ## 📋 Overview
 
-This is a professional single-page application (SPA) built for Kaili Stacey, a PhD holder in Nanochemistry with over 8 years of teaching experience. The website provides information about tutoring services, showcases testimonials, and offers an integrated booking system for prospective students.
+This is a professional static site built with Astro for Kaili Stacey, a PhD holder in Nanochemistry with over 8 years of teaching experience. The website provides information about tutoring services, showcases testimonials, and offers an integrated booking system for prospective students. The site uses Astro's file-based routing with optional client-side interactivity via vanilla JavaScript.
 
 ### Key Features
 
@@ -28,46 +28,70 @@ This is a professional single-page application (SPA) built for Kaili Stacey, a P
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: Astro (static site generation)
-- **JavaScript**: Vanilla JavaScript (ES6+) with TypeScript
-- **Build Tool**: Vite 7.x (via Astro)
-- **Testing**: Vitest with jsdom
+- **Framework**: Astro 7.2.1 (static site generation with file-based routing)
+- **JavaScript**: Vanilla JavaScript (ES6+) with TypeScript support
+- **Build Tool**: Vite 7.1.7 (managed by Astro)
+- **Testing**: Vitest 3.2.4 with jsdom environment
 - **Styling**: Pure CSS with modular architecture
-- **Deployment**: Netlify
+- **Deployment**: Netlify with automatic deployments
 - **Analytics**: Plausible (privacy-focused)
-- **Form Handling**: Netlify Forms
-- **Error Tracking**: Sentry
+- **Form Handling**: Netlify Forms with submission handling
+- **Error Tracking**: Sentry for error monitoring
 
 ## 📁 Project Structure
 
 ```
-├── index.html              # Main HTML file with semantic markup
-├── vite.config.js          # Vite configuration
+├── astro.config.mjs        # Astro configuration (primary build config)
+├── vite.config.js          # Vite configuration (test-only, managed by Astro)
 ├── package.json            # Dependencies and scripts
-├── public/                 # Static assets
+├── netlify.toml            # Netlify deployment configuration
+├── public/                 # Static assets (directly copied to dist/)
 │   ├── robots.txt          # Search engine crawling rules
-│   ├── sitemap.xml         # Site structure for SEO
-│   └── site.webmanifest    # PWA manifest
+│   ├── site.webmanifest    # PWA manifest
+│   └── images/             # Image assets
 ├── src/
-│   ├── assets/             # Images and media files
-│   ├── content/            # JSON content files
+│   ├── components/         # Astro components (.astro files)
+│   │   ├── Header.astro    # Navigation component
+│   │   ├── Footer.astro    # Footer component
+│   │   ├── ContactForm.astro
+│   │   ├── Pricing.astro
+│   │   ├── FAQ.astro
+│   │   ├── TestimonialsCarousel.astro
+│   │   └── ...
+│   ├── layouts/            # Astro layouts
+│   │   └── Layout.astro    # Main layout wrapper with meta tags
+│   ├── pages/              # File-based routing (auto-generates routes)
+│   │   ├── index.astro     # / (home page)
+│   │   ├── services.astro  # /services
+│   │   ├── privacy-policy.astro
+│   │   ├── 404.astro
+│   │   └── api/            # API endpoints (if needed)
+│   ├── content/            # JSON data files
 │   │   ├── about.json
 │   │   ├── services.json
+│   │   ├── pricing.json
+│   │   ├── faq.json
 │   │   └── testimonials.json
-│   ├── lib/
-│   │   ├── index.js        # Main application entry point
-│   │   └── components/     # Modular JavaScript components
-│   │       ├── carousel/   # Auto-advancing testimonial carousel
-│   │       ├── form/       # Form submission handler
-│   │       ├── header/     # Navigation and mobile menu
-│   │       ├── modal/      # Booking modal with focus trap
-│   │       ├── state/      # Form state management
-│   │       └── store/      # LocalStorage management
-│   └── styles/             # Modular CSS architecture
-│       ├── index.css       # Main stylesheet (imports all modules)
-│       ├── base/           # Base styles (reset, typography, layout)
-│       ├── components/     # Component-specific styles
-│       └── helpers/        # Utility classes
+│   ├── lib/                # JavaScript utilities and functions
+│   │   ├── components/     # Vanilla JS component modules
+│   │   │   ├── carousel/   # Swiper testimonial carousel
+│   │   │   ├── form/       # Form handler and validation
+│   │   │   ├── header/     # Mobile menu logic
+│   │   │   ├── modal/      # Booking modal with focus trap
+│   │   │   ├── state/      # Form state manager
+│   │   │   └── store/      # LocalStorage management
+│   │   ├── logger.js       # Error logging with Sentry
+│   │   ├── structured-data.js  # JSON-LD schema generation
+│   │   └── index.js        # Utility functions
+│   ├── styles/             # CSS modules (imported in components)
+│   │   ├── index.css       # Main stylesheet index
+│   │   ├── base/           # Base reset, typography, spacing
+│   │   ├── components/     # Component-scoped styles
+│   │   └── helpers/        # Utility classes
+│   └── assets/             # Images, icons (processed by Astro)
+├── scripts/                # (Empty, available for build scripts)
+├── coverage/               # Test coverage reports (generated)
+└── .astro/                 # Astro build cache (gitignored)
 └── coverage/               # Test coverage reports
 ```
 
