@@ -1,0 +1,37 @@
+---
+import pricingData from "../content/pricing.json";
+
+const { tiers, note } = pricingData;
+---
+
+<div class="pricing-container">
+  {
+    tiers.map((plan) => (
+      <article class="pricing-card" role="article" aria-label={`${plan.name} pricing tier`}>
+        <div class="pricing-card-header">
+          <h3 class="pricing-tier-name">{plan.name}</h3>
+          <p class="pricing-description">{plan.description}</p>
+
+          <div class="pricing-amount">
+            <span class="pricing-currency">$</span>
+            <span class="pricing-price">{plan.price}</span>
+          </div>
+
+          <p class="pricing-duration">{plan.duration}</p>
+
+          <div class="pricing-session-badge">
+            {plan.sessionMinimum ?? "Minimum booking: 4 sessions"}
+          </div>
+        </div>
+
+        <ul class="pricing-features" role="list">
+          {plan.features.map((feature) => (
+            <li class="pricing-feature">{feature}</li>
+          ))}
+        </ul>
+      </article>
+    ))
+  }
+</div>
+
+{note && <p class="pricing-note">{note}</p>}

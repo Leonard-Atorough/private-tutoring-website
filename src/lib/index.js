@@ -4,11 +4,7 @@ import SwiperCarousel from "./components/carousel/swiper-carousel.js";
 import { createFormStateManager } from "./components/state/formStateManager.js";
 import { formHandler } from "./components/form/formHandler.js";
 import * as storeManager from "./components/store/storeManager.js";
-import { initializeFAQ } from "./components/faq/faq.js";
 import logger from "./logger.js";
-import initSentry from "./sentry-config.js";
-
-initSentry();
 
 async function safeInit(name, initFunc) {
   try {
@@ -59,22 +55,8 @@ export async function initializeApp() {
       handler.mountFormHandler("contact-form");
     });
 
-    await safeInit("FAQ", initializeFAQ);
-
     logger.info("App initialization completed successfully");
   } catch (error) {
     logger.error("Error initializing application", { error: error.message }, error);
-  }
-}
-
-// Auto-initialize app when DOM is ready
-if (typeof document !== "undefined") {
-  if (document.readyState === "loading") {
-    logger.debug("Waiting for DOMContentLoaded to initialize app");
-    document.addEventListener("DOMContentLoaded", () => {
-      initializeApp();
-    });
-  } else {
-    initializeApp();
   }
 }

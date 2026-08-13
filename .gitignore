@@ -33,3 +33,6 @@ coverage/*
 
 # Planning files
 .planning
+
+# Astro build output
+.astro

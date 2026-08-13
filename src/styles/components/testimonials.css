@@ -2,7 +2,6 @@
 
 .testimonials-section {
   position: relative;
-  padding: var(--space-xl) 0;
 }
 
 .review-stats {
@@ -43,12 +42,12 @@
 .swiper {
   width: 100%;
   overflow: visible;
-  padding-bottom: 60px; /* Space for pagination */
 }
 
 .swiper-wrapper {
   display: flex;
   align-items: stretch;
+  padding: var(--space-md) 0;
 }
 
 /* Hide scrollbar */

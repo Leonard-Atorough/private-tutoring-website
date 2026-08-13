@@ -1,0 +1,52 @@
+---
+import { navItems } from "../data/site.js";
+---
+
+<header class="header-section" aria-label="Main header" role="banner">
+  <a href="#Main" class="logo" aria-label="Kaili Stacey Tutoring Home">
+    <img
+      src="/images/logo.webp"
+      width="100"
+      height="100"
+      alt="Kaili Stacey Tutoring Logo"
+      aria-label="Kaili Stacey Tutoring Logo"
+    />
+    <span class="text">Kaili's Tutoring</span>
+  </a>
+
+  <button
+    class="hamburger-button"
+    id="hamburger-button"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    aria-controls="navigation-menu"
+    type="button"
+  >
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav
+    id="navigation-menu"
+    class="navigation-menu"
+    aria-label="Main navigation menu"
+    aria-hidden="false"
+    role="navigation"
+  >
+    {
+      navItems.map((item) => (
+        <a class="link" href={item.href} aria-label={item.label}>
+          {item.label}
+        </a>
+      ))
+    }
+    <button
+      class="button -primary book-btn"
+      aria-label="Book an introductory session with Kaili today"
+      type="button"
+    >
+      Book a Session
+    </button>
+  </nav>
+</header>

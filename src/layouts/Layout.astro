@@ -1,0 +1,75 @@
+---
+import "../styles/index.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+  structuredData?: Record<string, unknown>;
+}
+
+const {
+  title = "Kaili Stacey Tutoring",
+  description = "Expert online math and science tutoring for students across Australia.",
+  robots = "index, follow",
+  structuredData,
+} = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups" />
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
+    <meta
+      name="keywords"
+      content="private tutor Australia, online math tutor, science tutor, SACE tutor, HSC tutor, VCE tutor, chemistry tutor, physics tutor, university tutoring, PhD tutor, affordable tutoring, online tutoring Australia"
+    />
+    <meta name="author" content="Kaili Stacey" />
+    <meta name="google-site-verification" content="zoGu981NRXPvS0cZxa-EUNL1nyHOJ8hCki0SVm10n1w" />
+    
+    <meta
+      property="og:title"
+      content="Kaili Stacey - Expert Math & Science Tutor | PhD Qualified"
+    />
+    <meta
+      property="og:description"
+      content="Expert online tutoring by PhD-qualified tutor. 2000+ hours experience. SACE, HSC, VCE specialist. Personalized 1-on-1 sessions from $70/hr. Book your first lesson today!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kailistacey.com/" />
+    <meta property="og:image" content="https://kailistacey.com/og-image.jpg" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="Kaili's Tutoring" />
+
+    <title>{title}</title>
+    <link rel="canonical" href="https://kailistacey.com/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
+  </head>
+  <body id="app">
+    <slot />
+
+    <script type="module">
+      import { initializeApp } from "../lib/index.js";
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeApp);
+      } else {
+        initializeApp();
+      }
+    </script>
+  </body>
+</html>

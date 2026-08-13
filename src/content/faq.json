@@ -1,42 +1,44 @@
-[
-  {
-    "question": "How long are tutoring sessions?",
-    "answer": "Standard tutoring sessions are 60 minutes. However, I offer flexible scheduling including 30-minute, 90-minute, or 2-hour sessions depending on your needs."
-  },
-  {
-    "question": "What are your rates?",
-    "answer": "Rates vary depending on the level of study. Middle school and High school is <strong>$70/hour</strong>, University Level Tutoring is <strong>$80/hour</strong>, and I also offer One-Off Sessions at <strong>$100/hour</strong>."
-  },
-  {
-    "question": "What is the minimum number of sessions that can be booked?",
-    "answer": "The minimum number of sessions that can be booked is <strong>4 sessions</strong>. Unless otherwise requested, sessions are considered continuous on a rolling basis afterwards."
-  },
-  {
-    "question": "Do you offer online tutoring?",
-    "answer": "Yes! All tutoring sessions are conducted online via <strong>Google Meet</strong>, making it convenient for students anywhere in Australia."
-  },
-  {
-    "question": "What if I need to reschedule a session?",
-    "answer": "I understand that life happens! Please provide at least <strong>24 hours</strong> notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee."
-  },
-  {
-    "question": "What is your cancellation policy and what are the fees?",
-    "answer": "Cancellations made with <strong>24 hours or more notice</strong> are free with no penalty. For late cancellations: <strong>Less than 24 hours but greater than 12 hours notice:</strong> 50% of lesson fee(s) will be charged. <strong>Less than 12 hours notice:</strong> 100% of lesson fee(s) will be charged. Please provide as much notice as possible so I can offer the session to other students."
-  },
-  {
-    "question": "How do I book a session?",
-    "answer": "You can book your first session using the <strong>'Book Your First Session'</strong> button on this page, which connects to my Google Calendar. Alternatively, contact me directly via email at <a style=\"color:inherit; text-decoration:underline;\" href=\"mailto:kailistacey@gmail.com\">kailistacey@gmail.com</a>."
-  },
-  {
-    "question": "What materials do I need for tutoring sessions?",
-    "answer": "You'll need a computer or tablet with a stable internet connection, a microphone, and ideally a webcam. Having your course materials, textbooks, and any homework or assignments ready is also helpful."
-  },
-  {
-    "question": "Do you provide study materials?",
-    "answer": "Yes! I provide supplementary study materials, practice problems, and resources tailored to your specific curriculum and learning needs."
-  },
-  {
-    "question": "Which curriculums do you teach?",
-    "answer": "I specialize in Australian curriculums including SACE, HSC, QCAA, WACE, and VCE for high school students, as well as AUS8-10 for middle school students."
-  }
-]
+{
+  "faqs": [
+    {
+      "question": "How long are tutoring sessions?",
+      "answer": "Standard tutoring sessions are <strong>60 minutes</strong>. For students who require more time, I also offer <strong>90-minute sessions</strong> upon request. Please contact me to discuss your specific needs."
+    },
+    {
+      "question": "What are your rates?",
+      "answer": "Rates vary depending on the level of study. Middle school and High school is <strong>$70/hour</strong>, University Level Tutoring is <strong>$80/hour</strong>, and I also offer One-Off Sessions at <strong>$100/hour</strong>."
+    },
+    {
+      "question": "What is the minimum number of sessions that can be booked?",
+      "answer": "The minimum number of sessions that can be booked is <strong>4 sessions</strong>. These sessions repeat on a weekly basis at the same time and day of the week. One-off sessions are available for those who do not wish to commit to a block of sessions."
+    },
+    {
+      "question": "Do you offer online tutoring?",
+      "answer": "Yes! All tutoring sessions are conducted online via <strong>Google Meet</strong>, making it convenient for students anywhere in Australia."
+    },
+    {
+      "question": "What if I need to reschedule a session?",
+      "answer": "I understand that life happens! Please provide at least <strong>24 hours</strong> notice to reschedule without penalty. Same-day cancellations may be subject to a cancellation fee."
+    },
+    {
+      "question": "What is your cancellation policy and what are the fees?",
+      "answer": "Cancellations made with <strong>24 hours or more notice</strong> are free with no penalty. For late cancellations: <strong>Less than 24 hours but greater than 12 hours notice:</strong> 50% of lesson fee(s) will be charged. <strong>Less than 12 hours notice:</strong> 100% of lesson fee(s) will be charged. Please provide as much notice as possible so I can offer the session to other students."
+    },
+    {
+      "question": "How do I book a session?",
+      "answer": "You can book your first session using the <strong>'Book Your First Session'</strong> button on this page, which connects to my Google Calendar. Alternatively, contact me directly via email at <a style=\"color:inherit; text-decoration:underline;\" href=\"mailto:kailistacey@gmail.com\">kailistacey@gmail.com</a>."
+    },
+    {
+      "question": "What materials do I need for tutoring sessions?",
+      "answer": "You'll need a computer or tablet with a stable internet connection, a microphone, and ideally a webcam. Having your course materials, textbooks, and any homework or assignments ready is also helpful."
+    },
+    {
+      "question": "Do you provide study materials?",
+      "answer": "Yes! I provide supplementary study materials, practice problems, and resources tailored to your specific curriculum and learning needs."
+    },
+    {
+      "question": "Which curriculums do you teach?",
+      "answer": "I specialize in Australian curriculums including SACE, HSC, QCAA, WACE, and VCE for high school students, as well as AUS8-10 for middle school students."
+    }
+  ]
+}

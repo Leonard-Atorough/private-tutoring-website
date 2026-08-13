@@ -5,7 +5,8 @@
     {
       "id": "panel-1",
       "title": "Middle School",
-      "image": "src/assets/middle_school_study.jpg",
+      "image": "/images/middle_school_study.jpg",
+      "tags": ["Maths", "Science"],
       "items": [
         {
           "id": "ms-maths",
@@ -24,7 +25,8 @@
     {
       "id": "panel-2",
       "title": "High School",
-      "image": "src/assets/middle_school_study.jpg",
+      "image": "/images/high_school_study.jpg",
+      "tags": ["Maths", "Chemistry", "Physics"],
       "items": [
         {
           "id": "hs-maths",
@@ -49,7 +51,8 @@
     {
       "id": "panel-3",
       "title": "University",
-      "image": "src/assets/middle_school_study.jpg",
+      "image": "/images/university_study.jpg",
+      "tags": ["Chemistry", "Organic Chemistry", "Bridging Courses"],
       "items": [
         {
           "id": "uni-chem-1",

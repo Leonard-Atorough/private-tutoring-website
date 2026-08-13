@@ -6,7 +6,7 @@
       "price": 70,
       "duration": "per hour",
       "description": "Perfect for students in years 7-12",
-      "sessionMinimum": "Minimum Block of 4 Sessions",
+      "sessionMinimum": "4 session minimum, fixed weekly schedule.",
       "features": [
         "Maths tutoring",
         "General Science support",
@@ -26,7 +26,7 @@
       "price": 80,
       "duration": "per hour",
       "description": "University-level support",
-      "sessionMinimum": "Minimum Block of 4 Sessions",
+      "sessionMinimum": "4 session minimum, fixed weekly schedule.",
       "features": [
         "First & second year Chemistry",
         "Bridging courses",
@@ -42,6 +42,7 @@
       "price": 100,
       "duration": "per hour",
       "description": "For individual sessions without a package",
+      "sessionMinimum": "Flexible scheduling.",
       "features": [
         "Available for all subjects",
         "Ideal for occasional help",
@@ -53,5 +54,5 @@
       "popular": false
     }
   ],
-  "note": "First session is available at a discounted trial rate. Contact me for details!"
+  "note": "For non one-off sessions, a minimum of 4 sessions is required, scheduled weekly. Please contact us for more information or to discuss your specific needs."
 }

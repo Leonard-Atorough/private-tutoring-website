@@ -1,0 +1,24 @@
+---
+import  testimonialData from "../content/testimonials.json";
+
+const testimonials = testimonialData.testimonials;
+---
+
+<div class="testimonials-carousel">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {
+        testimonials.map((testimonial) => (
+          <article class="swiper-slide testimonial-card">
+            <blockquote class="content">
+              <p class="testimonial">{testimonial.quote}</p>
+              <cite class="author">{testimonial.author}</cite>
+              <p class="title">{testimonial.title}</p>
+            </blockquote>
+          </article>
+        ))
+      }
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>

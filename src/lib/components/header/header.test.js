@@ -69,6 +69,29 @@ describe("Navigation toggle", () => {
       "Header elements not found, navigation functionality disabled",
     );
   });
+
+  it("initializes the header when elements appear after the first attempt", () => {
+    document.body.innerHTML = "";
+
+    initHeader();
+
+    document.body.innerHTML = `
+      <button id="hamburger-button" aria-expanded="false"></button>
+      <nav id="navigation-menu" class="navigation-menu">
+        <a href="#section-one" class="link">Section One</a>
+      </nav>
+    `;
+
+    initHeader();
+
+    const toggle = document.getElementById("hamburger-button");
+    const nav = document.getElementById("navigation-menu");
+
+    toggle.click();
+
+    expect(nav.classList.contains("-active")).toBe(true);
+    expect(toggle.getAttribute("aria-expanded")).toBe("true");
+  });
 });
 
 describe("When a navigation link is clicked", () => {
@@ -78,15 +101,13 @@ describe("When a navigation link is clicked", () => {
   });
 
   it("should scroll to the target section", () => {
-    const link = document.querySelector("a[href=\"#section-two\"]");
+    const link = document.querySelector('a[href="#section-two"]');
 
     const target = document.getElementById("section-two");
-    const scrollSpy = vi
-      .spyOn(target, "scrollIntoView")
-      .mockImplementation(() => {
-        // Simulate what the browser would do after a smooth scroll
-        window.location.hash = "#section-two";
-      });
+    const scrollSpy = vi.spyOn(target, "scrollIntoView").mockImplementation(() => {
+      // Simulate what the browser would do after a smooth scroll
+      window.location.hash = "#section-two";
+    });
     link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 
     expect(scrollSpy).toHaveBeenCalledOnce();

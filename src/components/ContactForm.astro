@@ -1,0 +1,150 @@
+---
+const emailAddress = "kailistacey@gmail.com";
+
+const subjectOptions = [
+  { value: "maths", label: "Maths" },
+  { value: "chemistry", label: "Chemistry" },
+  { value: "physics", label: "Physics" },
+  { value: "science", label: "General Science" },
+  { value: "high-school-maths", label: "High School Maths" },
+  { value: "high-school-chemistry", label: "High School Chemistry" },
+  { value: "high-school-physics", label: "High School Physics" },
+  { value: "university-maths", label: "University Maths" },
+  { value: "university-chemistry", label: "University Chemistry" },
+  { value: "bridging-course", label: "University Bridging Course" },
+  { value: "other", label: "Other" },
+];
+---
+
+<a
+  class="contact-form-email"
+  id="Email-address"
+  href={`mailto:${emailAddress}`}
+  title="Email Kaili Stacey"
+>
+  <span aria-hidden="true">📧</span>
+  <span>{emailAddress}</span>
+</a>
+
+<form
+  class="contact-form"
+  id="contact-form"
+  method="POST"
+  name="contact-form"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <div class="hidden">
+    <label for="bot-field">Don't fill this out if you're human:</label>
+    <input type="text" name="bot-field" id="bot-field" />
+  </div>
+
+  <div class="form-group">
+    <label for="name" class="label">Name</label>
+    <input
+      type="text"
+      id="name"
+      class="field"
+      name="name"
+      placeholder="Name"
+      aria-label="Name"
+      autocomplete="name"
+      required
+    />
+  </div>
+
+  <div class="contact-form-row">
+    <div class="form-group">
+      <label for="email" class="label">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="field"
+        name="email"
+        placeholder="Email"
+        aria-label="Email"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="phone" class="label">Phone</label>
+      <input
+        type="tel"
+        id="phone"
+        class="field"
+        name="phone"
+        placeholder="Phone"
+        aria-label="Phone"
+        autocomplete="tel"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="form-group subject-group">
+    <label for="subject" class="label">Subject</label>
+    <select id="subject" class="field" name="subject" aria-label="Subject" required>
+      <option value="" selected disabled>Select a subject</option>
+      {subjectOptions.map((option) => <option value={option.value}>{option.label}</option>)}
+    </select>
+
+    <div class="form-group custom-subject-wrap" id="custom-subject-wrap" hidden>
+      <label for="custom-subject" class="label">Please specify the subject</label>
+      <input
+        type="text"
+        id="custom-subject"
+        class="field"
+        name="custom-subject"
+        placeholder="e.g. Biology, IB Maths, etc."
+        aria-label="Custom subject"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="message" class="label">Message</label>
+    <textarea
+      id="message"
+      class="field"
+      name="message"
+      rows="10"
+      placeholder="Enter your inquiry here..."
+      aria-label="Message"
+      required></textarea>
+  </div>
+
+  <button type="submit" class="submit button -primary" aria-label="Submit">Send Message</button>
+</form>
+
+<script>
+  const initializeSubjectSelector = () => {
+    const subjectSelect = document.getElementById("subject") as HTMLSelectElement | null;
+    const customSubjectWrap = document.getElementById("custom-subject-wrap");
+    const customSubjectInput = document.getElementById("custom-subject") as HTMLInputElement | null;
+
+    if (!subjectSelect || !customSubjectWrap || !customSubjectInput) {
+      return;
+    }
+
+    const toggleCustomSubject = () => {
+      const isOtherSelected = subjectSelect.value === "other";
+      customSubjectWrap.hidden = !isOtherSelected;
+      customSubjectInput.required = isOtherSelected;
+
+      if (!isOtherSelected) {
+        customSubjectInput.value = "";
+      }
+    };
+
+    subjectSelect.addEventListener("change", toggleCustomSubject);
+    toggleCustomSubject();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeSubjectSelector);
+  } else {
+    initializeSubjectSelector();
+  }
+</script>

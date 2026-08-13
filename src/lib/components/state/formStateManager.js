@@ -2,13 +2,24 @@ import logger from "../../logger.js";
 import * as Sentry from "@sentry/browser";
 
 function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
+  const safe = (
+    fn,
+    { formId, message = "Non-fatal error", capture = false, context = {} } = {},
+  ) => {
+    try {
+      return fn();
+    } catch (err) {
+      logger.error(message, { formId, ...context, errorMessage: err.message });
+      if (capture) Sentry.captureException(err);
+      return undefined;
+    }
+  };
+
   function getFormData(formId) {
     try {
       const form = document.getElementById(formId);
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-
-      return data;
+      return Object.fromEntries(formData);
     } catch (error) {
       logger.error("Error getting form data", { formId, errorMessage: error.message }, error);
       return {};
@@ -39,16 +50,6 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
     const form = document.getElementById(formId);
     if (!form) throw new Error("Form not found");
 
-    const safe = (fn, { message = "Non-fatal error", capture = false, context = {} } = {}) => {
-      try {
-        return fn();
-      } catch (err) {
-        logger.error(message, { formId, ...context, errorMessage: err.message });
-        if (capture) Sentry.captureException(err);
-        return undefined;
-      }
-    };
-
     safe(
       () => {
         const formSubmitted = fetchStoredState("formSubmitted");
@@ -57,7 +58,7 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
           clearFormState(formId);
         }
       },
-      { message: "Error checking form submission state", capture: true },
+      { formId, message: "Error checking form submission state", capture: true },
     );
 
     safe(
@@ -65,7 +66,7 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
         const saved = fetchStoredState(formId);
         if (saved) setFormData(form, saved);
       },
-      { message: "Error restoring form state", capture: true },
+      { formId, message: "Error restoring form state", capture: true },
     );
 
     let idleTimer;
@@ -83,7 +84,6 @@ function createFormStateManager(saveStateToLocalStorage, fetchStoredState) {
     };
 
     form.addEventListener("input", debounceSaveState);
-
     form.addEventListener("submit", () => {
       if (idleTimer) clearTimeout(idleTimer);
     });

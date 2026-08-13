@@ -28,13 +28,15 @@ This is a professional single-page application (SPA) built for Kaili Stacey, a P
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: Vanilla JavaScript (ES6+)
-- **Build Tool**: Vite 7.x
+- **Frontend Framework**: Astro (static site generation)
+- **JavaScript**: Vanilla JavaScript (ES6+) with TypeScript
+- **Build Tool**: Vite 7.x (via Astro)
 - **Testing**: Vitest with jsdom
 - **Styling**: Pure CSS with modular architecture
 - **Deployment**: Netlify
 - **Analytics**: Plausible (privacy-focused)
 - **Form Handling**: Netlify Forms
+- **Error Tracking**: Sentry
 
 ## 📁 Project Structure
 
@@ -73,7 +75,7 @@ This is a professional single-page application (SPA) built for Kaili Stacey, a P
 
 ### Prerequisites
 
-- **Node.js** (v18 or higher)
+- **Node.js** (v22.x or higher)
 - **npm** or **yarn**
 
 ### Installation
@@ -91,33 +93,53 @@ cd private-tutoring-website
 npm install
 ```
 
-### Development
+### Development Server
 
-Start the development server:
+Start the Astro development server (with HMR):
 
 ```bash
 npm run dev
 ```
 
-The site will be available at `http://localhost:3000`
+Server runs on `http://localhost:3000`
 
-### Building for Production
+### Production Build
 
-Create an optimized production build:
+Build for production:
 
 ```bash
 npm run build
 ```
 
-The built files will be in the `dist/` directory.
+Output: `./dist/` directory (static HTML/CSS/JS)
 
 ### Preview Production Build
 
-Preview the production build locally:
+Test production build locally:
 
 ```bash
 npm run preview
 ```
+
+Preview runs on `http://localhost:4173`
+
+### Code Quality
+
+```bash
+npm run lint          # Check code for issues
+npm run lint:fix      # Automatically fix linting issues
+npm run type-check    # TypeScript type checking
+```
+
+## Environment Setup
+
+Copy `.env.example` to `.env.local` and fill in values:
+
+```bash
+cp .env.example .env.local
+```
+
+See `.env.example` for required and optional environment variables.
 
 ## 🧪 Testing
 
@@ -231,7 +253,7 @@ The project is configured for automatic deployment:
 
 - Build command: `npm run build`
 - Publish directory: `dist`
-- Node version: 18+
+- Node version: 22.x+
 
 ## 🧩 Component Architecture
 

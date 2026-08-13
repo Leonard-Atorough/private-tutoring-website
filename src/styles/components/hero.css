@@ -1,12 +1,13 @@
 .hero-section {
   position: relative;
-  width: 100%;
+
   height: 80vh;
   overflow: hidden;
   margin-bottom: var(--space-xl);
-  background: url("/src/assets/banner.webp") left / cover no-repeat;
+  background: url("/banner.webp") left / cover no-repeat;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);
   border-radius: var(--radius-lg);
+  margin: 0 var(--space-lg);
 }
 
 .hero-section > .banner {
