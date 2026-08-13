@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import TestimonialsCarousel from "../components/TestimonialsCarousel.astro";
+import ServicesOverview from "../components/ServicesOverview.astro";
+import Pricing from "../components/Pricing.astro";
+import TrustBadges from "../components/TrustBadges.astro";
+import FAQ from "../components/FAQ.astro";
+import ContactForm from "../components/ContactForm.astro";
+import BookingModal from "../components/BookingModal.astro";
+import aboutData from "../content/about.json";
+
+const about = aboutData;
+---
+
+<Layout
+  title="Kaili Stacey | Expert Math & Science Tutor"
+  description="Expert online math and science tutoring by PhD-qualified Kaili Stacey."
+>
+  <Header />
+
+  <main class="main-content" id="Main" aria-label="Main content" role="main">
+    <section class="hero-section" id="Hero" aria-label="Hero section">
+      <div class="banner">
+        <h1 class="title">{about.profile.title}</h1>
+        <h2 class="tagline">{about.profile.tagline}</h2>
+        <div class="banner-buttons">
+          <button class="book-btn button -primary">Book a Session</button>
+          <a class="contact button -secondary" id="contactBtn" href="#Contact">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-container about-section" id="About" aria-labelledby="about-title">
+      <SectionHeader
+        title="ABOUT ME"
+        subtitle="Dedicated to helping students succeed in Maths and Science"
+      />
+      <div class="about-body">
+        <div class="about-image">
+          <img
+            class="image"
+            src="/src/assets/profile_picture.webp"
+            loading="lazy"
+            width="480"
+            height="640"
+            alt="An image of the website owner"
+          />
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+        </div>
+        <div class="about-text">
+          <h3 class="heading">Hi, I'm Dr. Kaili Stacey, your next Maths and Science tutor.</h3>
+          <h4 class="subheading">
+            {about.profile.summary}
+          </h4>
+          <p class="content">
+            {about.profile.bio[0]}
+          </p>
+          <p class="content">
+            {about.profile.bio[1]}
+          </p>
+          <p class="content">
+            {about.profile.bio[2]}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <TrustBadges />
+
+    <section
+      class="section-container services-section"
+      id="Services"
+      aria-labelledby="services-title"
+    >
+      <SectionHeader
+        title="MY SERVICES"
+        subtitle="Personalized tutoring for Maths and Science subjects"
+      />
+      <ServicesOverview />
+    </section>
+
+    <section
+      class="section-container testimonials-section"
+      id="Testimonials"
+      aria-labelledby="testimonials-title"
+    >
+      <SectionHeader
+        title="WHAT PEOPLE ARE SAYING"
+        subtitle="Testimonials from satisfied students and parents"
+      />
+      <div class="review-stats">
+        <div class="review-count">
+          <div class="review-count-number">30+</div>
+          <div class="review-count-label">Happy Students</div>
+        </div>
+      </div>
+      <TestimonialsCarousel />
+    </section>
+
+    <section class="section-container pricing-section" id="Pricing" aria-labelledby="pricing-title">
+      <SectionHeader title="PRICING" subtitle="Clear, transparent pricing with no hidden fees" />
+      <Pricing />
+    </section>
+
+    <section class="section-container faq-section" id="FAQ" aria-labelledby="faq-title">
+      <SectionHeader
+        title="FREQUENTLY ASKED QUESTIONS"
+        subtitle="Everything you need to know about tutoring sessions"
+      />
+      <FAQ />
+    </section>
+
+    <section
+      class="section-container contact-form-section"
+      id="Contact"
+      aria-labelledby="contact-form-title"
+    >
+      <SectionHeader title="GET IN TOUCH" subtitle="Tell me what you'd like help with" />
+
+      <ContactForm />
+    </section>
+  </main>
+
+  <Footer />
+
+  <BookingModal />
+</Layout>
