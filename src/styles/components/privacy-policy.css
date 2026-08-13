@@ -1,0 +1,116 @@
+/* Privacy Policy Page Styles */
+
+.privacy-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.privacy-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.privacy-container .last-updated {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.privacy-container h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.privacy-container h3 {
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.privacy-container p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.privacy-container ul {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.privacy-container li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.privacy-container a {
+  color: var(--primary-500);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.privacy-container a:hover {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-600);
+}
+
+.privacy-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.privacy-container th,
+.privacy-container td {
+  border: 1px solid var(--border-light);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.privacy-container th {
+  background-color: var(--primary-100);
+  font-weight: 600;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--primary-500);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-600);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .privacy-container {
+    margin: 1rem auto;
+  }
+
+  .privacy-container h1 {
+    font-size: 2rem;
+  }
+
+  .privacy-container h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .privacy-container h3 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  .privacy-container ul {
+    margin-left: 1.5rem;
+  }
+}

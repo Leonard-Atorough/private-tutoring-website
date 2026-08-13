@@ -5,6 +5,29 @@ import { vi } from "vitest";
 import { createMockLogger } from "../../../__mocks__/logger.js";
 
 vi.mock("../../logger.js", () => ({ default: createMockLogger(vi) }));
+vi.mock("../scroll-links/scrollUtility.js", () => ({
+  scrollToSection: vi.fn((id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }),
+  attachScrollHandler: vi.fn((container, selector) => {
+    const links = container.querySelectorAll(selector);
+    Array.from(links).forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (link.getAttribute("href").startsWith("#")) {
+          event.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      });
+    });
+  }),
+}));
 
 import { initHeader } from "./header.js";
 import logger from "../../logger.js";

@@ -1,4 +1,5 @@
 import logger from "../../logger.js";
+import { attachScrollHandler as attachScrollHandlerUtil } from "../scroll-links/scrollUtility.js";
 
 const TOGGLE_BUTTON_ID = "hamburger-button";
 const NAVIGATION_MENU_ID = "navigation-menu";
@@ -31,15 +32,6 @@ function toggleNavMenu(forceClose) {
   setNavMenuAccessibilityAttributes();
 }
 
-function scrollToSection(sectionId) {
-  if (sectionId) {
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-}
-
 function attachToggleHandler() {
   if (!button) throw Error("Navigation toggle button not found");
   button.addEventListener("click", () => {
@@ -52,14 +44,7 @@ function attachToggleHandler() {
 
 function attachScrollHandler() {
   if (!nav) throw Error("Navigation menu not found");
-  const links = nav.querySelectorAll("a.link");
-  Array.from(links).forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const targetId = link.getAttribute("href").substring(1);
-      scrollToSection(targetId);
-    });
-  });
+  attachScrollHandlerUtil(nav, "a.link");
 }
 
 function attachResizeHandler() {

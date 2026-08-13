@@ -1,28 +1,255 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import "../styles/components/privacy-policy.css";
 ---
 
 <Layout
   title="Privacy Policy | Kaili Stacey Tutoring"
   description="Privacy policy for Kaili Stacey Tutoring."
 >
-  <main class="main-content">
-    <section class="section-container" aria-label="Privacy policy">
-      <h1 class="title">Privacy Policy</h1>
-      <p class="content">
-        This website is committed to protecting the privacy of every visitor. Personal information
-        collected through the contact form will be used only to respond to your enquiry and provide
-        tutoring information.
+  <main class="main-content" id="Main" aria-label="Main content" role="main">
+    <div class="privacy-container">
+      <a href="/" class="back-link">← Back to Home</a>
+
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last Updated: January 20, 2026</p>
+
+      <h2>1. Introduction</h2>
+      <p>
+        Kaili Stacey Tutoring ("we," "our," or "us") is committed to protecting your privacy. This
+        Privacy Policy explains how we collect, use, disclose, and safeguard your information when
+        you visit our website
+        <a href="https://kailistacey.com">https://kailistacey.com</a> (the "Site") and use our services.
       </p>
-      <p class="content">
-        Information may be stored securely and will not be sold, shared, or distributed without your
-        consent, except where required by law.
+      <p>
+        Please read this Privacy Policy carefully. If you do not agree with our policies and
+        practices, please do not use our Site. By accessing and using this Site, you acknowledge
+        that you have read, understood, and agree to be bound by all the terms of this Privacy
+        Policy.
       </p>
-      <p class="content">
-        If you contact us, you may request access to or correction of the personal information we
-        hold about you at any time.
+
+      <h2>2. Information We Collect</h2>
+
+      <h3>2.1 Information You Provide Directly</h3>
+      <ul>
+        <li>
+          <strong>Contact Form Data:</strong> Name, email address, subject, and message when you use our
+          contact form. This information is processed through Netlify Forms.
+        </li>
+        <li>
+          <strong>Booking Information:</strong> When you book a session through our website, you connect
+          your Google Calendar account to schedule tutoring sessions.
+        </li>
+        <li>
+          <strong>Communication Data:</strong> Any emails or messages you send us directly, including
+          correspondence about tutoring services.
+        </li>
+      </ul>
+
+      <h3>2.2 Automatically Collected Information</h3>
+      <ul>
+        <li>
+          <strong>Analytics Data:</strong> Page views, referral source, device type, browser, and general
+          location (anonymized) via Plausible Analytics. Plausible does not use cookies or collect personal
+          identifiable information.
+        </li>
+        <li>
+          <strong>Error & Performance Data:</strong> Technical errors, performance metrics, and debugging
+          information collected via Sentry for quality assurance purposes.
+        </li>
+        <li>
+          <strong>IP Address:</strong> Your IP address when accessing Google Fonts and other third-party
+          resources.
+        </li>
+      </ul>
+
+      <h2>3. How We Use Your Information</h2>
+      <ul>
+        <li>To respond to your inquiries and provide customer support</li>
+        <li>To process and confirm session bookings and tutoring arrangements</li>
+        <li>To improve our website functionality and user experience</li>
+        <li>To send administrative notifications and updates (if you opt-in)</li>
+        <li>To comply with legal obligations and protect against fraud or abuse</li>
+        <li>To understand website performance and fix technical issues</li>
+        <li>To track anonymized usage patterns through analytics</li>
+      </ul>
+
+      <h2>4. Third-Party Data Sharing</h2>
+      <p>
+        We share personal data with the following third-party service providers. We do not sell or
+        intentionally share your personal information with third parties for marketing purposes.
       </p>
-      <a class="button -secondary" href="/">Back to home</a>
-    </section>
+      <ul>
+        <li>
+          <strong>Netlify Forms:</strong> Contact form submissions are handled by Netlify. Your data is
+          subject to
+          <a href="https://www.netlify.com/privacy">Netlify's Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Google Calendar:</strong> Booking information is stored in your personal Google Calendar
+          account. Your data is subject to <a href="https://policies.google.com/privacy"
+            >Google's Privacy Policy</a
+          >.
+        </li>
+        <li>
+          <strong>Plausible Analytics:</strong> Website analytics are collected by Plausible Analytics.
+          Plausible does not store personal data and is GDPR/CCPA compliant. See
+          <a href="https://plausible.io/privacy">Plausible's Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Sentry:</strong> Error tracking and performance monitoring via Sentry. See
+          <a href="https://sentry.io/privacy">Sentry's Privacy Policy</a>.
+        </li>
+        <li>
+          <strong>Google Fonts:</strong> Fonts are delivered by Google. Your IP address is shared with
+          Google when loading fonts. See <a href="https://policies.google.com/privacy"
+            >Google's Privacy Policy</a
+          >.
+        </li>
+      </ul>
+
+      <h2>5. Data Retention</h2>
+      <p>
+        We do not retain personal data on our servers. Here's how your data is handled by
+        third-party services:
+      </p>
+      <ul>
+        <li>
+          <strong>Contact Forms:</strong> Submitted form data is handled by Netlify Forms and retained
+          according to Netlify's data retention policy. We do not store contact form submissions on our
+          servers.
+        </li>
+        <li>
+          <strong>Booking Data:</strong> Stored in your Google Calendar account per Google's retention
+          policy.
+        </li>
+        <li>
+          <strong>Analytics:</strong> Retained by Plausible Analytics per their data retention policy
+          (typically 30 days for raw data).
+        </li>
+        <li>
+          <strong>Error & Performance Data:</strong> Error reports, performance traces, and session replay
+          data sent to Sentry are retained according to our Sentry project settings and Sentry's retention
+          policy. We sample errors to reduce noise and typically retain data for 90 days.
+        </li>
+      </ul>
+
+      <h3>Sentry & Sensitive Data</h3>
+      <p>
+        We use Sentry for error tracking and debugging. Sentry may collect technical information
+        (errors, stack traces, browser logs) to help us fix issues. Sentry does not collect
+        passwords, credit card information, or other sensitive personally identifiable information
+        by default.
+      </p>
+
+      <h3>Opt-out / Contact</h3>
+      <p>
+        If you would like to opt out of error tracking or session replay for your sessions, contact
+        us at
+        <a href="mailto:kailistacey@gmail.com">kailistacey@gmail.com</a>. To request deletion of
+        your personal data, please contact us with details about what data you'd like deleted.
+      </p>
+
+      <h2>6. Your Privacy Rights</h2>
+      <p>Depending on your location, you may have the following rights:</p>
+      <ul>
+        <li>
+          <strong>Right to Access:</strong> Request a copy of the personal data we hold about you.
+        </li>
+        <li>
+          <strong>Right to Correct:</strong> Request corrections to inaccurate data.
+        </li>
+        <li>
+          <strong>Right to Delete:</strong> Request deletion of your personal data (subject to legal obligations
+          and data retention policies of third-party services).
+        </li>
+        <li>
+          <strong>Right to Opt-Out:</strong> Opt out of analytics tracking, error monitoring, or contact
+          communications.
+        </li>
+        <li>
+          <strong>Right to Data Portability:</strong> Request your data in a portable format where technically
+          feasible.
+        </li>
+      </ul>
+      <p>
+        To exercise any of these rights, please contact us at
+        <a href="mailto:kailistacey@gmail.com">kailistacey@gmail.com</a>.
+      </p>
+
+      <h2>7. Security</h2>
+      <p>
+        We implement appropriate technical and organizational measures to protect your personal data
+        from unauthorized access, alteration, disclosure, or destruction. However, no internet-based
+        transmission is completely secure or error-free. Please use caution and safeguard your
+        passwords.
+      </p>
+
+      <h2>8. Cookies and Tracking</h2>
+      <p>
+        <strong>Plausible Analytics:</strong> We use Plausible Analytics for website analytics. Plausible
+        does not use cookies or collect personally identifiable information. It is a privacy-respecting
+        alternative to Google Analytics and is fully GDPR compliant.
+      </p>
+      <p>
+        <strong>Google Services:</strong> Google Fonts and Google Calendar may use cookies in accordance
+        with Google's Cookie Policy. You can control cookie settings through your browser.
+      </p>
+      <p>
+        <strong>This Site:</strong> Our website does not set cookies for tracking purposes. Session-based
+        functionality (such as form state) may use browser storage (localStorage) for your convenience.
+      </p>
+
+      <h2>9. Children's Privacy</h2>
+      <p>
+        Our services are not directed to children under 13. We do not knowingly collect personal
+        information from children under 13. If we become aware that we have inadvertently collected
+        personal data from a child under 13, we will take steps to delete such information and
+        terminate the child's account.
+      </p>
+
+      <h2>10. International Data Transfers</h2>
+      <p>
+        Your information may be transferred to, stored in, and processed in countries other than
+        your country of residence, which may have data protection laws that differ from your home
+        country. By using our Site, you consent to the transfer of your information to the United
+        States and other countries for processing and storage.
+      </p>
+
+      <h2>11. Links to Third-Party Websites</h2>
+      <p>
+        Our website may contain links to third-party websites. We are not responsible for their
+        privacy practices. We encourage you to review the privacy policies of any website before
+        providing your personal information.
+      </p>
+
+      <h2>12. Changes to This Privacy Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time to reflect changes in our practices,
+        technology, or legal requirements. We will notify you of any material changes by posting the
+        new Privacy Policy on this page and updating the "Last Updated" date. Your continued use of
+        the Site following the posting of revisions constitutes your acceptance of those changes.
+      </p>
+
+      <h2>13. Contact Us</h2>
+      <p>
+        If you have questions about this Privacy Policy or our privacy practices, please contact us
+        at:
+      </p>
+      <ul>
+        <li>
+          <strong>Email:</strong>
+          <a href="mailto:kailistacey@gmail.com">kailistacey@gmail.com</a>
+        </li>
+        <li>
+          <strong>Website:</strong>
+          <a href="https://kailistacey.com">https://kailistacey.com</a>
+        </li>
+      </ul>
+
+      <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+        © 2025 Kaili Stacey Tutoring. All rights reserved.
+      </p>
+    </div>
   </main>
 </Layout>
