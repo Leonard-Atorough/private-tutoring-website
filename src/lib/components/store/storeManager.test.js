@@ -77,5 +77,21 @@ describe("state persistence", () => {
       const persisted = state.fetchStoredState(TEST_KEY);
       expect(persisted).toBeNull();
     });
+
+    it("should safely return an empty state when localStorage is unavailable", () => {
+      const originalLocalStorage = globalThis.localStorage;
+      Object.defineProperty(globalThis, "localStorage", {
+        value: undefined,
+        configurable: true,
+      });
+
+      expect(() => state.saveStateToLocalStorage(TEST_KEY, TEST_VALUE)).not.toThrow();
+      expect(state.fetchStoredState(TEST_KEY)).toStrictEqual({});
+
+      Object.defineProperty(globalThis, "localStorage", {
+        value: originalLocalStorage,
+        configurable: true,
+      });
+    });
   });
 });

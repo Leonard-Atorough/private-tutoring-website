@@ -79,12 +79,23 @@ export function initHeader() {
   button = document.getElementById(TOGGLE_BUTTON_ID);
 
   if (!nav || !button) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initHeader, { once: true });
+      return;
+    }
+
     logger.warn("Header elements not found, navigation functionality disabled");
+    return;
+  }
+
+  if (button.dataset.headerBound === "true" && nav.dataset.headerBound === "true") {
     return;
   }
 
   attachToggleHandler();
   attachScrollHandler();
   attachResizeHandler();
+  button.dataset.headerBound = "true";
+  nav.dataset.headerBound = "true";
   logger.info("Header initialized successfully");
 }
