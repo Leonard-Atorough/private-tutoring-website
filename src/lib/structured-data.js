@@ -20,11 +20,7 @@ export function buildSiteStructuredData(
    *   faqItems?: FAQItem[],
    *   includeFaq?: boolean
    * }} */
-  {
-    pricingTiers = [],
-    faqItems = [],
-    includeFaq = false,
-  } = {},
+  { pricingTiers = [], faqItems = [], includeFaq = false } = {},
 ) {
   const minPrice = pricingTiers.length
     ? Math.min(...pricingTiers.map((tier) => Number(tier.price) || 0))
