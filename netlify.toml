@@ -10,7 +10,7 @@
   # Environment variables for build consistency
   [build.environment]
     # Pin Node.js version to match local/GitHub Actions
-    NODE_VERSION = "22.x"
+    NODE_VERSION = "22"
 
 # ============================================================================
 # Domain Redirects
