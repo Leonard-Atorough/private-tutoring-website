@@ -41,11 +41,11 @@ body {
   display: block;
   margin: 0 auto;
   min-width: 320px;
-  padding: var(--space-lg);
+  padding: var(--space-lg) 0;
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding: var(--space-sm);
+    padding: var(--space-sm) 0;
   }
 }
