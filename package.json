@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "astro dev --port 3000",
+    "build": "astro build",
+    "preview": "astro preview --port 4173",
     "test": "vitest",
     "test:ci": "vitest run",
     "test:watch": "vitest --watch",
@@ -24,8 +24,10 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@sentry/astro": "^10.70.0",
     "@sentry/browser": "^10.35.0",
     "@sentry/vite-plugin": "^4.7.0",
+    "astro": "^7.2.1",
     "swiper": "^14.1.0"
   }
 }

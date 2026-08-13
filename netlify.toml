@@ -1,18 +1,66 @@
+# ============================================================================
+# Netlify Build Configuration
+# ============================================================================
+
+[build]
+  # Simple build - GitHub Actions handles testing/linting/type-checking
+  command = "npm run build"
+  publish = "dist"
+  
+  # Environment variables for build consistency
+  [build.environment]
+    # Pin Node.js version to match local/GitHub Actions
+    NODE_VERSION = "22.x"
+
+# ============================================================================
+# Domain Redirects
+# ============================================================================
+
+# Redirect old domain to new domain (301 = permanent)
 [[redirects]]
   from = "https://kailistutoring.netlify.app/*"
   to = "https://kailistacey.com/:splat"
   status = 301
   force = true
 
+# 404 fallback for static sites
 [[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404
 
+# ============================================================================
+# Security Headers
+# ============================================================================
+
+[[headers]]
+  for = "/*"
+  
+  [headers.values]
+    # Prevent MIME type sniffing attacks
+    X-Content-Type-Options = "nosniff"
+    
+    # Prevent clickjacking
+    X-Frame-Options = "SAMEORIGIN"
+    
+    # Enable browser XSS filters
+    X-XSS-Protection = "1; mode=block"
+    
+    # Control referrer information for privacy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Disable unnecessary browser permissions
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# ============================================================================
+# SEO & Plugins
+# ============================================================================
+
 [[plugins]]
   package = "@netlify/plugin-sitemap"
-  [plugins.inputs]
-  buildDir = "dist"
-  changeFreq = "monthly"
-  priority = 1.0
   
+  [plugins.inputs]
+    buildDir = "dist"
+    baseUrl = "https://kailistacey.com"
+    changeFreq = "monthly"
+    priority = 1.0
