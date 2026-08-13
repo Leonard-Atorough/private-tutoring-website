@@ -23,59 +23,20 @@ export function initModal() {
     logger.warn("No modal close button found", { id: MODAL_CLOSE_ID });
   }
 
-  const iframe = modal?.querySelector("iframe");
+  // Open modal on button click
+  Array.from(openModalBtns).forEach((btn) => {
+    btn.addEventListener("click", openBookingModal);
+  });
 
-  const focusableElements =
-    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-
-  function getFocusableElements() {
-    return modal.querySelectorAll(focusableElements);
-  }
-
-  function trapFocus(e) {
-    if (!modal.classList.contains("-active")) return;
-
-    const focusable = Array.from(getFocusableElements());
-    const firstFocusable = focusable[0];
-    const lastFocusable = focusable[focusable.length - 1];
-
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusable) {
-        lastFocusable.focus();
-        e.preventDefault();
-      }
-    } else {
-      if (document.activeElement === lastFocusable) {
-        firstFocusable.focus();
-        e.preventDefault();
-      }
-    }
-  }
-
-  Array.from(openModalBtns).forEach((e) => e.addEventListener("click", () => {
-    // Focus close button after opening if iframe exists
-    const focusTarget = iframe ? closeModalBtn : undefined;
-    openBookingModal(focusTarget);
-  }));
+  // Close modal on close button click
   closeModalBtn?.addEventListener("click", closeBookingModal);
 
+  // Close modal on backdrop click
   modal?.addEventListener("click", (e) => {
-    if (e.target === modal) closeBookingModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("-active")) {
+    if (e.target === modal) {
       closeBookingModal();
     }
-    if (e.key === "Tab" && modal.classList.contains("-active")) {
-      trapFocus(e);
-    }
   });
 
-  modal?.setAttribute("role", "dialog");
-  modal?.setAttribute("aria-modal", "true");
-  if (iframe) {
-    iframe.setAttribute("tabindex", "0");
-  }
   logger.info("Modal initialized successfully");
 }

@@ -1,5 +1,4 @@
 import logger from "../../logger.js";
-import { attachScrollHandler as attachScrollHandlerUtil } from "../scroll-links/scrollUtility.js";
 
 const TOGGLE_BUTTON_ID = "hamburger-button";
 const NAVIGATION_MENU_ID = "navigation-menu";
@@ -42,11 +41,6 @@ function attachToggleHandler() {
   window.addEventListener("scroll", scrollHandler);
 }
 
-function attachScrollHandler() {
-  if (!nav) throw Error("Navigation menu not found");
-  attachScrollHandlerUtil(nav, "a.link");
-}
-
 function attachResizeHandler() {
   window.addEventListener("resize", () => {
     if (window.innerWidth < HAMBURGER_VIEW_WIDTH) {
@@ -78,7 +72,6 @@ export function initHeader() {
   }
 
   attachToggleHandler();
-  attachScrollHandler();
   attachResizeHandler();
   button.dataset.headerBound = "true";
   nav.dataset.headerBound = "true";
