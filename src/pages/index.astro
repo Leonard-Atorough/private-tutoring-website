@@ -46,6 +46,7 @@ const structuredData = buildSiteStructuredData({
       <SectionHeader
         title="ABOUT ME"
         subtitle="Dedicated to helping students succeed in Maths and Science"
+        ariaId="about-title"
       />
       <div class="about-body">
         <div class="about-image">
@@ -91,6 +92,7 @@ const structuredData = buildSiteStructuredData({
       <SectionHeader
         title="MY SERVICES"
         subtitle="Personalized tutoring for Maths and Science subjects"
+        ariaId="services-title"
       />
       <ServicesOverview />
     </section>
@@ -103,6 +105,7 @@ const structuredData = buildSiteStructuredData({
       <SectionHeader
         title="WHAT PEOPLE ARE SAYING"
         subtitle="Testimonials from satisfied students and parents"
+        ariaId="testimonials-title"
       />
       <div class="review-stats">
         <div class="review-count">
@@ -114,7 +117,11 @@ const structuredData = buildSiteStructuredData({
     </section>
 
     <section class="section-container pricing-section" id="Pricing" aria-labelledby="pricing-title">
-      <SectionHeader title="PRICING" subtitle="Clear, transparent pricing with no hidden fees" />
+      <SectionHeader
+        title="PRICING"
+        subtitle="Clear, transparent pricing with no hidden fees"
+        ariaId="pricing-title"
+      />
       <Pricing />
     </section>
 
@@ -122,6 +129,7 @@ const structuredData = buildSiteStructuredData({
       <SectionHeader
         title="FREQUENTLY ASKED QUESTIONS"
         subtitle="Everything you need to know about tutoring sessions"
+        ariaId="faq-title"
       />
       <FAQ />
     </section>
@@ -131,7 +139,11 @@ const structuredData = buildSiteStructuredData({
       id="Contact"
       aria-labelledby="contact-form-title"
     >
-      <SectionHeader title="GET IN TOUCH" subtitle="Tell me what you'd like help with" />
+      <SectionHeader
+        title="GET IN TOUCH"
+        subtitle="Tell me what you'd like help with"
+        ariaId="contact-form-title"
+      />
 
       <ContactForm />
     </section>
