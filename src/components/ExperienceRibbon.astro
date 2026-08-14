@@ -1,0 +1,115 @@
+---
+import aboutData from "../content/about.json";
+
+const experiences = aboutData.profile.experience;
+---
+
+<section class="experience-ribbon" aria-label="Professional experience highlights">
+  <div class="experience-ribbon-header">
+    <h3 class="experience-title">My Experience</h3>
+    <p class="experience-subtitle">Proven track record and qualifications</p>
+  </div>
+  <div class="experience-ribbon-container">
+    {
+      experiences.map((item, index) => (
+        <article class="card -compact -bordered-left -interactive-high" data-index={index}>
+          <span class="item-number">{index + 1}</span>
+          <p class="item-text">{item}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .experience-ribbon {
+    padding: var(--space-lg) 0;
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-25) 100%);
+  }
+
+  .experience-ribbon-header {
+    padding: 0 var(--space-md) var(--space-lg);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .experience-title {
+    margin: 0 0 var(--space-xs) 0;
+    font-size: var(--font-size-3);
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .experience-subtitle {
+    margin: 0;
+    font-size: var(--font-size-0);
+    color: var(--text-secondary);
+  }
+
+  .experience-ribbon-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: 0 var(--space-md);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .card.-compact {
+    padding: var(--space-md);
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .item-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: var(--font-size-0);
+    flex-shrink: 0;
+  }
+
+  .item-text {
+    margin: 0;
+    font-size: var(--font-size-0);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  @media (max-width: 600px) {
+    .experience-ribbon {
+      padding: var(--space-md) 0;
+    }
+
+    .experience-ribbon-header {
+      padding: 0 var(--space-sm) var(--space-md);
+    }
+
+    .experience-title {
+      font-size: var(--font-size-2);
+    }
+
+    .experience-ribbon-container {
+      padding: var(--space-md) var(--space-sm);
+    }
+
+    .card.-compact {
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .item-text {
+      font-size: var(--font-size--1);
+    }
+  }
+</style>
