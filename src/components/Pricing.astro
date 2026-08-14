@@ -7,7 +7,7 @@ const { tiers, note } = pricingData;
 <div class="pricing-container">
   {
     tiers.map((plan) => (
-      <article class="pricing-card" role="article" aria-label={`${plan.name} pricing tier`}>
+      <article class="card -elevated -interactive -pronounced pricing-card" role="article" aria-label={`${plan.name} pricing tier`}>
         <div class="pricing-card-header">
           <h3 class="pricing-tier-name">{plan.name}</h3>
           <p class="pricing-description">{plan.description}</p>
@@ -19,7 +19,7 @@ const { tiers, note } = pricingData;
 
           <p class="pricing-duration">{plan.duration}</p>
 
-          <div class="pricing-session-badge">
+          <div class="badge pricing-session-badge">
             {plan.sessionMinimum ?? "Minimum booking: 4 sessions"}
           </div>
         </div>

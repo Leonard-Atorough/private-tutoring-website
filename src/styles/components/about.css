@@ -128,12 +128,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-lg);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--primary-100);
-  border-left: 32px solid var(--primary-600);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 8px 20px rgba(15, 46, 38, 0.04);
+  /* Card and -bordered-left utility classes provide base styling */
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,

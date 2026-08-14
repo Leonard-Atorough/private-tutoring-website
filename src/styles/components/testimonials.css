@@ -75,13 +75,7 @@
 .testimonial-card > .content {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--primary-100);
+  /* Card and flex-col utility classes provide base styling */
   transition: all 0.3s ease;
 }
 

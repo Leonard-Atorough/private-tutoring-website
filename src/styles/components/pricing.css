@@ -15,21 +15,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--primary-100);
-  border-radius: var(--radius-xl);
-  padding: var(--space-xl) var(--space-lg);
-  box-shadow: 0 12px 30px rgba(15, 46, 38, 0.08);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.pricing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(15, 46, 38, 0.12);
-  border-color: var(--primary-200);
+  /* Card styling applied via .card -elevated -interactive -pronounced utility classes */
 }
 
 .pricing-card-header {
@@ -83,19 +69,9 @@
 }
 
 .pricing-session-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.9rem;
   margin-top: var(--space-md);
-  border-radius: 999px;
-  background: var(--primary-50);
   border: 1px solid var(--primary-100);
-  color: var(--primary);
-  font-size: 0.75rem;
-  font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .pricing-features {

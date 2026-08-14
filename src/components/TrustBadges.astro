@@ -8,7 +8,7 @@ const trustBadges = trustBadgesData.badges;
   <div class="trust-badges-container">
     {
       trustBadges.map((badge) => (
-        <article class="trust-badge" aria-label={badge.title}>
+        <article class="card -bordered-left trust-badge" aria-label={badge.title}>
           <span class="icon" aria-hidden="true">{badge.icon}</span>
           <span class="title">{badge.title}</span>
         </article>
