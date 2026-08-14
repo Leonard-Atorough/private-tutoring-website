@@ -3,6 +3,7 @@
 }
 
 .contact-form {
+  width: 100%;
   /* Card and flex-col utility classes provide base styling */
 }
 
@@ -91,7 +92,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  margin-top: var(--space-md);
+  margin: var(--space-md) 0;
   font-size: var(--font-size-2);
   font-weight: 600;
   color: var(--text);
