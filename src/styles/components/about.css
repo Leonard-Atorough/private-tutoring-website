@@ -132,7 +132,7 @@
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--primary-100);
   border-left: 32px solid var(--primary-600);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   box-shadow: 0 8px 20px rgba(15, 46, 38, 0.04);
   transition:
     transform 0.2s ease,
@@ -152,7 +152,7 @@
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: var(--primary-50);
   font-size: 1.2rem;
   line-height: 1;
@@ -187,6 +187,10 @@
 
   .about-image > .bubble {
     display: none;
+  }
+
+  .about-text {
+    padding: 0 var(--space-sm);
   }
 
   .about-text > .heading {

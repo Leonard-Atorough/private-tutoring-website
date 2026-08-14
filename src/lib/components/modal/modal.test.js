@@ -71,6 +71,46 @@ describe("Modal Component", () => {
       expect(modal.showModal).toHaveBeenCalled();
     });
 
+    it("should reveal the floating CTA between hero and contact form scroll thresholds", () => {
+      document.body.innerHTML = `
+        <section id="Hero" aria-label="Hero section"></section>
+        <button id="floating-book-btn" class="book-btn floating-book-btn" type="button">Book a Session</button>
+        <form id="contact-form"></form>
+        <dialog id="booking-modal">
+          <button id="modal-close">Close</button>
+          <iframe src="about:blank"></iframe>
+        </dialog>
+      `;
+
+      const hero = document.getElementById("Hero");
+      const floatingBtn = document.getElementById("floating-book-btn");
+      const form = document.getElementById("contact-form");
+      const modal = document.getElementById("booking-modal");
+
+      Object.defineProperty(hero, "offsetTop", { value: 0, configurable: true });
+      Object.defineProperty(hero, "offsetHeight", { value: 600, configurable: true });
+      Object.defineProperty(form, "offsetTop", { value: 1200, configurable: true });
+      modal.showModal = vi.fn();
+
+      initModal();
+
+      // Test: Button should be visible when scrolled past hero but before form
+      Object.defineProperty(window, "scrollY", { value: 700, writable: true, configurable: true });
+      window.dispatchEvent(new Event("scroll", { bubbles: false }));
+      expect(floatingBtn.classList.contains("is-visible")).toBe(true);
+
+      // Test: Button should be hidden when scrolled to form section
+      Object.defineProperty(window, "scrollY", { value: 1200, writable: true, configurable: true });
+      window.dispatchEvent(new Event("scroll", { bubbles: false }));
+      expect(floatingBtn.classList.contains("is-visible")).toBe(false);
+
+      // Test: Button click opens modal
+      Object.defineProperty(window, "scrollY", { value: 700, writable: true, configurable: true });
+      window.dispatchEvent(new Event("scroll", { bubbles: false }));
+      floatingBtn.click();
+      expect(modal.showModal).toHaveBeenCalled();
+    });
+
     it("should close modal when close button is clicked", () => {
       initModal();
       const modal = document.getElementById("booking-modal");
